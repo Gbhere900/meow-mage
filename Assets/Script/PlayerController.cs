@@ -5,11 +5,14 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
+    
     private PlayerInputControl playerInputControl;
     private Rigidbody rigidbody;
 
-    [SerializeField] Vector2 inputDirection;
-    [SerializeField] float yVelocity;
+    public float speed = 10;
+
+    [SerializeField] Vector3 inputDirection;
+    
     void Awake()
     {
         playerInputControl = new PlayerInputControl();  
@@ -21,11 +24,13 @@ public class PlayerController : MonoBehaviour
     {
         playerInputControl.Enable();
     }
-    void Update()
+    private void FixedUpdate()
     {
-        inputDirection = playerInputControl.Player.Move.ReadValue<Vector2>();
+        inputDirection.x = playerInputControl.Player.Move.ReadValue<Vector2>().x;
+        inputDirection.z = playerInputControl.Player.Move.ReadValue<Vector2>().y;
+        rigidbody.velocity = inputDirection * speed;
     }
-
+    
     private void OnDisable()
     {
         playerInputControl.Disable();
