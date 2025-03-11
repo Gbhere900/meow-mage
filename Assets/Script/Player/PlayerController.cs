@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInputControl playerInputControl;
     private Rigidbody rigidbody;
 
-    public float speed = 10;
+    public float speed = 3;
 
     [SerializeField] Vector3 inputDirection;
     
