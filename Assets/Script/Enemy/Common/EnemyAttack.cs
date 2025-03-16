@@ -22,6 +22,7 @@ public class EnemyAttack : MonoBehaviour
             Debug.Log("ÕÊº“ ‹µΩ" + damage);
             attackTimer = attackSpacing;
             AddAttackForce(collision.collider.gameObject);
+            collision.collider.GetComponent<PlayerHealth>()?.ReceiverDamage(damage);
         }
     }
     void Update()

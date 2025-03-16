@@ -73,12 +73,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8952ef96690d2224d9152b199d8a9f43, type: 3}
---- !u!198 &3708171883664976457 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4002197727395210150, guid: 8952ef96690d2224d9152b199d8a9f43,
-    type: 3}
-  m_PrefabInstance: {fileID: 359367741598419439}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5545131780572852928 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5190672310426893103, guid: 8952ef96690d2224d9152b199d8a9f43,
@@ -203,8 +197,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.64
-  m_Height: 0
+  m_Radius: 0.45
+  m_Height: 1.65
   m_Direction: 1
   m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!54 &5067057820581908992
@@ -246,7 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639c6de865eb0744eafa61198c177247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VFX_passaway: {fileID: 3708171883664976457}
   speed: 5
 --- !u!114 &486140599414162787
 MonoBehaviour:
@@ -261,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  force: 10
   attackSpacing: 1
   attackTimer: 0
 --- !u!4 &8681659991869197706 stripped
