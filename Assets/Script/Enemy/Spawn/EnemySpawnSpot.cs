@@ -24,8 +24,6 @@ public class EnemySpawnSpot : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Transform enemyTransfrom = enemytoSpawn.transform;
-        enemyTransfrom.position = transform.position;
-        GameObject.Instantiate(enemytoSpawn, enemyTransfrom);
+        GameObject.Instantiate(enemytoSpawn,enemytoSpawn.transform.position,enemytoSpawn.transform.rotation);
     }
 }
