@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class EnemyMove : MonoBehaviour
 {
     private Player player;
     private Rigidbody rigidbody;
-
+    [SerializeField] private ParticleSystem VFX_passaway;
     private Vector3 targetDirection;
 
     public float speed = 2;
@@ -27,4 +28,22 @@ public class EnemyMove : MonoBehaviour
     {
         rigidbody.velocity = targetDirection * speed;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("enter");
+        if (other.tag == "Player")
+        {
+            PassAway();
+        }
+    }
+    public void PassAway()
+    {
+        VFX_passaway.transform.parent = null;
+        VFX_passaway.Play();
+        Destroy(gameObject);
+
+    }
+
 }
+
