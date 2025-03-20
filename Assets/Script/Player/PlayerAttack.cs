@@ -23,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
     private void Awake()
     {
         playerInputControl = new PlayerInputControl();
-
+        playerInputControl.Enable();
         playerInputControl.Player.Fire.started += Attack;
         mana = maxMana;
     }
@@ -45,6 +45,10 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        playerInputControl.Disable();
+    }
     private void Attack(InputAction.CallbackContext context)
     {
         Debug.Log("Attack");

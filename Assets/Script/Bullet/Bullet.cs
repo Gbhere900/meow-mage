@@ -19,7 +19,12 @@ public class Bullet : MonoBehaviour
     }
     private void OnEnable()
     {
-        rigidbody.velocity = (MousePosition.GetMousePosition()- transform.position).normalized * speed;
+        Debug.Log(MousePosition.GetMousePosition());
+        Debug.Log(transform.position);
+        Vector3 aimPosition = (MousePosition.GetMousePosition() - transform.position);
+        aimPosition.y = transform.position.y;
+        rigidbody.velocity = aimPosition.normalized * speed;
+        transform.forward = aimPosition.normalized;
     }
 
     // Update is called once per frame
