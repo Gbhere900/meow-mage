@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 2561306417677439428}
   - component: {fileID: 2447247655652337043}
   - component: {fileID: 2869073762390066157}
-  - component: {fileID: 6499877822269865625}
+  - component: {fileID: 3028748784572443617}
   m_Layer: 0
   m_Name: "\u5446\u732B"
   m_TagString: Player
@@ -319,12 +319,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3398991639646015322}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.51, z: 1.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3457036685075975836}
+  - {fileID: 6456842060178784958}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &7510167737127919302
@@ -419,7 +420,7 @@ MonoBehaviour:
   health: 0
   healthSlider: {fileID: 0}
   healthText: {fileID: 0}
---- !u!114 &6499877822269865625
+--- !u!114 &3028748784572443617
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -428,10 +429,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3398991639646015322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37ad63677e756034d9cf05d095bb5a91, type: 3}
+  m_Script: {fileID: 11500000, guid: 4001e912ddaeec343b57e09aff8a5729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  mana: 0
+  maxMana: 100
+  manaRecoverSpeed: 10
+  attackCD: 0.5
+  attackTimer: 0
+  PrefabsToCreat: {fileID: 6562803177767023011, guid: 2e8175bd30cf31643ae4bc8b9a1bd60d,
+    type: 3}
+  canAttack: 1
+  attackPosition: {fileID: 6456842060178784958}
 --- !u!1 &3603655983735365934
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +690,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5912854207903519621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6456842060178784958}
+  m_Layer: 0
+  m_Name: BulletSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6456842060178784958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5912854207903519621}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.233}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7353743689975847635}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6450996632230189302
 GameObject:
   m_ObjectHideFlags: 0

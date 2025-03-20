@@ -17,11 +17,13 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] Boolean canAttack = true ;
     [SerializeField] private Transform attackPosition;
-    [SerializeField] private PlayerInputControl playerInputControl;
+    private PlayerInputControl playerInputControl;
+
 
     private void Awake()
     {
         playerInputControl = new PlayerInputControl();
+
         playerInputControl.Player.Fire.started += Attack;
         mana = maxMana;
     }
@@ -45,9 +47,12 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack(InputAction.CallbackContext context)
     {
+        Debug.Log("Attack");
         if (canAttack)
-        {
+        { 
             GameObject.Instantiate(PrefabsToCreat, attackPosition.position, PrefabsToCreat.transform.rotation);
+            attackTimer = 0;
+            canAttack = false;
         }
     }
 

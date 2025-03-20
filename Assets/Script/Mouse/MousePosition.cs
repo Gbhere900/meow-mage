@@ -3,31 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MousePosition : MonoBehaviour
+static public class MousePosition 
 {
-    private PlayerInputControl playerInputControl;
-    public Camera mainCamera;
-    public void Awake()
-    {
-        playerInputControl = new PlayerInputControl();
-    }
+    static private PlayerInputControl playerInputControl;
+    static public Camera mainCamera;
+    static MousePosition()
+        {
+            playerInputControl = new PlayerInputControl();
+            playerInputControl.Enable();
+            mainCamera = Camera.main;
+        }
 
-    private void OnEnable()
-    {
-        playerInputControl.Enable();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-       Debug.Log(GetMousePosition());
-    }
 
-    private void OnDisable()
+
+
+    static public Vector3 GetMousePosition()
     {
-        playerInputControl.Disable();
-    }
-     public Vector2 GetMousePosition()
-    {
-        return playerInputControl.Player.MousePosition.ReadValue<Vector2>();
+        Vector3 position = playerInputControl.Player.MousePosition.ReadValue<Vector2>();
+        position.z = 29.5f;
+        return Camera.main.ScreenToWorldPoint(position);
     }
 }

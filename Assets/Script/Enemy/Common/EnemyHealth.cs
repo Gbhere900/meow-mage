@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(DamageUI))]
+
 public class EnemyHealth : MonoBehaviour
 {
     [Header("ÊýÖµ")]
