@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DamageUIManeger : MonoBehaviour
 {
-    [SerializeField] GameObject damageText;
+    [SerializeField] DamageUI damageText;
     // Start is called before the first frame update
     private void OnEnable()
     {
@@ -20,7 +20,7 @@ public class DamageUIManeger : MonoBehaviour
     void GenerateDamageUIPrefabs(float damage,Vector3 position)
     {
         position.y += 10;
-        DamageUI damageUI = GameObject.Instantiate(damageText, position, damageText.transform.rotation).GetComponent<DamageUI>();
+        DamageUI damageUI = GameObject.Instantiate(damageText, position, damageText.transform.rotation);
         damageUI.PlayDamageUIAnimation(damage);
     }
 

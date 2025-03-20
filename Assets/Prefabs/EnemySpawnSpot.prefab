@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25dd7a5127902f34492228ff49f34c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemytoSpawn: {fileID: 8300313812505319216, guid: 00fea5399b9b38649bf944ab08714a2e,
+  enemytoSpawn: {fileID: 7182277849290612098, guid: 3aefd2b298a469548af8965e78f5c218,
     type: 3}
   SecondsToWait: 2
 --- !u!95 &1670876105953185061
