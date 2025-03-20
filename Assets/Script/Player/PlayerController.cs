@@ -26,11 +26,16 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        Move();
+       
+    }
+
+    private void Move()
+    {
         inputDirection.x = playerInputControl.Player.Move.ReadValue<Vector2>().x;
         inputDirection.z = playerInputControl.Player.Move.ReadValue<Vector2>().y;
         rigidbody.velocity = inputDirection * speed;
     }
-    
     private void OnDisable()
     {
         playerInputControl.Disable();
