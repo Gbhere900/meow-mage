@@ -228,7 +228,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1914722654944944830}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 5067057820581908992}
   - component: {fileID: 2523736547165243214}
   - component: {fileID: 486140599414162787}
+  - component: {fileID: 8573833365276628253}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -571,6 +572,19 @@ MonoBehaviour:
   force: 10
   attackSpacing: 1
   attackTimer: 0
+--- !u!114 &8573833365276628253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8300313812505319216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f634f58ecb07b4aa30505f9048ddf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VFX_passaway: {fileID: 0}
 --- !u!1 &8824915474735994862
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6234597832115041109}
-  animationPlayTime: 2
+  animationPlayTime: 1
 --- !u!95 &6234597832115041109
 Animator:
   serializedVersion: 5
