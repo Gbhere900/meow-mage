@@ -6,20 +6,30 @@ using UnityEngine;
 public class DamageUI : MonoBehaviour
 {
     [SerializeField] Animator animator;
+    [SerializeField] TextMeshPro textMeshPro;
     [SerializeField] float animationPlayTime;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         
     }
     private void OnEnable()
     {
-        PlayDamageUIAnimation();
+
     }
 
-   public void PlayDamageUIAnimation()
+   public void PlayDamageUIAnimation(System.String  s,float tempAnimationPlayTime)
     {
-        animator.speed = 1/animationPlayTime;
+        textMeshPro.text = s;
+        animator.speed = 1/tempAnimationPlayTime;
         animator.Play("TextJump");
     }
+
+    public void PlayDamageUIAnimation(float s)
+    {
+        textMeshPro.text = s.ToString();
+        animator.speed = 1 / animationPlayTime;
+        animator.Play("TextJump");
+    }
+
 }

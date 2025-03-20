@@ -14,7 +14,9 @@ public class EnemyHealth : MonoBehaviour
     [Header("Á£×ÓÐ§¹û")]
     [SerializeField] private ParticleSystem VFX_passaway;
     private DamageUI damageUI;
-    // Start is called before the first frame update
+
+
+    static public Action<float, Vector3> OnReceivedDamage;
     private void Awake()
     {
         damageUI = GetComponent<DamageUI>();
@@ -29,11 +31,11 @@ public class EnemyHealth : MonoBehaviour
     {
         
     }
-
-    void ReceiveDamage(float damage)
+    [NaughtyAttributes.Button]
+    void ReceiveDamage(float damage = 8)
     {
+        OnReceivedDamage.Invoke(damage,transform.position);
         health -= Math.Min(health, damage);
-        damageUI.PlayDamageUIAnimation();
         if (health == 0)
         {
             PassAway();
