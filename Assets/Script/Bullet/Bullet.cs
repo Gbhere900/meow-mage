@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -9,27 +11,51 @@ public class Bullet : MonoBehaviour
     [Header("数值")]
     [SerializeField] float speed = 5;
     [SerializeField] float damage = 3;
-    //[SerializeField] private MousePosition mousePositionManager;
-
+    [SerializeField] float time = 5;
+    [SerializeField] Vector3 aimPosition;
     private Rigidbody rigidbody;
-    // Start is called before the first frame update
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();  
     }
     private void OnEnable()
     {
-        Debug.Log(MousePosition.GetMousePosition());
-        Debug.Log(transform.position);
-        Vector3 aimPosition = (MousePosition.GetMousePosition() - transform.position);
-        aimPosition.y = transform.position.y;
-        rigidbody.velocity = aimPosition.normalized * speed;
-        transform.forward = aimPosition.normalized;
+        Debug.Log("鼠标"+MousePosition.GetMousePosition());
+        Debug.Log("发射点"+transform.position);
+        SetAimDirection();
+        rigidbody.velocity = aimPosition.normalized * speed;   //设置速度
+        StartCoroutine(WaitForDestroy());
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    public void setActive(Boolean active)
+    {
+        enabled = active;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetType() == typeof(EnemyHealth))
+        {
+            StopCoroutine(WaitForDestroy());
+            BulletPool.bulletPool.Release(this);
+        }
+    }
+    IEnumerator WaitForDestroy()
+    {
+        yield return new WaitForSeconds(time);
+        BulletPool.bulletPool.Release(this );
+    }
+
+   public void SetAimDirection()
+    {
+        aimPosition = (MousePosition.GetMousePosition() - transform.position);
+        aimPosition.y = transform.position.y;
+        transform.forward = aimPosition.normalized;
     }
 }

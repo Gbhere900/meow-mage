@@ -53,8 +53,9 @@ public class PlayerAttack : MonoBehaviour
     {
         Debug.Log("Attack");
         if (canAttack)
-        { 
-            GameObject.Instantiate(PrefabsToCreat, attackPosition.position, PrefabsToCreat.transform.rotation);
+        {
+            Bullet tempBUllet = BulletPool.bulletPool.Get();
+            tempBUllet.transform.position =  attackPosition.position;
             attackTimer = 0;
             canAttack = false;
         }

@@ -171,6 +171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   damage: 3
+  time: 2
+  aimPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &5731035137147575729 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c1351943296c71f448be82e734551ab2,
