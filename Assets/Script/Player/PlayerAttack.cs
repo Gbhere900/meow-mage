@@ -16,6 +16,7 @@ public class PlayerAttack : MonoBehaviour
 
 
     [SerializeField] Boolean canAttack = true ;
+    Bullet tempBullet;
     [SerializeField] private Transform attackPosition;
     private PlayerInputControl playerInputControl;
 
@@ -54,8 +55,9 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log("Attack");
         if (canAttack)
         {
-            Bullet tempBUllet = BulletPool.bulletPool.Get();
-            tempBUllet.transform.position =  attackPosition.position;
+            tempBullet = BulletPool.bulletPool.Get();
+            tempBullet.transform.position =  attackPosition.position;
+            tempBullet.shootByDirection();
             attackTimer = 0;
             canAttack = false;
         }

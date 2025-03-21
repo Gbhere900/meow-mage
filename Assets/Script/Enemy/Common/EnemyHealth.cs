@@ -32,7 +32,7 @@ public class EnemyHealth : MonoBehaviour
         
     }
     [NaughtyAttributes.Button]
-    void ReceiveDamage(float damage = 8)
+    public void ReceiveDamage(float damage = 8)
     {
         OnReceivedDamage.Invoke(damage,transform.position);
         health -= Math.Min(health, damage);

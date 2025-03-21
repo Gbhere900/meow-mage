@@ -23,25 +23,25 @@ public class Bullet : MonoBehaviour
     {
         Debug.Log("鼠标"+MousePosition.GetMousePosition());
         Debug.Log("发射点"+transform.position);
-        SetAimDirection();
-        rigidbody.velocity = aimPosition.normalized * speed;   //设置速度
         StartCoroutine(WaitForDestroy());
-    }
+        Debug.Log("方向"+aimPosition);
 
-    // Update is called once per frame
-    void Update()
-    {
         
     }
-    public void setActive(Boolean active)
+
+    public void shootByDirection()
     {
-        enabled = active;
+        
+        SetAimDirection();
+        rigidbody.velocity = aimPosition.normalized * speed;  //设置速度
     }
+    
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetType() == typeof(EnemyHealth))
+        if(other.GetComponent<EnemyHealth>() != null)
         {
+            other.GetComponent<EnemyHealth>().ReceiveDamage(damage);
             StopCoroutine(WaitForDestroy());
             BulletPool.bulletPool.Release(this);
         }
@@ -55,7 +55,7 @@ public class Bullet : MonoBehaviour
    public void SetAimDirection()
     {
         aimPosition = (MousePosition.GetMousePosition() - transform.position);
-        aimPosition.y = transform.position.y;
+        aimPosition.y = 0;
         transform.forward = aimPosition.normalized;
     }
 }
