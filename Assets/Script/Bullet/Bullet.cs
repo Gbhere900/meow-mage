@@ -21,10 +21,10 @@ public class Bullet : MonoBehaviour
     }
     private void OnEnable()
     {
-        Debug.Log("鼠标"+MousePosition.GetMousePosition());
-        Debug.Log("发射点"+transform.position);
+      //  Debug.Log("鼠标"+MousePosition.GetMousePosition());
+       // Debug.Log("发射点"+transform.position);
         StartCoroutine(WaitForDestroy());
-        Debug.Log("方向"+aimPosition);
+       // Debug.Log("方向"+aimPosition);
 
         
     }
