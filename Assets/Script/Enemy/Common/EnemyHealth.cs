@@ -17,8 +17,6 @@ public class EnemyHealth : MonoBehaviour
     private DamageUI damageUI;
 
     [Header("ÉËº¦ÎÄ×ÖÐ§¹û")]
-
-
     static public Action<float, Vector3> OnReceivedDamage;
     private void Awake()
     {
@@ -38,10 +36,11 @@ public class EnemyHealth : MonoBehaviour
     [NaughtyAttributes.Button]
     public void ReceiveDamage(float damage = 8)
     {
-        DamageUI damageText = TMP_Pool.TMP_damageTextPool.Get();
-        damageText.transform.position = transform.position;
-        damageText.PlayDamageUIAnimation(damage);
-       // OnReceivedDamage.Invoke(damage,transform.position);
+        OnReceivedDamage.Invoke(damage, transform.position);
+        //DamageUI damageText = TMP_Pool.TMP_damageTextPool.Get();
+        //damageText.transform.position = transform.position;
+        //damageText.PlayDamageUIAnimation(damage);
+        // OnReceivedDamage.Invoke(damage,transform.position);
         health -= Math.Min(health, damage);
         if (health == 0)
         {
@@ -50,6 +49,7 @@ public class EnemyHealth : MonoBehaviour
     }
     public void PassAway()
     {
+        
         ParticleSystem VFX_passAway = VFX_Pool.VFX_PassAwayPool.Get();
         VFX_passAway.transform.position = transform.position;
         Destroy(gameObject);

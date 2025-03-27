@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,23 +9,35 @@ public class DamageUI : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] TextMeshPro textMeshPro;
     [SerializeField] float animationPlayTime;
-    // Start is called before the first frame update
 
+
+    static public Action<DamageUI> OnRecycled; 
     private void OnEnable()
     {
         StartCoroutine(waitForDestroy());
     }
 
-   public void PlayDamageUIAnimation(System.String  s,float tempAnimationPlayTime)
+    public void Spawn(float text)
     {
-        textMeshPro.text = s;
+        SetText( text.ToString());
+        PlayDamageUIAnimation(animationPlayTime);
+    }
+
+    public void SetText(System.String text)
+    {
+        textMeshPro.text = text;
+    }
+    public void PlayDamageUIAnimation(float tempAnimationPlayTime)
+    {
+        
         animator.speed = 1/tempAnimationPlayTime;
         animator.Play("TextJump");
     }
 
-    public void PlayDamageUIAnimation(float s)
+    
+    public void PlayDamageUIAnimation()
     {
-        textMeshPro.text = s.ToString();
+        
         animator.speed = 1 / animationPlayTime;
         animator.Play("TextJump");
     }
@@ -34,7 +47,7 @@ public class DamageUI : MonoBehaviour
     IEnumerator waitForDestroy()
     {
         yield return new WaitForSeconds(animationPlayTime);
-        TMP_Pool.TMP_damageTextPool.Release(this);
+        OnRecycled.Invoke(this);
     }
 
 }

@@ -10,7 +10,6 @@ using UnityEngine.Pool;
     static protected T prefabs;
     static private ObjectPool<T> _instance;
 
-    public static void Init() { }
     static public ObjectPool<T> Instance { 
         get 
         {  

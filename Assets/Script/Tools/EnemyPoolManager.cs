@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+
+
+//´ýÊµÏÖ
+
+
+
 public class EnemyPoolManager : MonoBehaviour
 {
     private ObjectPool<EnemyHealth> enemyPool;
@@ -15,8 +21,9 @@ public class EnemyPoolManager : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(Test());
+        //StartCoroutine(Test());
     }
+
     IEnumerator Test()
     {
         for(int i = 0;i<100;i++)
