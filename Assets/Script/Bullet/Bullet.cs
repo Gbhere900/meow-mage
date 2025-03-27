@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
         {
             other.GetComponent<EnemyHealth>().ReceiveDamage(damage);
             StopCoroutine(WaitForDestroy());
-            BulletPool.bulletPool.Release(this);
+            OnRecycled.Invoke(this);
         }
     }
     IEnumerator WaitForDestroy()

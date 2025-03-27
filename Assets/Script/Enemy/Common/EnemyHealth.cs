@@ -13,15 +13,14 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float health = 10;
 
     [Header("粒子效果")]
-    [SerializeField] private ParticleSystem VFX_passaway;
-    private DamageUI damageUI;
+
 
     [Header("伤害文字效果")]
     static public Action<float, Vector3> OnReceivedDamage;
+    static public Action<Vector3> OnPassAway;
     private void Awake()
     {
 
-        damageUI = GetComponent<DamageUI>();
     }
     void Start()
     {
@@ -49,9 +48,9 @@ public class EnemyHealth : MonoBehaviour
     }
     public void PassAway()
     {
-        
-        ParticleSystem VFX_passAway = VFX_Pool.VFX_PassAwayPool.Get();
-        VFX_passAway.transform.position = transform.position;
+        OnPassAway.Invoke(transform.position);
+       // ParticleSystem VFX_passAway = VFX_Pool.VFX_PassAwayPool.Get();
+       // VFX_passAway.transform.position = transform.position;
         Destroy(gameObject);
         //VFX_passaway.transform.parent = null;
         //VFX_passaway.Play();

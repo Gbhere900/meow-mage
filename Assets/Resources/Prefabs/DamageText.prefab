@@ -266,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 406533942112166389}
   textMeshPro: {fileID: 3548699448128708306}
-  animationPlayTime: 1
+  animationPlayTime: 1.5
 --- !u!95 &406533942112166389
 Animator:
   serializedVersion: 5
