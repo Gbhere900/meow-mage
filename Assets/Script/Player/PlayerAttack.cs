@@ -21,6 +21,8 @@ public class PlayerAttack : MonoBehaviour
     private PlayerInputControl playerInputControl;
 
 
+    static public Action<PlayerAttack> OnplayerAttack;
+
     private void Awake()
     {
         playerInputControl = new PlayerInputControl();
@@ -55,9 +57,10 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log("Attack");
         if (canAttack)
         {
-            tempBullet = BulletPool.bulletPool.Get();
-            tempBullet.transform.position =  attackPosition.position;
-            tempBullet.shootByDirection();
+            OnplayerAttack.Invoke(this);
+            //tempBullet = BulletPool.bulletPool.Get();
+            //tempBullet.transform.position =  attackPosition.position;
+            //tempBullet.shootByDirection();
             attackTimer = 0;
             canAttack = false;
         }

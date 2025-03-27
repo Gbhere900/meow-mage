@@ -15,6 +15,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] Vector3 aimPosition;
     private Rigidbody rigidbody;
 
+
+    static public Action<Bullet> OnRecycled;
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();  
@@ -49,7 +51,7 @@ public class Bullet : MonoBehaviour
     IEnumerator WaitForDestroy()
     {
         yield return new WaitForSeconds(time);
-        BulletPool.bulletPool.Release(this );
+        OnRecycled.Invoke(this);
     }
 
    public void SetAimDirection()
