@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPool : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+public class EnemyPool : BasicPoolClass<EnemyHealth>
+{ 
+    static EnemyPool ()
     {
-        
+        prefabs = Resources.Load<EnemyHealth>("Prefabs/Slime1");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public static void Init() { }
 }
