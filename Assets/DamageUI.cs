@@ -9,13 +9,10 @@ public class DamageUI : MonoBehaviour
     [SerializeField] TextMeshPro textMeshPro;
     [SerializeField] float animationPlayTime;
     // Start is called before the first frame update
-    private void Awake()
-    {
-        
-    }
+
     private void OnEnable()
     {
-
+        StartCoroutine(waitForDestroy());
     }
 
    public void PlayDamageUIAnimation(System.String  s,float tempAnimationPlayTime)
@@ -30,6 +27,14 @@ public class DamageUI : MonoBehaviour
         textMeshPro.text = s.ToString();
         animator.speed = 1 / animationPlayTime;
         animator.Play("TextJump");
+    }
+
+
+
+    IEnumerator waitForDestroy()
+    {
+        yield return new WaitForSeconds(animationPlayTime);
+        TMP_Pool.TMP_damageTextPool.Release(this);
     }
 
 }

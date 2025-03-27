@@ -15,10 +15,14 @@ using UnityEngine.Pool;
             if(_instance == null)
             {
                 prefabs = Resources.Load<T>(prefabsPath);
-                if(prefabsPath != null )
+                if(prefabsPath == null )
                 {
                     Debug.Log("预制体路径未找到");
                     return null;
+                }
+                if(prefabs == null )
+                {
+                    Debug.Log("预制体为空");
                 }
                 _instance = new ObjectPool<T>(CreateFunction, ActionOnGet, ActionOnRelease, ActionOnDestroy);
             }
@@ -29,10 +33,7 @@ using UnityEngine.Pool;
 
     }
 
-    public BasicPoolClass(String path) 
-    {
-        prefabsPath = path;
-    }
+   
 
     private static T CreateFunction()
     {

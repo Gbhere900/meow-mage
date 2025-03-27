@@ -16,12 +16,13 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private ParticleSystem VFX_passaway;
     private DamageUI damageUI;
 
-    ObjectPool<TextMeshPro> TMPPool  ;
+    [Header("ÉËº¦ÎÄ×ÖÐ§¹û")]
+
 
     static public Action<float, Vector3> OnReceivedDamage;
     private void Awake()
     {
-        TMPPool = TMP_Pool_damage.Instance;
+
         damageUI = GetComponent<DamageUI>();
     }
     void Start()
@@ -37,8 +38,9 @@ public class EnemyHealth : MonoBehaviour
     [NaughtyAttributes.Button]
     public void ReceiveDamage(float damage = 8)
     {
-        TextMeshPro damageText= TMPPool.Get();
+        DamageUI damageText = TMP_Pool.TMP_damageTextPool.Get();
         damageText.transform.position = transform.position;
+        damageText.PlayDamageUIAnimation(damage);
        // OnReceivedDamage.Invoke(damage,transform.position);
         health -= Math.Min(health, damage);
         if (health == 0)
