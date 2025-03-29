@@ -32,6 +32,6 @@ public class EnemyAttack : MonoBehaviour
 
     private void AddAttackForce(GameObject collider)
     {
-        collider.GetComponent<Rigidbody>()?.AddForce(force * collider.transform.position - transform.position, ForceMode.Impulse);
+        collider.GetComponentInParent<Rigidbody>()?.AddForce(force * collider.transform.position - transform.position, ForceMode.Impulse);
     }
 }

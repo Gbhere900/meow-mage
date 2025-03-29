@@ -30,7 +30,7 @@ public class TMPPoolManager : MonoBehaviour
     void SpawnDamageUI(float damage,Vector3 position)
     {
         DamageUI tempDamageUI =  damageUIPool.Get();
-        tempDamageUI.transform.position = position;
+        tempDamageUI.transform.position = position+ new Vector3(Random.Range(-0.3f,0.3f),0,Random.Range(-0.3f, 0.3f));
         tempDamageUI.Spawn(damage);
     }
 
