@@ -6,10 +6,11 @@ using UnityEngine;
 public class EXPBall : Collectable
 {
     static public Action<EXPBall> OnRecycled;
+    static public Action OnCollected;
 
     public override void Collect()
     {
-
+        OnCollected.Invoke();
         Recycle();
     }
 
@@ -17,5 +18,7 @@ public class EXPBall : Collectable
     {
         OnRecycled?.Invoke(this);
     }
+
+    
 
 }

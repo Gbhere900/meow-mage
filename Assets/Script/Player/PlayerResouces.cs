@@ -1,9 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class PlayerResouces : MonoBehaviour
 {
+    [Header("经验")]
+    [SerializeField] private Slider EXP_Slider;
+    [SerializeField] private TextMeshProUGUI LevelText;
+    [SerializeField] private float maxEXP = 5 ;
+    [SerializeField] private float currentEXP = 0;
+    [SerializeField] private int level = 1;
+
+    [Header("金币")]
+    [SerializeField] private TextMeshProUGUI goldText;
+    [SerializeField] private float currentGold = 0;
+
+
     [Header("收集半径")]
     [SerializeField]private SphereCollider sphereCollider;
     protected float colliderRadius = 2;
@@ -15,6 +29,15 @@ public class PlayerResouces : MonoBehaviour
     private void OnEnable()
     {
         sphereCollider.radius = colliderRadius;
+        UpdateLevelUI();
+
+        EXPBall.OnCollected  += IncreaceEXP;
+        GoldBall.OnCollected += IncreaceGold;
+    }
+    private void OnDisable()
+    {
+        EXPBall.OnCollected  -= IncreaceEXP;
+        GoldBall.OnCollected -= IncreaceGold;
     }
     // Start is called before the first frame update
 
@@ -28,4 +51,37 @@ public class PlayerResouces : MonoBehaviour
         }
     }
 
+    private void IncreaceEXP()
+    {
+        currentEXP++;
+        if(currentEXP >= maxEXP)
+        {
+            LevelUP();
+        }
+        UpdateLevelUI();
+    }
+
+    private void LevelUP()
+    {
+        level++;
+        currentEXP = 0;
+        maxEXP = level * 5;
+    }
+
+    void UpdateLevelUI()
+    {
+        EXP_Slider.value = currentEXP/maxEXP;
+        LevelText.text = level.ToString();
+    }
+
+    private void IncreaceGold()
+    {
+        currentGold++;
+
+        UpdateGoldUI();
+    }
+    void UpdateGoldUI()
+    {
+        goldText.text = currentGold.ToString();
+    }
 }
