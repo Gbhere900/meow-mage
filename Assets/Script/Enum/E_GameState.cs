@@ -2,6 +2,6 @@ public enum GameState
 {
     menu,
     shop,
-    prize,
+    game,
     trophy
 }

@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
         }
         else
             instance = this;
+
+        SwitchGameState(GameState.menu);
     }
 
     // Update is called once per frame
@@ -27,14 +29,14 @@ public class GameManager : MonoBehaviour
     public void OnSwitchWaveCallBack()
     {
         int deltaLevel = UnityEngine.Object.FindObjectOfType<PlayerResouces>().GetDeltaLevel();
-        SwitchState(GameState.shop);
+        SwitchGameState(GameState.shop);
         for (int i = 0; i < deltaLevel; i++)
         {
-            SwitchState(GameState.trophy);
+            SwitchGameState(GameState.trophy);
         }
     }
 
-    public void SwitchState(GameState gameState)
+    public void SwitchGameState(GameState gameState)
     {
         OnSwitchGameState(gameState);
     }
