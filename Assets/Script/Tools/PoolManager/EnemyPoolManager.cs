@@ -11,13 +11,13 @@ using UnityEngine.Pool;
 
 public class EnemyPoolManager : MonoBehaviour
 {
-    private ObjectPool<EnemyHealth> enemyPool;
+    private ObjectPool<EnemySpawnSpot> enemyPool_slime;
 
 
     private void Awake()
     {
-        EnemyPool.Init();  
-        enemyPool = EnemyPool.Instance;
+        EnemyPool_slime.Init();  
+        enemyPool_slime = EnemyPool_slime.Instance;
     }
     private void Start()
     {
@@ -29,14 +29,18 @@ public class EnemyPoolManager : MonoBehaviour
         for(int i = 0;i<100;i++)
         {
             yield return new WaitForSeconds(1f);
-            EnemyHealth enemy = enemyPool.Get();
+            EnemySpawnSpot enemy = enemyPool_slime.Get();
             enemy.transform.position = Vector3.zero + new Vector3(i, 0, 0);
         }
         
     } 
-    // Update is called once per frame
-    void Update()
+
+
+    void GenerateSlime(Vector3 position)
     {
-        
+        EnemySpawnSpot tempEnemeSpawnSpot =  enemyPool_slime.Get();
+        tempEnemeSpawnSpot.transform.position = position;
+
     }
+    
 }

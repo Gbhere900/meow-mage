@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 public class PlayerResouces : MonoBehaviour
 {
+    PlayerResouces instance;
     [Header("О­бщ")]
     [SerializeField] private Slider EXP_Slider;
     [SerializeField] private TextMeshProUGUI LevelText;
@@ -24,7 +25,12 @@ public class PlayerResouces : MonoBehaviour
     
     private void Awake()
     {
-        
+        if(instance != null)
+        {
+            GameObject.Destroy(gameObject);
+        }
+        else
+        instance = this;
     }
     private void OnEnable()
     {

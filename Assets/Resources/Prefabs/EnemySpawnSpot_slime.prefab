@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5364901309047525487}
   - component: {fileID: 1670876105953185061}
   m_Layer: 0
-  m_Name: EnemySpawnSpot
+  m_Name: EnemySpawnSpot_slime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

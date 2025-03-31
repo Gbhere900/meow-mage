@@ -26,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
     {
 
     }
-    void Start()
+    private void OnEnable()
     {
         health = maxHealth;
     }
@@ -50,6 +50,11 @@ public class EnemyHealth : MonoBehaviour
     {
         OnPassAway?.Invoke(transform.position);
         OnGeneratingCollectable?.Invoke(transform.position,EXPnum,Goldnum);
+        Destroy(gameObject);
+    }
+    public void PassAwayOnSwitchWave()
+    {
+        OnPassAway?.Invoke(transform.position);
         Destroy(gameObject);
     }
 }
