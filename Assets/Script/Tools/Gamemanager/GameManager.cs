@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public void OnSwitchWaveCallBack()
     {
         int deltaLevel = UnityEngine.Object.FindObjectOfType<PlayerResouces>().GetDeltaLevel();
-        SwitchGameState(GameState.shop);
+        //SwitchGameState(GameState.shop);
         for (int i = 0; i < deltaLevel; i++)
         {
             SwitchGameState(GameState.trophy);
@@ -39,5 +39,10 @@ public class GameManager : MonoBehaviour
     public void SwitchGameState(GameState gameState)
     {
         OnSwitchGameState(gameState);
+    }
+
+    public void GameStart()
+    {
+        SwitchGameState(GameState.game);
     }
 }
