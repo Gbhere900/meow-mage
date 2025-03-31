@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
+
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100;
@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI();
         if (health == 0)
         {
-            SceneManager.LoadScene(0);
+            GameManager.instance.SwitchGameState(GameState.gameOver);
         }
         
     }

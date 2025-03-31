@@ -650,6 +650,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51e01e175d6dd246b2cab9124b06b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAttack: {fileID: 6666270770856498223}
+  playerController: {fileID: 1255901995214934133}
 --- !u!114 &6666270770856498223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -820,6 +822,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10628f13aed4d8d4088aca8fa0dd3024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EXP_Slider: {fileID: 0}
+  LevelText: {fileID: 0}
+  maxEXP: 5
+  currentEXP: 0
+  level: 1
+  lastLevel: 1
+  deltaLevel: 1
+  goldText: {fileID: 0}
+  currentGold: 0
   sphereCollider: {fileID: 558012171852095545}
 --- !u!1 &8355018781156330156
 GameObject:

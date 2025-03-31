@@ -1,7 +1,11 @@
 public enum GameState
 {
     menu,
-    shop,
     game,
-    trophy
+    wavetransition,
+    shop,
+    trophy,
+    bag,
+    gameOver,
+    victory
 }

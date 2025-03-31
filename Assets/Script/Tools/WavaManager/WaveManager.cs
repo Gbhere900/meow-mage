@@ -29,6 +29,17 @@ public class WaveManager : MonoBehaviour
         SwitchToNextWave();
         UpdateWavesText();
     }
+
+    private void OnEnable()
+    {
+        GameManager.OnSwitchGameState += SwitchWaveState;
+    }
+    private void OnDisable()
+    {
+        GameManager.OnSwitchGameState -= SwitchWaveState;
+    }
+
+
     private void Update()
     {
         if (!isTimerCounting)
@@ -48,14 +59,16 @@ public class WaveManager : MonoBehaviour
         {
             if(currentWave < waves.Length-1)
             {
-                SwitchToNextWave();
-                GameManager.instance.OnSwitchWaveCallBack();
+                // SwitchToNextWave();
+                //GameManager.instance.OnSwitchWaveCallBack();
+                GameManager.instance.SwitchGameState(GameState.wavetransition);
             }
             
             else
             {
                 isTimerCounting = false;
-
+                DestroyCurrentWaveEnemies();
+                GameManager.instance.SwitchGameState(GameState.victory);
             }
           
         }
@@ -142,5 +155,14 @@ public class WaveManager : MonoBehaviour
         public GameObject prefab;
     }
 
+    private void SwitchWaveState(GameState state)
+    {
+        if(state == GameState.game)
+        {
+            isTimerCounting = true;
+        }
+
+            
+    }
 
 }

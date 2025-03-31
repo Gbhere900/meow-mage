@@ -6,8 +6,12 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject menuUI;
     [SerializeField] private GameObject gameUI;
+    [SerializeField] private GameObject waveTransitionUI;
     [SerializeField] private GameObject trophyUI;
     [SerializeField] private GameObject shopUI;
+    [SerializeField] private GameObject bagUI;
+    [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject victoryUI;
     
     private void OnEnable()
     {
@@ -25,21 +29,28 @@ public class UIManager : MonoBehaviour
         {
             case GameState.menu:
                 menuUI.SetActive(true);
-                Debug.Log("UImanagerÇÐ»»shop×´Ì¬");
                 break;
             case GameState.game:
                 gameUI.SetActive(true);
-                Debug.Log("UImanagerÇÐ»»trophy×´Ì¬");
+                break;
+            case GameState.wavetransition:
+                waveTransitionUI.SetActive(true);
+                break;
+            case GameState.bag:
+                bagUI.SetActive(true);
                 break;
             case GameState.trophy:
                 trophyUI.SetActive(true);
-                Debug.Log("UImanagerÇÐ»»trophy×´Ì¬");
                 break;
 
             case GameState.shop:
                 shopUI.SetActive(true);
-                Debug.Log("UImanagerÇÐ»»shop×´Ì¬");
-
+                break;
+            case GameState.victory:
+                victoryUI.SetActive(true);
+                break;
+            case GameState.gameOver:
+                gameOverUI.SetActive(true);
                 break;
         }
     }
@@ -47,7 +58,12 @@ public class UIManager : MonoBehaviour
     {
         menuUI.SetActive(false);
         gameUI.SetActive(false);
+        waveTransitionUI.SetActive(false);
         trophyUI.SetActive(false);
         shopUI.SetActive(false);
+        bagUI.SetActive(false);
+        victoryUI.SetActive(false);
+        gameOverUI.SetActive(false);
+
     }
 }
