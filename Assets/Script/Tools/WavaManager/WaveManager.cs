@@ -9,7 +9,7 @@ using TMPro;
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] private Player player;
-    [SerializeField] private float generateDistance_min= 5;
+    [SerializeField] private float generateDistance_min= 10;
     [SerializeField] private float generateDistance_max= 20;
 
     [Header("time")]
@@ -96,7 +96,7 @@ public class WaveManager : MonoBehaviour
 
     private Vector3 GetGeneratePosition()
     {
-        Vector3 direction = new Vector3(UnityEngine.Random.Range(-1, 1), 0, UnityEngine.Random.Range(-1, 1));
+        Vector3 direction = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0, UnityEngine.Random.Range(-1f, 1f));
         Vector3 offset = direction * UnityEngine.Random.Range(generateDistance_min,generateDistance_max);
         Vector3 generatePosition= player.transform.position + offset;
         generatePosition.x = Math.Clamp(generatePosition.x, -24,24);
