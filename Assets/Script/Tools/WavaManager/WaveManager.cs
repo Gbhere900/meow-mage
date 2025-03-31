@@ -50,12 +50,12 @@ public class WaveManager : MonoBehaviour
             {
                 SwitchToNextWave();
                 GameManager.instance.OnSwitchWaveCallBack();
-                
             }
             
             else
             {
                 isTimerCounting = false;
+
             }
           
         }
