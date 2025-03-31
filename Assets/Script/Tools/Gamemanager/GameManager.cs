@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     static public GameManager instance;
+    static public Action<GameState> OnSwitchGameState;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -22,12 +24,18 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void OnSwitchWaveCallBack(int deltaLevel)
+    public void OnSwitchWaveCallBack()
     {
-        Debug.Log("打开商店");
+        int deltaLevel = UnityEngine.Object.FindObjectOfType<PlayerResouces>().GetDeltaLevel();
+        SwitchState(GameState.shop);
         for (int i = 0; i < deltaLevel; i++)
         {
-            Debug.Log("打开奖励");
+            SwitchState(GameState.trophy);
         }
+    }
+
+    public void SwitchState(GameState gameState)
+    {
+        OnSwitchGameState(gameState);
     }
 }

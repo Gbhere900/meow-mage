@@ -13,6 +13,8 @@ public class PlayerResouces : MonoBehaviour
     [SerializeField] private float maxEXP = 5 ;
     [SerializeField] private float currentEXP = 0;
     [SerializeField] private int level = 1;
+    [SerializeField] private int lastLevel = 1;
+    [SerializeField] private int deltaLevel = 1;
 
     [Header("½ð±Ò")]
     [SerializeField] private TextMeshProUGUI goldText;
@@ -34,16 +36,22 @@ public class PlayerResouces : MonoBehaviour
     }
     private void OnEnable()
     {
+        lastLevel = level;
         sphereCollider.radius = colliderRadius;
         UpdateLevelUI();
 
         EXPBall.OnCollected  += IncreaceEXP;
         GoldBall.OnCollected += IncreaceGold;
+        WaveManager.OnWaveSwitched += UpdateDeltaLevel;
     }
+
+    
+
     private void OnDisable()
     {
         EXPBall.OnCollected  -= IncreaceEXP;
         GoldBall.OnCollected -= IncreaceGold;
+        WaveManager.OnWaveSwitched -= UpdateDeltaLevel;
     }
     // Start is called before the first frame update
 
@@ -65,6 +73,17 @@ public class PlayerResouces : MonoBehaviour
             LevelUP();
         }
         UpdateLevelUI();
+    }
+
+    public void  UpdateDeltaLevel()
+    {
+        deltaLevel = level - lastLevel;
+        lastLevel = level;
+    }
+
+    public int GetDeltaLevel()
+    {
+        return deltaLevel;
     }
 
     private void LevelUP()

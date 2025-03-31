@@ -23,6 +23,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private int currentWave = -1;
     [SerializeField] private List<int> count;
     [SerializeField] private TextMeshProUGUI wavesText;
+    public static Action OnWaveSwitched;
     private void Awake()
     {
         SwitchToNextWave();
@@ -47,8 +48,9 @@ public class WaveManager : MonoBehaviour
         {
             if(currentWave < waves.Length-1)
             {
-                GameManager.instance.OnSwitchWaveCallBack(1);
                 SwitchToNextWave();
+                GameManager.instance.OnSwitchWaveCallBack();
+                
             }
             
             else
@@ -62,13 +64,11 @@ public class WaveManager : MonoBehaviour
     void SwitchToNextWave()
     {
         DestroyCurrentWaveEnemies();
-        count.Clear();
         timer = 0;
         currentWave++;
-        UpdateWavesText(); 
-        for (int i = 0; i < waves[currentWave].segements.Count; i++)
-            count.Add(1);
-        
+        UpdateCount();
+        UpdateWavesText();
+        OnWaveSwitched.Invoke();
     }
     void ManagerCurrentWave()
     {
@@ -111,6 +111,14 @@ public class WaveManager : MonoBehaviour
             transform.GetChild(i).GetComponent<EnemyHealth>()?.PassAwayOnSwitchWave();
         }
     }
+
+    private void UpdateCount()
+    {
+        count.Clear();
+        for (int i = 0; i < waves[currentWave].segements.Count; i++)
+            count.Add(1);
+    }
+
     private void UpdateTimerText()
     {
         timerText.text = ((int)(timer)).ToString()+"  S";
