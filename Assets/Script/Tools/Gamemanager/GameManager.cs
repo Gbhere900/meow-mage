@@ -38,11 +38,6 @@ public class GameManager : MonoBehaviour
 
     public void SwitchGameState(GameState gameState)
     {
-        if(gameState == GameState.gameOver)
-        {
-            SceneManager.LoadScene(0);
-            return;
-        }
 
         OnSwitchGameState.Invoke(gameState);
     }
@@ -82,4 +77,8 @@ public class GameManager : MonoBehaviour
         SwitchGameState(GameState.victory);
     }
 
+    public void ReStartGame()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

@@ -59,7 +59,8 @@ public class WaveManager : MonoBehaviour
         {
             if(currentWave < waves.Length-1)
             {
-                // SwitchToNextWave();
+                SwitchToNextWave();
+                isTimerCounting = false ;
                 //GameManager.instance.OnSwitchWaveCallBack();
                 GameManager.instance.SwitchGameState(GameState.wavetransition);
             }
@@ -161,8 +162,10 @@ public class WaveManager : MonoBehaviour
         {
             isTimerCounting = true;
         }
-
-            
+        else
+        {
+            isTimerCounting = false;
+        }
     }
 
 }
