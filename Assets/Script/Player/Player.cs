@@ -7,6 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerAttack playerAttack;
+    public PlayerHealth playerHealth;
     [SerializeField] private PlayerController playerController;
     private void OnEnable()
     {
@@ -34,6 +35,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    //public void Add2maxHealth()
+    //{
+    //    playerHealth.Add5maxHealth();
+    //}
 
+    //public void RecoverAllHealth()
+    //{
+    //    playerHealth.RecoverAllHealth();
+    //}
 
 }

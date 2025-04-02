@@ -34,4 +34,17 @@ public class PlayerHealth : MonoBehaviour
         healthSlider.value = health / maxHealth;
         healthText.text = health + " / " + maxHealth;
     }
+
+   
+    public void Add5maxHealth()
+    {
+        maxHealth += 5;
+        UpdateHealthUI() ;
+    }
+
+    public void RecoverAllHealth()
+    {
+        health = maxHealth;
+        UpdateHealthUI();
+    }
 }

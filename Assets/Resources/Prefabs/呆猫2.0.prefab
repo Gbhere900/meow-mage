@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4732dda8ba9142945a80da947f73d413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 10
   health: 0
   healthSlider: {fileID: 0}
   healthText: {fileID: 0}
@@ -651,6 +651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAttack: {fileID: 6666270770856498223}
+  playerHealth: {fileID: 1429887441914964596}
   playerController: {fileID: 1255901995214934133}
 --- !u!114 &6666270770856498223
 MonoBehaviour:
@@ -669,8 +670,6 @@ MonoBehaviour:
   manaRecoverSpeed: 10
   attackCD: 0.5
   attackTimer: 0
-  PrefabsToCreat: {fileID: 2888171657369308222, guid: 2e8175bd30cf31643ae4bc8b9a1bd60d,
-    type: 3}
   canAttack: 1
   attackPosition: {fileID: 3663481788624834710}
 --- !u!1 &6914715931122491357

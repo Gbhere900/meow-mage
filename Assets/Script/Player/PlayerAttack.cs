@@ -12,11 +12,11 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float manaRecoverSpeed = 10f;
     [SerializeField] private float attackCD = 0.5f;
     [SerializeField] float attackTimer;
-    [SerializeField] private Bullet PrefabsToCreat;
+    //[SerializeField] private Bullet PrefabsToCreat;
 
 
     [SerializeField] Boolean canAttack = true ;
-    Bullet tempBullet;
+  //  Bullet tempBullet;
     [SerializeField] private Transform attackPosition;
     private PlayerInputControl playerInputControl;
 
@@ -56,7 +56,7 @@ public class PlayerAttack : MonoBehaviour
         playerInputControl.Disable();
         playerInputControl.Player.Fire.started -= Attack;
     }
-    private void Attack(InputAction.CallbackContext context)
+   public  void Attack(InputAction.CallbackContext context)
     {
         Debug.Log("Attack");
         if (canAttack)
@@ -69,5 +69,6 @@ public class PlayerAttack : MonoBehaviour
             canAttack = false;
         }
     }
-   
+
+
 }
