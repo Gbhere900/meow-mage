@@ -29,15 +29,28 @@ public class ShopItemManager : MonoBehaviour
     [NaughtyAttributes.Button]
     public void ChangerShopItem()
     {
+        ShuffleBuffs();
+
         for (int i = 0; i < horizontalLayoutGroup.transform.childCount; i++)
         {
             ShopItemButton tempBuffButton = horizontalLayoutGroup.transform.GetChild(i).GetComponent<ShopItemButton>();
-            tempBuffButton.ChangeShopItem();
+            tempBuffButton.ChangeShopItemByBuff(buffs[i]);
         }
     }
     public List<BasicBuff> GetBuffs()
     {
         return buffs;
+    }
+
+    public void ShuffleBuffs()
+    {
+        // Fisher-YatesÏ´ÅÆËã·¨
+        for (int i = buffs.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (buffs[i],buffs[j]) = (buffs[j], buffs[i]);
+        }
+       // return allBuffs.GetRange(0, Mathf.Min(count, allBuffs.Count));
     }
 
 

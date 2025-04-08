@@ -10,12 +10,42 @@ public class TrophyButton : MonoBehaviour
     [SerializeField] private TextMeshProUGUI trophyDescription;
     [SerializeField] private Image trophyImage;
     [SerializeField] private Button trophyButton;
+    [SerializeField] private TextMeshProUGUI trophyMana;
+    [SerializeField] private TextMeshProUGUI trophyAttackCD;
+    [SerializeField] private TextMeshProUGUI trophyReloadCD;
 
-    public void ChangeTrophy()
+    public void ChangeTrophyByMagic(MagicSO magicSO)
     {
-        int count  = Enum.GetValues(typeof(E_TrophyName)).Length;
-        int random = UnityEngine.Random.Range(0,count);
-        trophyName.text = ((E_TrophyName)random).ToString();
-        trophyDescription.text = ((E_TrophyDescription)random).ToString();
+        if(magicSO .MagicName==null)
+        {
+            Debug.Log("魔法名为空");
+        }
+        if (magicSO.MagicDescription == null)
+        {
+            Debug.Log("魔法描述为空");
+        }
+        if (magicSO.Icon == null)
+        {
+            Debug.Log("魔法图标为空");
+        }
+        //if (magicSO.Mana == null)
+        //{
+        //    Debug.Log("魔法名为空");
+        //}
+        //if (magicSO.AttackCD == null)
+        //{
+        //    Debug.Log("魔法名为空");
+        //}
+        //if (magicSO.ReloadCD == null)
+        //{
+        //    Debug.Log("魔法名为空");
+        //}
+
+        trophyName.text = magicSO.MagicName;
+        trophyDescription.text = magicSO.MagicDescription;
+        trophyImage.sprite = magicSO.Icon;
+        trophyMana.text = magicSO.Mana.ToString(); 
+        trophyAttackCD.text = magicSO.AttackCD.ToString();
+        trophyReloadCD.text = magicSO.ReloadCD.ToString();
     }
 }

@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float maxMana = 100f;
     [SerializeField] private float manaRecoverSpeed = 10f;
     [SerializeField] private float attackCD = 0.5f;
+    [SerializeField] private float reloadCD = 1.0f;
     [SerializeField] float attackTimer;
     //[SerializeField] private Bullet PrefabsToCreat;
 

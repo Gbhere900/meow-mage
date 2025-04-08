@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 [System.Serializable]
 public class BasicBuff 
 {
-    [SerializeField] private string name = "";
-    [SerializeField] private string description= "";
+    [SerializeField] private string name = "XXX";
+    [SerializeField] private string description= "XXXXX";
+    [SerializeField] private Sprite icon;
         public  UnityEvent OnApplied;
     public string GetName()
     {
@@ -23,5 +26,9 @@ public class BasicBuff
     public void ApplyBuff()
     {
         OnApplied?.Invoke();
+    }
+    public Sprite GetIcon()
+    {
+        return icon;
     }
 }

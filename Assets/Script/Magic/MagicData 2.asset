@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd78f52d5bb281409b120cd15f57fe9, type: 3}
+  m_Name: MagicData 2
+  m_EditorClassIdentifier: 
+  magicName: "\u89E6\u53D1\u9B54\u6CD5\u5F39"
+  magicDescription: "\u5728\u78B0\u649E\u5904\u91CA\u653E\u540E\u4E00\u4E2A\u6CD5\u672F\u4F4D\u7684\u6CD5\u672F"
+  icon: {fileID: 21300000, guid: 5d53a9b1d994e89478da5cc6d0a17fe4, type: 3}
+  attackCD: 0
+  reloadCD: 0
+  mana: 10
+  prefabToCreat: {fileID: 0}
+  i: 0
