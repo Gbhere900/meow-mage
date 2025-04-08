@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+
 public class TrophyButton : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI trophyName;
@@ -47,5 +48,21 @@ public class TrophyButton : MonoBehaviour
         trophyMana.text = magicSO.Mana.ToString(); 
         trophyAttackCD.text = magicSO.AttackCD.ToString();
         trophyReloadCD.text = magicSO.ReloadCD.ToString();
+    }
+
+    public void Selected()
+    {
+        LeanTween.cancel(gameObject);
+        LeanTween.scale(gameObject, Vector3.one * 1.1f, 0.3f).setEase(LeanTweenType.easeInOutSine);
+    }
+    public void DisSelected()
+    {
+        LeanTween.cancel(gameObject);
+        LeanTween.scale(gameObject, Vector3.one , 0.3f);
+    }
+
+    public Button GetButton()
+    {
+        return trophyButton; 
     }
 }

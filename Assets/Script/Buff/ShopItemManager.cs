@@ -46,6 +46,7 @@ public class ShopItemManager : MonoBehaviour
         {
             ShopItemButton tempBuffButton = horizontalLayoutGroup.transform.GetChild(i).GetComponent<ShopItemButton>();
             tempBuffButton.ChangeShopItemByBuff(buffs[i]);
+            
         }
     }
     public List<BasicBuff> GetBuffs()

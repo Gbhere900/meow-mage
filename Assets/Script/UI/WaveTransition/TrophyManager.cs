@@ -23,7 +23,24 @@ public class TrophyManager : MonoBehaviour
         {
             TrophyButton tempTrophyButton  = horizontalLayoutGroup.transform.GetChild(i).GetComponent<TrophyButton>();
             tempTrophyButton.ChangeTrophyByMagic(magicSOs[i]);
+            tempTrophyButton.GetButton().onClick.AddListener(() => ChangeVisualEffect(tempTrophyButton));
         }
+    }
+
+    private void ChangeVisualEffect(TrophyButton tempTrophyButton)
+    {
+        for (int i = 0; i < horizontalLayoutGroup.transform.childCount; i++)
+        {
+            if (tempTrophyButton == horizontalLayoutGroup.transform.GetChild(i).GetComponent<TrophyButton>())
+            {
+                tempTrophyButton.Selected();
+            }
+            else
+            {
+                tempTrophyButton.DisSelected();
+            }
+        }
+
     }
 
     private void ChangeTroPhiesOnSwitchGameState(GameState gameState)
