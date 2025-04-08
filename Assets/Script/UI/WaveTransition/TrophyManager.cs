@@ -10,14 +10,27 @@ public class TrophyManager : MonoBehaviour
     [SerializeField] private MagicSO[] magicSOs;
     [SerializeField] private HorizontalLayoutGroup horizontalLayoutGroup;
 
+
+    private void Awake()
+    {
+        GameManager.OnSwitchGameState += ChangeTroPhiesOnSwitchGameState;
+    }
     [NaughtyAttributes.Button]
-    public void ChangerTrophys()
+    public void ChangeTrophies()
     {
         ShuffleMagicSOs();
         for (int i = 0; i < horizontalLayoutGroup.transform.childCount; i++)
         {
             TrophyButton tempTrophyButton  = horizontalLayoutGroup.transform.GetChild(i).GetComponent<TrophyButton>();
             tempTrophyButton.ChangeTrophyByMagic(magicSOs[i]);
+        }
+    }
+
+    private void ChangeTroPhiesOnSwitchGameState(GameState gameState)
+    {
+        if(gameState ==GameState.game)
+        {
+            ChangeTrophies();
         }
     }
 

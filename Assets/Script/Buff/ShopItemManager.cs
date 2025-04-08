@@ -14,20 +14,31 @@ public class ShopItemManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance != null&&instance !=this)
+        GameManager.OnSwitchGameState += ChangeShopItemsOnSwitchGameState;
+
+        if (instance != null&&instance !=this)
         {
             Destroy(gameObject);
         }
         else
             instance = this;
     }
+
+    private void ChangeShopItemsOnSwitchGameState(GameState state)
+    {
+        if(state ==GameState.game)
+        {
+            ChangerShopItems();
+        }
+    }
+
     public static ShopItemManager Instance()
     {
         return instance;
     }
 
     [NaughtyAttributes.Button]
-    public void ChangerShopItem()
+    public void ChangerShopItems()
     {
         ShuffleBuffs();
 

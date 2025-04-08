@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     {
 
         OnSwitchGameState.Invoke(gameState);
+        Debug.Log(gameState.ToString());
     }
 
     public void SwitchToMenu()
