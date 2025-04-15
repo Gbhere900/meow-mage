@@ -99,7 +99,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c1351943296c71f448be82e734551ab2,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2888171657369308222}
+      addedObject: {fileID: -6858291681398023580}
   m_SourcePrefab: {fileID: 100100000, guid: c1351943296c71f448be82e734551ab2, type: 3}
 --- !u!1 &4954921367809476363 stripped
 GameObject:
@@ -157,7 +157,7 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2888171657369308222
+--- !u!114 &-6858291681398023580
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,13 +166,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4954921367809476363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dd72cb91fef33f4ea900e685d8dcb67, type: 3}
+  m_Script: {fileID: 11500000, guid: 00292685c87c11544810fe8a10538a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
   damage: 3
-  time: 2
-  aimPosition: {x: 0, y: 0, z: 0}
+  time: 5
+  CriticalChance: 20
+  CriticalRatio: 5
+  ActualDamage: 3
+  aimDirection: {x: 0, y: 0, z: 0}
+  aimOffset: 10
+  shootDirection: {x: 0, y: 0, z: 0}
+  isShootByMouseDiretion: 1
 --- !u!4 &5731035137147575729 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c1351943296c71f448be82e734551ab2,

@@ -16,13 +16,13 @@ public class BulletPoolManager : MonoBehaviour
     private void OnEnable()
     {
         PlayerAttack.OnplayerAttack += SpawnMagicBullet;
-        Bullet.OnRecycled += RecycleMagicBullet;
+        MagicBullet.OnRecycled += RecycleMagicBullet;
     }
     private void OnDisable()
     {
 
         PlayerAttack.OnplayerAttack -= SpawnMagicBullet;
-        Bullet.OnRecycled += RecycleMagicBullet;
+        MagicBullet.OnRecycled += RecycleMagicBullet;
     }
 
     private void SpawnMagicBullet(PlayerAttack playerAttack)
