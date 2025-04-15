@@ -6,7 +6,7 @@ public class MagicBulletPool : BasicPoolClass<Bullet>
 {
     static MagicBulletPool()
     {
-        prefabs = Resources.Load<Bullet>("Prefabs/MagicBullet");
+        prefabs = Resources.Load<Bullet>("Prefabs/Bullet/MagicBullet");
     }
     static public void Init()
     {
