@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicArrowPool : BasicPoolClass<Bullet>
+public class MagicArrowPool : BasicPoolClass<MagicArrow>
 {
     static MagicArrowPool()
     {
-        prefabs = Resources.Load<Bullet>("Prefabs/Bullet/MagicArrow");
+        prefabs = Resources.Load<MagicArrow>("Prefabs/Bullet/MagicArrow");
     }
     static public void Init()
     {

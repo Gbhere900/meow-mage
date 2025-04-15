@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicArrow : Bullet
+public class MagicArrow : Bullet<MagicArrow>
 {
     protected override void OnTriggerEnter(Collider other)
     {

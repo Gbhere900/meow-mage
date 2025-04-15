@@ -6,7 +6,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
-public class Bullet : MonoBehaviour
+public class Bullet<T> : MonoBehaviour where T : Bullet<T>
 {
     [Header("ÊýÖµ")]
     [SerializeField] protected float speed = 5;
@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
     protected Rigidbody rigidbody;
 
 
-    static public Action<Bullet> OnRecycled;
+    static public Action<T> OnRecycled;
     private void Awake()
     {
         
@@ -67,7 +67,7 @@ public class Bullet : MonoBehaviour
             if(!canCutThrough)
             {
                 StopCoroutine(WaitForDestroy());
-                OnRecycled.Invoke(this);
+                OnRecycled.Invoke((T)this);
             }
 
         }
@@ -75,7 +75,7 @@ public class Bullet : MonoBehaviour
     public IEnumerator WaitForDestroy()
     {
         yield return new WaitForSeconds(time);
-        OnRecycled.Invoke(this);
+        OnRecycled.Invoke((T)this);
     }
 
    public void SetAimDirection()

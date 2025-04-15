@@ -6,17 +6,17 @@ using UnityEngine.Pool;
 public class BulletPoolManager : MonoBehaviour
 {
     //magicBullet
-    ObjectPool<Bullet> magicBulletPool;
-    ObjectPool<Bullet> boomPool;
-    ObjectPool<Bullet> magicArrowPool;
+    ObjectPool<MagicBullet> magicBulletPool;
+    ObjectPool<Boom> boomPool;
+    ObjectPool<MagicArrow> magicArrowPool;
     private void Awake()
     {
-        MagicBulletPool.Init();
-        BoomPool.Init();
         MagicArrowPool.Init();
+        MagicBulletPool.Init();
+        BoomPool.Init(); 
+        magicArrowPool = MagicArrowPool.Instance;
         magicBulletPool = MagicBulletPool.Instance;
         boomPool = BoomPool.Instance;
-        magicArrowPool = MagicArrowPool.Instance;
     }
     private void OnEnable()
     {
@@ -36,29 +36,29 @@ public class BulletPoolManager : MonoBehaviour
 
     private void SpawnMagicBullet(PlayerAttack playerAttack)
     {
-        Bullet tempBullet =  magicBulletPool.Get();
-        //tempBullet.transform.position = playerAttack.transform.position;
-        //tempBullet.shootByDirection();
+        MagicBullet magicBullet =  magicBulletPool.Get();
+        magicBullet.transform.position = playerAttack.transform.position;
+        magicBullet.shootByDirection();
 
-        tempBullet = magicArrowPool.Get();
-        tempBullet.transform.position = playerAttack.transform.position;
-        tempBullet.shootByDirection();
+        MagicArrow magicArrow = magicArrowPool.Get();
+        magicArrow.transform.position = playerAttack.transform.position;
+        magicArrow.shootByDirection();
 
-        //tempBullet = boomPool.Get();
-        //tempBullet.transform.position = playerAttack.transform.position;
-        //tempBullet.shootByDirection();
+        Boom boom = boomPool.Get();
+        boom.transform.position = playerAttack.transform.position;
+        boom.shootByDirection();
     }
 
-   private void  RecycleMagicBullet(Bullet bullet)
+   private void  RecycleMagicBullet(MagicBullet bullet)
     {
         magicBulletPool.Release(bullet);
     }
-    private void RecycleBoom(Bullet bullet)
+    private void RecycleBoom(Boom bullet)
     {
         boomPool.Release(bullet);
     }
 
-    private void RecycleMagicArrow(Bullet bullet)
+    private void RecycleMagicArrow(MagicArrow bullet)
     {
         magicArrowPool.Release(bullet);
     }
