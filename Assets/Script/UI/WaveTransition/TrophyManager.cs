@@ -29,15 +29,13 @@ public class TrophyManager : MonoBehaviour
 
     private void ChangeVisualEffect(TrophyButton tempTrophyButton)
     {
+        tempTrophyButton.Selected();
         for (int i = 0; i < horizontalLayoutGroup.transform.childCount; i++)
         {
-            if (tempTrophyButton == horizontalLayoutGroup.transform.GetChild(i).GetComponent<TrophyButton>())
+           
+            if ( horizontalLayoutGroup.transform.GetChild(i).GetComponent<TrophyButton>() != tempTrophyButton)
             {
-                tempTrophyButton.Selected();
-            }
-            else
-            {
-                tempTrophyButton.DisSelected();
+                horizontalLayoutGroup.transform.GetChild(i).GetComponent<TrophyButton>().DisSelected();
             }
         }
 

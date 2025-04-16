@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4732dda8ba9142945a80da947f73d413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 20
   health: 0
   healthSlider: {fileID: 0}
   healthText: {fileID: 0}
@@ -669,6 +669,7 @@ MonoBehaviour:
   maxMana: 100
   manaRecoverSpeed: 10
   attackCD: 0.5
+  reloadCD: 1
   attackTimer: 0
   canAttack: 1
   attackPosition: {fileID: 3663481788624834710}

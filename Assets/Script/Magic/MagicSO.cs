@@ -14,6 +14,9 @@ public class MagicSO : ScriptableObject
     [SerializeField] private GameObject prefabToCreat;
     [SerializeField] private int i;
 
+
+
+
     public string MagicName { get => magicName; set => magicName = value; }
     public string MagicDescription { get => magicDescription; set => magicDescription = value; }
     public Sprite Icon { get => icon; set => icon = value; }
@@ -21,5 +24,6 @@ public class MagicSO : ScriptableObject
     public float ReloadCD { get => reloadCD; set => reloadCD = value; }
     public float Mana { get => mana; set => mana = value; }
     public GameObject PrefabToCreat { get => prefabToCreat; set => prefabToCreat = value; }
+
     //public string MagicType;
 }
