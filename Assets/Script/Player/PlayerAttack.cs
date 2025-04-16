@@ -14,6 +14,12 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float reloadCD = 1.0f;
     [SerializeField] float attackTimer;
     //[SerializeField] private Bullet PrefabsToCreat;
+    [Header("∑® ı¡¥")]
+    public MagicBase magicBullet;
+    public MagicBase magicArrow;
+    public MagicBase Boom;
+    [SerializeField] private List<MagicBase> magicLine = new List<MagicBase>();
+
 
 
     [SerializeField] Boolean canAttack = true ;
@@ -22,10 +28,14 @@ public class PlayerAttack : MonoBehaviour
     private PlayerInputControl playerInputControl;
 
 
-    static public Action<PlayerAttack> OnplayerAttack;
+    static public Action<PlayerAttack,MagicBase> OnplayerAttack;
 
     private void Awake()
     {
+        magicLine.Add(magicBullet);
+        magicLine.Add(magicArrow);
+        magicLine.Add(Boom);
+
         playerInputControl = new PlayerInputControl();
 
         mana = maxMana;
@@ -62,7 +72,8 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log("Attack");
         if (canAttack)
         {
-            OnplayerAttack.Invoke(this);
+
+            OnplayerAttack.Invoke(this, magicLine[UnityEngine.Random.Range(0,3)]);
             //tempBullet = BulletPool.bulletPool.Get();
             //tempBullet.transform.position =  attackPosition.position;
             //tempBullet.shootByDirection();

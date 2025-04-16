@@ -10,6 +10,8 @@ public class TrophyManager : MonoBehaviour
     [SerializeField] private MagicSO[] magicSOs;
     [SerializeField] private HorizontalLayoutGroup horizontalLayoutGroup;
 
+    [SerializeField] private MagicBase[] magics;
+
 
     private void Awake()
     {
@@ -18,11 +20,13 @@ public class TrophyManager : MonoBehaviour
     [NaughtyAttributes.Button]
     public void ChangeTrophies()
     {
-        ShuffleMagicSOs();
+       // ShuffleMagicSOs();
+       ShuffleMagics();
         for (int i = 0; i < horizontalLayoutGroup.transform.childCount; i++)
         {
             TrophyButton tempTrophyButton  = horizontalLayoutGroup.transform.GetChild(i).GetComponent<TrophyButton>();
-            tempTrophyButton.ChangeTrophyByMagic(magicSOs[i]);
+            //      tempTrophyButton.ChangeTrophyByMagicSO(magicSOs[i]);
+            tempTrophyButton.ChangeTrophyByMagic(magics[i]);
             tempTrophyButton.GetButton().onClick.AddListener(() => ChangeVisualEffect(tempTrophyButton));
         }
     }
@@ -57,6 +61,16 @@ public class TrophyManager : MonoBehaviour
         {
             int j = UnityEngine.Random.Range(0, i + 1);
             (magicSOs[i], magicSOs[j]) = (magicSOs[j], magicSOs[i]);
+        }
+        // return allBuffs.GetRange(0, Mathf.Min(count, allBuffs.Count));
+    }
+    public void ShuffleMagics()
+    {
+        // Fisher-YatesÏ´ÅÆËã·¨
+        for (int i = magics.Length - 1; i > 0; i--)
+        {
+            int j = UnityEngine.Random.Range(0, i + 1);
+            (magics[i], magics[j]) = (magics[j], magics[i]);
         }
         // return allBuffs.GetRange(0, Mathf.Min(count, allBuffs.Count));
     }

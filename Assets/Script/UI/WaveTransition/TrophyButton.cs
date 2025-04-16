@@ -15,7 +15,7 @@ public class TrophyButton : MonoBehaviour
     [SerializeField] private TextMeshProUGUI trophyAttackCD;
     [SerializeField] private TextMeshProUGUI trophyReloadCD;
 
-    public void ChangeTrophyByMagic(MagicSO magicSO)
+    public void ChangeTrophyByMagicSO(MagicSO magicSO)
     {
         if(magicSO .MagicName==null)
         {
@@ -49,6 +49,42 @@ public class TrophyButton : MonoBehaviour
         trophyAttackCD.text = magicSO.AttackCD.ToString();
         trophyReloadCD.text = magicSO.ReloadCD.ToString();
     }
+
+    public void ChangeTrophyByMagic(MagicBase magic)
+    {
+        if (magic.MagicName == null)
+        {
+            Debug.Log("魔法名为空");
+        }
+        if (magic.MagicDescription == null)
+        {
+            Debug.Log("魔法描述为空");
+        }
+        if (magic.Icon == null)
+        {
+            Debug.Log("魔法图标为空");
+        }
+        //if (magicSO.Mana == null)
+        //{
+        //    Debug.Log("魔法名为空");
+        //}
+        //if (magicSO.AttackCD == null)
+        //{
+        //    Debug.Log("魔法名为空");
+        //}
+        //if (magicSO.ReloadCD == null)
+        //{
+        //    Debug.Log("魔法名为空");
+        //}
+
+        trophyName.text = magic.MagicName;
+        trophyDescription.text = magic.MagicDescription;
+        trophyImage.sprite = magic.Icon;
+        trophyMana.text = magic.Mana.ToString();
+        trophyAttackCD.text = magic.AttackCD.ToString();
+        trophyReloadCD.text = magic.ReloadCD.ToString();
+    }
+
 
     public void Selected()
     {

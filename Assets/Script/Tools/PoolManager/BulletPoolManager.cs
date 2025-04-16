@@ -34,19 +34,31 @@ public class BulletPoolManager : MonoBehaviour
         MagicArrow.OnRecycled -= RecycleMagicArrow;
     }
 
-    private void SpawnMagicBullet(PlayerAttack playerAttack)
+    private void SpawnMagicBullet(PlayerAttack playerAttack, MagicBase magic)
     {
-        MagicBullet magicBullet =  magicBulletPool.Get();
-        magicBullet.transform.position = playerAttack.transform.position;
-        magicBullet.shootByDirection();
+        switch(magic.MagicName)
+        {
+            case "Ä§·¨×Óµ¯":
+                MagicBullet magicBullet = magicBulletPool.Get();
+                magicBullet.transform.position = playerAttack.transform.position;
+                magicBullet.shootByDirection();
+                break;
+            case "Ä§·¨¼ý":
+                MagicArrow magicArrow = magicArrowPool.Get();
+                magicArrow.transform.position = playerAttack.transform.position;
+                magicArrow.shootByDirection();
+                break;
+            case "Õ¨µ¯":
+                Boom boom = boomPool.Get();
+                boom.transform.position = playerAttack.transform.position;
+                boom.shootByDirection();
+                break;
+        }
+        
 
-        MagicArrow magicArrow = magicArrowPool.Get();
-        magicArrow.transform.position = playerAttack.transform.position;
-        magicArrow.shootByDirection();
+        
 
-        Boom boom = boomPool.Get();
-        boom.transform.position = playerAttack.transform.position;
-        boom.shootByDirection();
+        
     }
 
    private void  RecycleMagicBullet(MagicBullet bullet)
