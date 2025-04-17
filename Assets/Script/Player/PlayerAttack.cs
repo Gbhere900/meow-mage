@@ -111,13 +111,15 @@ public class PlayerAttack : MonoBehaviour
                 }
                 mana -= magicLine[i].Mana;
                 magicIndex += magicLine[i].ExtraTrigger;
+                BulletPoolManager.Instance().AddEachMagicCount(magicLine[i].ExtraTrigger);
+
                 attackCD += magicLine[i].AttackCD;
                 reloadCD += magicLine[i].ReloadCD;
                 OnplayerAttack.Invoke(this, magicLine[i]);
+                
                 if (magicLine[i].GetComponent<I_MagicEffect>()!= null)
                 {
                     BulletPoolManager.Instance().AddMagicToList(magicLine[i]);
-
                 }
             }
             if (magicIndex >= magicLine.Count)

@@ -86,24 +86,27 @@ public class BulletPoolManager : MonoBehaviour
         }
         if (magicEffects.Count != 0)
         {
-            for (int i = 0; i < magicEffects.Count; i++)
+            if(tempBullet != null) 
             {
- 
-                magicEffects[i].magic.GetComponent<I_MagicEffect>().TriggerEffect(tempBullet);
-                Pair tempP = magicEffects[i];
-                tempP.count --;
-                if (tempP.count <= 0)
+                for (int i = 0; i < magicEffects.Count; i++)
                 {
-                    magicEffects.RemoveAt(i);
-                }
-                else
-                {
-                    magicEffects[i] = tempP;
-                }
 
+                    magicEffects[i].magic.GetComponent<I_MagicEffect>().TriggerEffect(tempBullet);
+                    Pair tempP = magicEffects[i];
+                    tempP.count--;
+                    if (tempP.count <= 0)
+                    {
+                        magicEffects.RemoveAt(i);
+                    }
+                    else
+                    {
+                        magicEffects[i] = tempP;
+                    }
+                }
             }
 
         }
+        tempBullet = null;  
     }
 
    private void  RecycleMagicBullet(MagicBullet bullet)
@@ -126,5 +129,15 @@ public class BulletPoolManager : MonoBehaviour
         p.magic = magic;
         p.count = 1;
         magicEffects.Add(p);
+    }
+
+    public void AddEachMagicCount(int addValue)
+    {
+        for(int i=0;i<magicEffects.Count;i++)
+        {
+            Pair tempP = magicEffects[i];
+            tempP.count += addValue;
+            magicEffects[i] = tempP;
+        }
     }
 }
