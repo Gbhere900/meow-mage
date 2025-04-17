@@ -6,9 +6,14 @@ using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
+using Microsoft.SqlServer.Server;
+using TMPro;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [Header("用户界面")]
+    [SerializeField] private UnityEngine.UI.Slider manaSlider;
+    [SerializeField] private TextMeshProUGUI manaText;
     [SerializeField] private UnityEngine.UI.Slider attackSlider;
     [SerializeField] private UnityEngine.UI.Slider reloadSlider;
     [Header("数值")]
@@ -67,7 +72,20 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         UpdateTimer();
-        UpdateSlider();
+        UpdateCDSlider();
+        UpdateMana();
+        UpdateManaSlider();
+    }
+
+    private void UpdateMana()
+    {
+        mana = Math.Min(maxMana, mana + manaRecoverSpeed * Time.deltaTime);
+    }
+
+    private void UpdateManaSlider()
+    {
+        manaSlider.value = mana/maxMana;
+        manaText.text = Math.Floor(mana)+ " / "+ Math.Floor(maxMana);
     }
 
     private void OnDisable()
@@ -87,6 +105,11 @@ public class PlayerAttack : MonoBehaviour
             magicIndex++;
             for(;i<magicIndex && i<magicLine.Count ;i++)
             {
+                if(mana - magicLine[i].Mana <0 )
+                {
+                    continue;
+                }
+                mana -= magicLine[i].Mana;
                 magicIndex += magicLine[i].ExtraTrigger;
                 attackCD += magicLine[i].AttackCD;
                 reloadCD += magicLine[i].ReloadCD;
@@ -131,7 +154,7 @@ public class PlayerAttack : MonoBehaviour
         }
 
     }
-    private void UpdateSlider()
+    private void UpdateCDSlider()
     {
         attackSlider.value = attackTimer/ attackCD;
         reloadSlider.value = reloadTimer/ reloadCD;
