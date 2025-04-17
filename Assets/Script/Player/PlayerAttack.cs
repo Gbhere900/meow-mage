@@ -126,12 +126,6 @@ public class PlayerAttack : MonoBehaviour
 
 
             }
-
-            //tempBullet = BulletPool.bulletPool.Get();
-            //tempBullet.transform.position =  attackPosition.position;
-            //tempBullet.shootByDirection();
-
-
         }
     }
 

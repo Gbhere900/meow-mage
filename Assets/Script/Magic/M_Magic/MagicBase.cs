@@ -14,10 +14,6 @@ public abstract class MagicBase : MonoBehaviour
     [SerializeField] protected GameObject prefabToCreat;
 
 
-
-
-
-
     public string MagicName { get => magicName; set => magicName = value; }
     public string MagicDescription { get => magicDescription; set => magicDescription = value; }
     public Sprite Icon { get => icon; set => icon = value; }
