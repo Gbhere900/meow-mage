@@ -148,14 +148,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3bf73df172bd742ad474b941033466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basicSpeed: 10
   speed: 5
+  basicDamage: 3
   damage: 3
+  basicTime: 5
   time: 3
-  CriticalChance: 20
-  CriticalRatio: 5
-  ActualDamage: 3
+  basicCriticalChance: 20
+  criticalChance: 20
+  basicCriticalRatio: 5
+  criticalRatio: 5
+  basicCanCutThrough: 0
   canCutThrough: 0
   aimDirection: {x: 0, y: 0, z: 0}
+  basicAimOffset: 10
   aimOffset: 10
   shootDirection: {x: 0, y: 0, z: 0}
+  basicIsShootByMouseDiretion: 1
   isShootByMouseDiretion: 1

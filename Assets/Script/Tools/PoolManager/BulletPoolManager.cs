@@ -1,14 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+[System.Serializable]
+public struct Pair
+{
+    [SerializeReference]
+    public MagicBase magic;
+    public int count;
+}
 
 public class BulletPoolManager : MonoBehaviour
 {
+    [SerializeField] private List< Pair> magicEffects= new List< Pair>();
     //magicBullet
     ObjectPool<MagicBullet> magicBulletPool;
     ObjectPool<Boom> boomPool;
     ObjectPool<MagicArrow> magicArrowPool;
+
+    
+    Bullet tempBullet;
     private void Awake()
     {
         MagicArrowPool.Init();
@@ -36,34 +48,39 @@ public class BulletPoolManager : MonoBehaviour
 
     private void SpawnMagicBullet(PlayerAttack playerAttack, MagicBase magic)
     {
+
         switch(magic.MagicName)
         {
             case "Ä§·¨×Óµ¯":
-                MagicBullet magicBullet = magicBulletPool.Get();
-                magicBullet.transform.position = playerAttack.transform.position;
-                magicBullet.shootByDirection();
+                tempBullet = magicBulletPool.Get();
+                tempBullet.transform.position = playerAttack.transform.position;
+                tempBullet.shootByDirection();
                 break;
             case "Ä§·¨¼ý":
-                MagicArrow magicArrow = magicArrowPool.Get();
-                magicArrow.transform.position = playerAttack.transform.position;
-                magicArrow.shootByDirection();
+                tempBullet = magicArrowPool.Get();
+                tempBullet.transform.position = playerAttack.transform.position;
+                tempBullet.shootByDirection();
                 break;
             case "Õ¨µ¯":
-                Boom boom = boomPool.Get();
-                boom.transform.position = playerAttack.transform.position;
-                boom.shootByDirection();
+                tempBullet = boomPool.Get();
+                tempBullet.transform.position = playerAttack.transform.position;
+                tempBullet.shootByDirection();
                 break;
+
         }
-        
+        if (magicEffects.Count != 0)
+        {
+            for (int i = 0; i < magicEffects.Count; i++)
+            {
+                magicEffects[0].magic.GetComponent<I_MagicEffect>().TriggerEffect(tempBullet);
+            }
 
-        
-
-        
+        }
     }
 
    private void  RecycleMagicBullet(MagicBullet bullet)
     {
-        magicBulletPool.Release(bullet);
+        magicBulletPool.Release( bullet);
     }
     private void RecycleBoom(Boom bullet)
     {
@@ -72,7 +89,7 @@ public class BulletPoolManager : MonoBehaviour
 
     private void RecycleMagicArrow(MagicArrow bullet)
     {
-        magicArrowPool.Release(bullet);
+        magicArrowPool.Release((MagicArrow)bullet);
     }
 
 

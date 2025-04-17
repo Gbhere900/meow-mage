@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[Serializable]
 public class M_AddDamage : MagicBase, I_MagicEffect
 {
-    public void Trigger(Bullet<MagicBullet> bullet)
+    public void TriggerEffect(Bullet bullet)
     {
-        bullet.Damage += 600;
+        bullet.Damage += 20;
+        Debug.Log(bullet.Damage);
     }
 }

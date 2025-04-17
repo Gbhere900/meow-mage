@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface I_MagicEffect
+public interface I_MagicEffect
 {
-    abstract public void Trigger(Bullet<MagicBullet> bullet);         ///////////
+    abstract public void TriggerEffect(Bullet bullet);         ///////////
 }

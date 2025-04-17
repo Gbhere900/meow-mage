@@ -6,37 +6,40 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
-public class Bullet<T> : MonoBehaviour where T : Bullet<T>
+abstract public class Bullet : MonoBehaviour
 {
     [Header("数值")]
+    [SerializeField] private float basicSpeed = 5;
     [SerializeField] private float speed = 5;
+
+    [SerializeField] private float basicDamage = 3;
     [SerializeField] private float damage = 3;
+
+    [SerializeField] private float basicTime = 5;
     [SerializeField] private float time = 5;
+
+    [SerializeField] private float basicCriticalChance = 20;
     [SerializeField] private float criticalChance = 20;
+
+    [SerializeField] private float basicCriticalRatio = 5;
     [SerializeField] private float criticalRatio = 5;
-    [SerializeField] private float actualDamage = 3;
+
+    [SerializeField] private Boolean basicCanCutThrough = false;
     [SerializeField] private Boolean canCutThrough = false;
+
     [SerializeField] private Vector3 aimDirection;
+    [SerializeField] private float basicAimOffset = 10;
     [SerializeField] private float aimOffset = 10;
     [SerializeField] private Vector3 shootDirection;
-    [SerializeField] private Boolean isShootByMouseDiretion = true;
+    [SerializeField] private Boolean basicIsShootByMouseDiretion = true;
+    [SerializeField] private Boolean isShootByMouseDiretion =true;
     //[SerializeField] Boolean isCharsingEnemy = false;
     protected Rigidbody rigidbody;
 
 
-    static public Action<T> OnRecycled;
+    static public Action<Bullet> OnRecycled;
 
-    public float Speed { get => speed; set => speed = value; }
-    public float Damage { get => damage; set => damage = value; }
-    public float Time { get => time; set => time = value; }
-    public float CriticalChance { get => criticalChance; set => criticalChance = value; }
-    public float CriticalRatio { get => criticalRatio; set => criticalRatio = value; }
-    public float ActualDamage { get => actualDamage; set => actualDamage = value; }
-    public bool CanCutThrough { get => canCutThrough; set => canCutThrough = value; }
-    public Vector3 AimDirection { get => aimDirection; set => aimDirection = value; }
-    public float AimOffset { get => aimOffset; set => aimOffset = value; }
-    public Vector3 ShootDirection { get => shootDirection; set => shootDirection = value; }
-    public bool IsShootByMouseDiretion { get => isShootByMouseDiretion; set => isShootByMouseDiretion = value; }
+  
 
     private void Awake()
     {
@@ -45,18 +48,24 @@ public class Bullet<T> : MonoBehaviour where T : Bullet<T>
     }
     private void OnEnable()
     {
+        Speed = BasicSpeed;
+        Damage = BasicDamage;
+        Time = BasicTime;
+        CriticalChance = BasicCriticalChance;
+        CriticalRatio = BasicCriticalRatio;
+        CanCutThrough = BasicCanCutThrough;
+        AimOffset = BasicAimOffset;
+        IsShootByMouseDiretion = BasicIsShootByMouseDiretion;
 
-        if (UnityEngine.Random.Range(0f, 100f) < CriticalChance)
-        {
-            ActualDamage = Damage * CriticalRatio;
-        }
-        else ActualDamage = Damage;
         //  Debug.Log("鼠标"+MousePosition.GetMousePosition());
         // Debug.Log("发射点"+transform.position);
         StartCoroutine(WaitForDestroy());
        // Debug.Log("方向"+aimPosition);
+    }
 
-        
+    Boolean IsCritical()
+    {
+        return UnityEngine.Random.Range(0, 100)<CriticalChance;
     }
 
     public void shootByDirection()
@@ -76,11 +85,12 @@ public class Bullet<T> : MonoBehaviour where T : Bullet<T>
     {
         if(other.GetComponent<EnemyHealth>() != null)
         {
-            other.GetComponent<EnemyHealth>().ReceiveDamage(ActualDamage);
+
+            other.GetComponent<EnemyHealth>().ReceiveDamage(IsCritical()?  Damage * CriticalRatio:Damage);
             if(!CanCutThrough)
             {
                 StopCoroutine(WaitForDestroy());
-                OnRecycled.Invoke((T)this);
+                Recycle();
             }
 
         }
@@ -88,8 +98,11 @@ public class Bullet<T> : MonoBehaviour where T : Bullet<T>
     public IEnumerator WaitForDestroy()
     {
         yield return new WaitForSeconds(Time);
-        OnRecycled.Invoke((T)this);
+        Recycle();
     }
+
+
+    abstract protected void Recycle();
 
    public void SetAimDirection()
     {
@@ -108,4 +121,23 @@ public class Bullet<T> : MonoBehaviour where T : Bullet<T>
         ShootDirection = AimDirection + offsetVector;
 
     }
+    public float BasicSpeed { get => basicSpeed; set => basicSpeed = value; }
+    public float Speed { get => speed; set => speed = value; }
+    public float BasicDamage { get => basicDamage; set => basicDamage = value; }
+    public float Damage { get => damage; set => damage = value; }
+    public float BasicTime { get => basicTime; set => basicTime = value; }
+    public float Time { get => time; set => time = value; }
+    public float BasicCriticalChance { get => basicCriticalChance; set => basicCriticalChance = value; }
+    public float CriticalChance { get => criticalChance; set => criticalChance = value; }
+    public float BasicCriticalRatio { get => basicCriticalRatio; set => basicCriticalRatio = value; }
+    public float CriticalRatio { get => criticalRatio; set => criticalRatio = value; }
+    public bool BasicCanCutThrough { get => basicCanCutThrough; set => basicCanCutThrough = value; }
+    public bool CanCutThrough { get => canCutThrough; set => canCutThrough = value; }
+    public Vector3 AimDirection { get => aimDirection; set => aimDirection = value; }
+    public float BasicAimOffset { get => basicAimOffset; set => basicAimOffset = value; }
+    public float AimOffset { get => aimOffset; set => aimOffset = value; }
+    public Vector3 ShootDirection { get => shootDirection; set => shootDirection = value; }
+    public bool BasicIsShootByMouseDiretion { get => basicIsShootByMouseDiretion; set => basicIsShootByMouseDiretion = value; }
+    public bool IsShootByMouseDiretion { get => isShootByMouseDiretion; set => isShootByMouseDiretion = value; }
+
 }

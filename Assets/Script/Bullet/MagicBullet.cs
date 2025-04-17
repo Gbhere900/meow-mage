@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicBullet : Bullet<MagicBullet>
+public class MagicBullet : Bullet
 {
+    static public Action<MagicBullet> OnRecycled;
     protected override void OnTriggerEnter(Collider other)
     {
         
@@ -12,6 +14,10 @@ public class MagicBullet : Bullet<MagicBullet>
         //粒子效果
         //释放另一个法术
         //一些其他效果（音效）
+    }
+    protected override void Recycle()
+    {
+        OnRecycled.Invoke(this);
     }
 
 }
