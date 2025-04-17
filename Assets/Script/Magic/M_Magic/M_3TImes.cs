@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class M_Boom : MagicBase
+public class M_3TImes : MagicBase
 {
     
 }

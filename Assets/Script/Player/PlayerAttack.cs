@@ -24,7 +24,7 @@ public class PlayerAttack : MonoBehaviour
 
     //[SerializeField] private Bullet PrefabsToCreat;
     [Header("∑® ı¡¥")]
-    int magicIndex = 0 ;
+    public int magicIndex = 0 ;
     public MagicBase magicBullet;
     public MagicBase magicArrow;
     public MagicBase Boom;
@@ -43,9 +43,9 @@ public class PlayerAttack : MonoBehaviour
 
     private void Awake()
     {
-        magicLine.Add(magicBullet);
-        magicLine.Add(magicArrow);
-        magicLine.Add(Boom);
+        //magicLine.Add(magicBullet);
+        //magicLine.Add(magicArrow);
+        //magicLine.Add(Boom);
 
         playerInputControl = new PlayerInputControl();
 
@@ -84,9 +84,10 @@ public class PlayerAttack : MonoBehaviour
             attackTimer = 0;
             attackCD = basicAttackCD;
             int i = magicIndex;
-            magicIndex += magicLine[magicIndex].ExtraTrigger + 1;
+            magicIndex++;
             for(;i<magicIndex && i<magicLine.Count ;i++)
             {
+                magicIndex += magicLine[i].ExtraTrigger;
                 attackCD += magicLine[i].AttackCD;
                 reloadCD += magicLine[i].ReloadCD;
                 OnplayerAttack.Invoke(this, magicLine[i]);
