@@ -668,10 +668,20 @@ MonoBehaviour:
   mana: 0
   maxMana: 100
   manaRecoverSpeed: 10
+  basicAttackCD: 0.5
   attackCD: 0.5
-  reloadCD: 1
   attackTimer: 0
+  basicReloadCD: 1
+  reloadCD: 1
+  reloadTimer: 0
+  magicBullet: {fileID: 2120639401180101120, guid: f3a3cfb8cbea2d2459d7f94f00f15de8,
+    type: 3}
+  magicArrow: {fileID: 7960194752627891779, guid: 98698c20cd2f719498db0db4143925ff,
+    type: 3}
+  Boom: {fileID: 661559530023228694, guid: 33a1d66815c857b42818d475c1df4c47, type: 3}
+  magicLine: []
   canAttack: 1
+  reloadOver: 1
   attackPosition: {fileID: 3663481788624834710}
 --- !u!1 &6914715931122491357
 GameObject:

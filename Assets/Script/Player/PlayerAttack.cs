@@ -4,17 +4,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
+
 public class PlayerAttack : MonoBehaviour
 {
+    [SerializeField] private UnityEngine.UI.Slider attackSlider;
+    [SerializeField] private UnityEngine.UI.Slider reloadSlider;
     [Header("数值")]
     [SerializeField] private float mana;
     [SerializeField] private float maxMana = 100f;
     [SerializeField] private float manaRecoverSpeed = 10f;
+    [SerializeField] private float basicAttackCD = 0.5f;
     [SerializeField] private float attackCD = 0.5f;
+    [SerializeField] private float attackTimer = 0;
+    [SerializeField] private float basicReloadCD = 1.0f;
     [SerializeField] private float reloadCD = 1.0f;
-    [SerializeField] float attackTimer;
+    [SerializeField] private float reloadTimer = 0;
+
     //[SerializeField] private Bullet PrefabsToCreat;
     [Header("法术链")]
+    int magicIndex = 0 ;
     public MagicBase magicBullet;
     public MagicBase magicArrow;
     public MagicBase Boom;
@@ -22,7 +32,8 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-    [SerializeField] Boolean canAttack = true ;
+    [SerializeField] private Boolean canAttack = true ;
+    [SerializeField] private Boolean reloadOver = true;
   //  Bullet tempBullet;
     [SerializeField] private Transform attackPosition;
     private PlayerInputControl playerInputControl;
@@ -55,11 +66,8 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        attackTimer +=Time.deltaTime;
-        if(attackTimer > attackCD)
-        {
-            canAttack = true; 
-        }
+        UpdateTimer();
+        UpdateSlider();
     }
 
     private void OnDisable()
@@ -70,16 +78,62 @@ public class PlayerAttack : MonoBehaviour
    public  void Attack(InputAction.CallbackContext context)
     {
         Debug.Log("Attack");
-        if (canAttack)
+        if (canAttack && reloadOver)
         {
+            canAttack = false;
+            attackTimer = 0;
+            attackCD = basicAttackCD;
+            int i = magicIndex;
+            magicIndex += magicLine[magicIndex].ExtraTrigger + 1;
+            for(;i<magicIndex && i<magicLine.Count ;i++)
+            {
+                attackCD += magicLine[i].AttackCD;
+                reloadCD += magicLine[i].ReloadCD;
+                OnplayerAttack.Invoke(this, magicLine[i]);
 
-            OnplayerAttack.Invoke(this, magicLine[UnityEngine.Random.Range(0,3)]);
+            }
+            if (magicIndex >= magicLine.Count)
+            {
+                magicIndex = 0;
+
+                //重置reload
+                reloadOver = false;
+                reloadTimer = 0;
+
+
+            }
+
             //tempBullet = BulletPool.bulletPool.Get();
             //tempBullet.transform.position =  attackPosition.position;
             //tempBullet.shootByDirection();
-            attackTimer = 0;
-            canAttack = false;
+
+
         }
+    }
+
+    private  void UpdateTimer()
+    {
+        attackTimer += Time.deltaTime;
+        if (attackTimer > attackCD)
+        {
+            canAttack = true;
+        }
+       
+        if (!reloadOver)
+        {
+            reloadTimer += Time.deltaTime;
+            if (reloadTimer > reloadCD)
+            {
+                reloadOver = true;
+                reloadCD = basicReloadCD;
+            }
+        }
+
+    }
+    private void UpdateSlider()
+    {
+        attackSlider.value = attackTimer/ attackCD;
+        reloadSlider.value = reloadTimer/ reloadCD;
     }
 
 

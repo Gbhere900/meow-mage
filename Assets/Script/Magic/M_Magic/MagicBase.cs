@@ -9,7 +9,7 @@ public abstract class MagicBase : MonoBehaviour
     [SerializeField] protected Sprite icon;
     [SerializeField] protected float attackCD;
     [SerializeField] protected float reloadCD;
-    [SerializeField] protected int extraTrigger;
+    [SerializeField] protected int extraTrigger = 0;
     [SerializeField] protected float mana;
     [SerializeField] protected GameObject prefabToCreat;
 
@@ -25,4 +25,5 @@ public abstract class MagicBase : MonoBehaviour
     public float ReloadCD { get => reloadCD; set => reloadCD = value; }
     public float Mana { get => mana; set => mana = value; }
     public GameObject PrefabToCreat { get => prefabToCreat; set => prefabToCreat = value; }
+    public int ExtraTrigger { get => extraTrigger; set => extraTrigger = value; }
 }

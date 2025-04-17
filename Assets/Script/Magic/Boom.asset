@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9220a25a6b6a1a04c87fcdb047393556, type: 3}
   m_Name: Boom
   m_EditorClassIdentifier: 
-  magicName: 
-  magicDescription: 
-  icon: {fileID: 0}
-  attackCD: 0
-  reloadCD: 0
-  mana: 0
-  prefabToCreat: {fileID: 0}
+  magicName: "\u70B8\u5F39"
+  magicDescription: Boom!!
+  icon: {fileID: 21300000, guid: 5d53a9b1d994e89478da5cc6d0a17fe4, type: 3}
+  attackCD: 1
+  reloadCD: 1
+  mana: 50
+  prefabToCreat: {fileID: 7920587537702961221, guid: 7bd17ede0756f524cb9b8db0f018b5b2,
+    type: 3}
   i: 0
