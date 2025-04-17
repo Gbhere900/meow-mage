@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 [System.Serializable]
@@ -13,6 +14,8 @@ public struct Pair
 
 public class BulletPoolManager : MonoBehaviour
 {
+    static BulletPoolManager instance;
+
     [SerializeField] private List< Pair> magicEffects= new List< Pair>();
     //magicBullet
     ObjectPool<MagicBullet> magicBulletPool;
@@ -21,8 +24,21 @@ public class BulletPoolManager : MonoBehaviour
 
     
     Bullet tempBullet;
+
+    static public BulletPoolManager Instance()
+    {
+        return instance;
+    }
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            GameObject.Destroy(this);
+        }
         MagicArrowPool.Init();
         MagicBulletPool.Init();
         BoomPool.Init(); 
@@ -72,7 +88,19 @@ public class BulletPoolManager : MonoBehaviour
         {
             for (int i = 0; i < magicEffects.Count; i++)
             {
-                magicEffects[0].magic.GetComponent<I_MagicEffect>().TriggerEffect(tempBullet);
+ 
+                magicEffects[i].magic.GetComponent<I_MagicEffect>().TriggerEffect(tempBullet);
+                Pair tempP = magicEffects[i];
+                tempP.count --;
+                if (tempP.count <= 0)
+                {
+                    magicEffects.RemoveAt(i);
+                }
+                else
+                {
+                    magicEffects[i] = tempP;
+                }
+
             }
 
         }
@@ -92,5 +120,11 @@ public class BulletPoolManager : MonoBehaviour
         magicArrowPool.Release((MagicArrow)bullet);
     }
 
-
+    public void AddMagicToList(MagicBase magic)
+    {
+        Pair p = new Pair();
+        p.magic = magic;
+        p.count = 1;
+        magicEffects.Add(p);
+    }
 }

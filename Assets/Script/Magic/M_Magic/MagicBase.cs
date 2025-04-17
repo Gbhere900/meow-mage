@@ -12,7 +12,7 @@ public abstract class MagicBase : MonoBehaviour
     [SerializeField] protected int extraTrigger = 0;
     [SerializeField] protected float mana;
     [SerializeField] protected GameObject prefabToCreat;
-
+    
 
     public string MagicName { get => magicName; set => magicName = value; }
     public string MagicDescription { get => magicDescription; set => magicDescription = value; }

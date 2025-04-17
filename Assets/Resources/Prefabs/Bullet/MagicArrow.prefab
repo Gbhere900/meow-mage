@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c1351943296c71f448be82e734551ab2,
         type: 3}
       propertyPath: m_Name
-      value: MagicBullet
+      value: MagicArrow
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: c1351943296c71f448be82e734551ab2, type: 3}
@@ -169,16 +169,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b31c064498490742955ec38032ee6d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basicSpeed: 5
   speed: 10
+  basicDamage: 3
   damage: 3
+  basicTime: 5
   time: 2
-  CriticalChance: 20
-  CriticalRatio: 5
-  ActualDamage: 3
+  basicCriticalChance: 20
+  criticalChance: 20
+  basicCriticalRatio: 5
+  criticalRatio: 5
+  basicCanCutThrough: 1
   canCutThrough: 1
   aimDirection: {x: 0, y: 0, z: 0}
+  basicAimOffset: 10
   aimOffset: 10
   shootDirection: {x: 0, y: 0, z: 0}
+  basicIsShootByMouseDiretion: 1
   isShootByMouseDiretion: 1
 --- !u!4 &5731035137147575729 stripped
 Transform:
