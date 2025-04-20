@@ -77,13 +77,14 @@ abstract public class Bullet : MonoBehaviour
         {
             int tempIndex = playerAttack.magicIndex;
             MagicBase magicToTrigger = null;
-            if (tempIndex < playerAttack.magicLine.Count && playerAttack.Mana - playerAttack.magicLine[tempIndex].Mana  >=0)
+            if (playerAttack.MagicQueue.Count >0 && playerAttack.Mana - playerAttack.MagicQueue.Peek().Mana  >=0)
             {
-                magicToTrigger = playerAttack.magicLine[PlayerAttack.Instance().magicIndex];
+                magicToTrigger = playerAttack.MagicQueue.Dequeue();
                 playerAttack.Mana -= magicToTrigger.Mana;
-                playerAttack.magicIndex++;
+               // playerAttack.magicIndex++;
                 magicToTrigger.TriggerMagic(transform.position);
             }
+            playerAttack.MagicQueue.Dequeue();
         }
         
     }

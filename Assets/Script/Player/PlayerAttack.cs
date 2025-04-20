@@ -40,7 +40,8 @@ public class PlayerAttack : MonoBehaviour
     public MagicBase magicBullet;
     public MagicBase magicArrow;
     public MagicBase Boom;
-    public  List<MagicBase> magicLine = new List<MagicBase>();
+    public List<MagicBase> magicLine = new List<MagicBase>();
+    [SerializeField]  public Queue<MagicBase> magicQueue = new Queue<MagicBase>();
 
 
 
@@ -68,6 +69,7 @@ public class PlayerAttack : MonoBehaviour
         playerInputControl = new PlayerInputControl();
 
         Mana = MaxMana;
+        UpdateMagicQueue();
     }
     private void OnEnable()
     {
@@ -88,6 +90,20 @@ public class PlayerAttack : MonoBehaviour
         UpdateCDSlider();
         UpdateMana();
         UpdateManaSlider();
+        if (magicQueue.Count== 0)
+        {
+            // magicIndex = 0;
+            UpdateMagicQueue();
+            //÷ÿ÷√reload
+            reloadOver = false;
+            ReloadTimer = 0;
+
+            BulletPoolManager.Instance().ClearMagicEffect();
+            foreach (MagicBase magic in magicQueue)
+            {
+                Debug.Log(magic.MagicName);
+            }
+        }
     }
 
     private void UpdateMana()
@@ -108,45 +124,43 @@ public class PlayerAttack : MonoBehaviour
     }
    public  void Attack(InputAction.CallbackContext context)
     {
-        Debug.Log("Attack");
         if (canAttack && reloadOver)
         {
             canAttack = false;
             AttackTimer = 0;
             AttackCD = BasicAttackCD;
-            int i = magicIndex;
-            magicIndex++;
-            for(;i<magicIndex && i<magicLine.Count ;i++)
+            if(Mana - magicQueue.Peek().Mana > 0)
             {
-                if(Mana - magicLine[i].Mana <0 )
-                {
-                    continue;
-                }
-                Mana -= magicLine[i].Mana;
-                magicIndex += magicLine[i].ExtraTrigger;
-                BulletPoolManager.Instance().AddEachMagicCount(magicLine[i].ExtraTrigger);
+                magicQueue.Dequeue().TriggerMagic(this.transform.position);
+            }
+            
+            //int i = magicIndex;
+            //magicIndex++;
+            //for(;i<magicIndex && i<magicLine.Count ;i++)
+            //{
+            //    if(Mana - magicLine[i].Mana <0 )        
+            //    {
+            //        continue;
+            //    }
+                //Mana -= magicLine[i].Mana;
+                //magicIndex += magicLine[i].ExtraTrigger;
+                //BulletPoolManager.Instance().AddEachMagicCount(magicLine[i].ExtraTrigger);
 
-                AttackCD += magicLine[i].AttackCD;
-                ReloadCD += magicLine[i].ReloadCD;
-                // OnplayerAttack.Invoke(this, magicLine[i]);
-                magicLine[i].TriggerMagic(this.transform.position);
+                //AttackCD += magicLine[i].AttackCD;
+                //ReloadCD += magicLine[i].ReloadCD;
+                //// OnplayerAttack.Invoke(this, magicLine[i]);
+                ///
+
+                //magicLine[i].TriggerMagic(this.transform.position);
                 
-                if (magicLine[i].GetComponent<I_MagicEffect>()!= null)
-                {
-                    BulletPoolManager.Instance().AddMagicToList(magicLine[i]);
-                }
-            }
-            if (magicIndex >= magicLine.Count)
-            {
-                magicIndex = 0;
 
-                //÷ÿ÷√reload
-                reloadOver = false;
-                ReloadTimer = 0;
 
-                BulletPoolManager.Instance().ClearMagicEffect();
-
-            }
+                //if (magicLine[i].GetComponent<I_MagicEffect>()!= null)
+                //{
+                //    BulletPoolManager.Instance().AddMagicToList(magicLine[i]);
+                //}
+            
+            
         }
     }
 
@@ -155,7 +169,12 @@ public class PlayerAttack : MonoBehaviour
         AttackTimer += Time.deltaTime;
         if (AttackTimer > AttackCD)
         {
+            AttackTimer = AttackCD;
             canAttack = true;
+        }
+        else
+        {
+            canAttack = false;
         }
        
         if (!reloadOver)
@@ -163,9 +182,11 @@ public class PlayerAttack : MonoBehaviour
             ReloadTimer += Time.deltaTime;
             if (ReloadTimer > ReloadCD)
             {
+                //ReloadTimer = ReloadCD;
                 reloadOver = true;
                 ReloadCD = BasicReloadCD;
             }
+
         }
 
     }
@@ -174,7 +195,10 @@ public class PlayerAttack : MonoBehaviour
         attackSlider.value = AttackTimer/ AttackCD;
         reloadSlider.value = ReloadTimer/ ReloadCD;
     }
-
+    public void UpdateMagicQueue()
+    {
+        magicQueue = new Queue<MagicBase>(magicLine);
+    }
 
     public float Mana { get => mana; set => mana = value; }
     public float MaxMana { get => maxMana; set => maxMana = value; }
@@ -185,4 +209,5 @@ public class PlayerAttack : MonoBehaviour
     public float BasicReloadCD { get => basicReloadCD; set => basicReloadCD = value; }
     public float ReloadCD { get => reloadCD; set => reloadCD = value; }
     public float ReloadTimer { get => reloadTimer; set => reloadTimer = value; }
+    public Queue<MagicBase> MagicQueue { get => magicQueue; set => magicQueue = value; }
 }

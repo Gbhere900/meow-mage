@@ -51,4 +51,5 @@ MonoBehaviour:
   reloadCD: 0
   extraTrigger: 1
   mana: 0
+  type: 1
   prefabToCreat: {fileID: 0}

@@ -49,6 +49,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: aa2b850aa80619e4a849009114ea1813, type: 3}
   attackCD: 0
   reloadCD: 0
+  extraTrigger: 0
   mana: 10
+  type: 0
   prefabToCreat: {fileID: 8687796220866269163, guid: 48f2a19bdc9141e42994b54d522fbde6,
     type: 3}

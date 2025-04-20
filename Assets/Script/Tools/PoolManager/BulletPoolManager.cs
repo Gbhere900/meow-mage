@@ -106,7 +106,8 @@ public class BulletPoolManager : MonoBehaviour
         }
         if (magicEffects.Count != 0)
         {
-            if(tempBullet != null) 
+            
+            if(magic.Type ==E_MagicType.attack) 
             {
                 for (int i = 0; i < magicEffects.Count; i++)
                 {
@@ -124,7 +125,6 @@ public class BulletPoolManager : MonoBehaviour
                     }
                 }
             }
-
         }
         tempBullet = null;  
     }
