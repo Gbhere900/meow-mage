@@ -27,6 +27,12 @@ abstract public class Bullet : MonoBehaviour
     [SerializeField] private Boolean basicCanCutThrough = false;
     [SerializeField] private Boolean canCutThrough = false;
 
+    [SerializeField] private Boolean isTriggerMagic = false;
+
+    [SerializeField] private Boolean isTriggered = false;
+
+    //[SerializeField] private MagicBase magicToTrigger = null;
+
     [SerializeField] private Vector3 aimDirection;
     [SerializeField] private float basicAimOffset = 10;
     [SerializeField] private float aimOffset = 10;
@@ -56,11 +62,30 @@ abstract public class Bullet : MonoBehaviour
         CanCutThrough = BasicCanCutThrough;
         AimOffset = BasicAimOffset;
         IsShootByMouseDiretion = BasicIsShootByMouseDiretion;
+        isTriggered = false;
+        //magicToTrigger = null;
 
-        //  Debug.Log("鼠标"+MousePosition.GetMousePosition());
-        // Debug.Log("发射点"+transform.position);
+        
         StartCoroutine(WaitForDestroy());
-       // Debug.Log("方向"+aimPosition);
+
+    }
+
+    private void TriggerNextMagic()
+    {
+        PlayerAttack playerAttack = PlayerAttack.Instance();
+        if (isTriggerMagic)
+        {
+            int tempIndex = playerAttack.magicIndex;
+            MagicBase magicToTrigger = null;
+            if (tempIndex < playerAttack.magicLine.Count && playerAttack.Mana - playerAttack.magicLine[tempIndex].Mana  >=0)
+            {
+                magicToTrigger = playerAttack.magicLine[PlayerAttack.Instance().magicIndex];
+                playerAttack.Mana -= magicToTrigger.Mana;
+                playerAttack.magicIndex++;
+                magicToTrigger.TriggerMagic(transform.position);
+            }
+        }
+        
     }
 
     Boolean IsCritical()
@@ -85,8 +110,17 @@ abstract public class Bullet : MonoBehaviour
     {
         if(other.GetComponent<EnemyHealth>() != null)
         {
-
+            
             other.GetComponent<EnemyHealth>().ReceiveDamage(IsCritical()?  Damage * CriticalRatio:Damage);
+
+            if (isTriggerMagic && !isTriggered)
+            {
+                Debug.Log("触发了");
+                TriggerNextMagic();
+                isTriggered = true;
+            }
+            
+
             if(!CanCutThrough)
             {
                 StopCoroutine(WaitForDestroy());
@@ -139,5 +173,7 @@ abstract public class Bullet : MonoBehaviour
     public Vector3 ShootDirection { get => shootDirection; set => shootDirection = value; }
     public bool BasicIsShootByMouseDiretion { get => basicIsShootByMouseDiretion; set => basicIsShootByMouseDiretion = value; }
     public bool IsShootByMouseDiretion { get => isShootByMouseDiretion; set => isShootByMouseDiretion = value; }
-
+    public bool IsTriggerMagic { get => isTriggerMagic; set => isTriggerMagic = value; }
+    public bool IsTriggered { get => isTriggered; set => isTriggered = value; }
+   // public MagicBase MagicToTrigger { get => magicToTrigger; set => magicToTrigger = value; }
 }

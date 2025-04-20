@@ -8,9 +8,16 @@ using UnityEngine.UI;
 using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 using Microsoft.SqlServer.Server;
 using TMPro;
+using System.ComponentModel;
+using Unity.VisualScripting;
 
 public class PlayerAttack : MonoBehaviour
 {
+    static PlayerAttack instance;
+    static public PlayerAttack Instance()
+    {
+        return instance;
+    }
     [Header("用户界面")]
     [SerializeField] private UnityEngine.UI.Slider manaSlider;
     [SerializeField] private TextMeshProUGUI manaText;
@@ -33,7 +40,7 @@ public class PlayerAttack : MonoBehaviour
     public MagicBase magicBullet;
     public MagicBase magicArrow;
     public MagicBase Boom;
-    [SerializeField] private List<MagicBase> magicLine = new List<MagicBase>();
+    public  List<MagicBase> magicLine = new List<MagicBase>();
 
 
 
@@ -44,17 +51,23 @@ public class PlayerAttack : MonoBehaviour
     private PlayerInputControl playerInputControl;
 
 
-    static public Action<PlayerAttack,MagicBase> OnplayerAttack;
+
+
+    // static public Action<PlayerAttack,MagicBase> OnplayerAttack;
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
         //magicLine.Add(magicBullet);
         //magicLine.Add(magicArrow);
         //magicLine.Add(Boom);
 
         playerInputControl = new PlayerInputControl();
 
-        mana = maxMana;
+        Mana = MaxMana;
     }
     private void OnEnable()
     {
@@ -65,7 +78,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
-        attackTimer = 0;
+        AttackTimer = 0;
     }
 
     // Update is called once per frame
@@ -79,13 +92,13 @@ public class PlayerAttack : MonoBehaviour
 
     private void UpdateMana()
     {
-        mana = Math.Min(maxMana, mana + manaRecoverSpeed * Time.deltaTime);
+        Mana = Math.Min(MaxMana, Mana + ManaRecoverSpeed * Time.deltaTime);
     }
 
     private void UpdateManaSlider()
     {
-        manaSlider.value = mana/maxMana;
-        manaText.text = Math.Floor(mana)+ " / "+ Math.Floor(maxMana);
+        manaSlider.value = Mana/MaxMana;
+        manaText.text = Math.Floor(Mana)+ " / "+ Math.Floor(MaxMana);
     }
 
     private void OnDisable()
@@ -99,23 +112,24 @@ public class PlayerAttack : MonoBehaviour
         if (canAttack && reloadOver)
         {
             canAttack = false;
-            attackTimer = 0;
-            attackCD = basicAttackCD;
+            AttackTimer = 0;
+            AttackCD = BasicAttackCD;
             int i = magicIndex;
             magicIndex++;
             for(;i<magicIndex && i<magicLine.Count ;i++)
             {
-                if(mana - magicLine[i].Mana <0 )
+                if(Mana - magicLine[i].Mana <0 )
                 {
                     continue;
                 }
-                mana -= magicLine[i].Mana;
+                Mana -= magicLine[i].Mana;
                 magicIndex += magicLine[i].ExtraTrigger;
                 BulletPoolManager.Instance().AddEachMagicCount(magicLine[i].ExtraTrigger);
 
-                attackCD += magicLine[i].AttackCD;
-                reloadCD += magicLine[i].ReloadCD;
-                OnplayerAttack.Invoke(this, magicLine[i]);
+                AttackCD += magicLine[i].AttackCD;
+                ReloadCD += magicLine[i].ReloadCD;
+                // OnplayerAttack.Invoke(this, magicLine[i]);
+                magicLine[i].TriggerMagic(this.transform.position);
                 
                 if (magicLine[i].GetComponent<I_MagicEffect>()!= null)
                 {
@@ -128,8 +142,9 @@ public class PlayerAttack : MonoBehaviour
 
                 //重置reload
                 reloadOver = false;
-                reloadTimer = 0;
+                ReloadTimer = 0;
 
+                BulletPoolManager.Instance().ClearMagicEffect();
 
             }
         }
@@ -137,28 +152,37 @@ public class PlayerAttack : MonoBehaviour
 
     private  void UpdateTimer()
     {
-        attackTimer += Time.deltaTime;
-        if (attackTimer > attackCD)
+        AttackTimer += Time.deltaTime;
+        if (AttackTimer > AttackCD)
         {
             canAttack = true;
         }
        
         if (!reloadOver)
         {
-            reloadTimer += Time.deltaTime;
-            if (reloadTimer > reloadCD)
+            ReloadTimer += Time.deltaTime;
+            if (ReloadTimer > ReloadCD)
             {
                 reloadOver = true;
-                reloadCD = basicReloadCD;
+                ReloadCD = BasicReloadCD;
             }
         }
 
     }
     private void UpdateCDSlider()
     {
-        attackSlider.value = attackTimer/ attackCD;
-        reloadSlider.value = reloadTimer/ reloadCD;
+        attackSlider.value = AttackTimer/ AttackCD;
+        reloadSlider.value = ReloadTimer/ ReloadCD;
     }
 
 
+    public float Mana { get => mana; set => mana = value; }
+    public float MaxMana { get => maxMana; set => maxMana = value; }
+    public float ManaRecoverSpeed { get => manaRecoverSpeed; set => manaRecoverSpeed = value; }
+    public float BasicAttackCD { get => basicAttackCD; set => basicAttackCD = value; }
+    public float AttackCD { get => attackCD; set => attackCD = value; }
+    public float AttackTimer { get => attackTimer; set => attackTimer = value; }
+    public float BasicReloadCD { get => basicReloadCD; set => basicReloadCD = value; }
+    public float ReloadCD { get => reloadCD; set => reloadCD = value; }
+    public float ReloadTimer { get => reloadTimer; set => reloadTimer = value; }
 }

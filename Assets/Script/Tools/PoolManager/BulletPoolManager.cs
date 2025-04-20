@@ -21,6 +21,9 @@ public class BulletPoolManager : MonoBehaviour
     ObjectPool<MagicBullet> magicBulletPool;
     ObjectPool<Boom> boomPool;
     ObjectPool<MagicArrow> magicArrowPool;
+    ObjectPool<T_MagicBullet> T_magicBulletPool;
+    ObjectPool<T_MagicArrow> T_magicArrowPool;
+
 
     
     Bullet tempBullet;
@@ -41,48 +44,65 @@ public class BulletPoolManager : MonoBehaviour
         }
         MagicArrowPool.Init();
         MagicBulletPool.Init();
-        BoomPool.Init(); 
+        BoomPool.Init();
+        T_MagicBulletPool.Init();
+        T_MagicArrowPool.Init();
         magicArrowPool = MagicArrowPool.Instance;
         magicBulletPool = MagicBulletPool.Instance;
         boomPool = BoomPool.Instance;
+        T_magicBulletPool = T_MagicBulletPool.Instance;
+        T_magicArrowPool = T_MagicArrowPool.Instance;
     }
     private void OnEnable()
     {
-        PlayerAttack.OnplayerAttack += SpawnMagicBullet;
+        //PlayerAttack.OnplayerAttack += SpawnMagicBullet;
         MagicBullet.OnRecycled += RecycleMagicBullet;
         Boom.OnRecycled += RecycleBoom;
         MagicArrow.OnRecycled += RecycleMagicArrow;
+        T_MagicBullet.OnRecycled += RecycleT_MagicBullet;
+        T_MagicArrow.OnRecycled += RecycleT_MagicArrow;
     }
     private void OnDisable()
     {
 
-        PlayerAttack.OnplayerAttack -= SpawnMagicBullet;
+       // PlayerAttack.OnplayerAttack -= SpawnMagicBullet;
         MagicBullet.OnRecycled -= RecycleMagicBullet;
         Boom.OnRecycled -= RecycleBoom;
         MagicArrow.OnRecycled -= RecycleMagicArrow;
+        T_MagicBullet.OnRecycled -= RecycleT_MagicBullet;
+        T_MagicArrow.OnRecycled -= RecycleT_MagicArrow;
     }
 
-    private void SpawnMagicBullet(PlayerAttack playerAttack, MagicBase magic)
+    public  void SpawnMagicBullet(Vector3 position, MagicBase magic)
     {
 
         switch(magic.MagicName)
         {
             case "Ä§·¨×Óµ¯":
                 tempBullet = magicBulletPool.Get();
-                tempBullet.transform.position = playerAttack.transform.position;
+                tempBullet.transform.position = position;
                 tempBullet.shootByDirection();
                 break;
             case "Ä§·¨¼ý":
                 tempBullet = magicArrowPool.Get();
-                tempBullet.transform.position = playerAttack.transform.position;
+                tempBullet.transform.position = position;
                 tempBullet.shootByDirection();
                 break;
             case "Õ¨µ¯":
                 tempBullet = boomPool.Get();
-                tempBullet.transform.position = playerAttack.transform.position;
+                tempBullet.transform.position = position;
                 tempBullet.shootByDirection();
                 break;
-
+            case "´¥·¢Ä§·¨µ¯":
+                tempBullet = T_magicBulletPool.Get();
+                tempBullet.transform.position = position;
+                tempBullet.shootByDirection();
+                break;
+            case "´¥·¢Ä§·¨¼ý":
+                tempBullet = T_magicArrowPool.Get();
+                tempBullet.transform.position = position;
+                tempBullet.shootByDirection();
+                break;
         }
         if (magicEffects.Count != 0)
         {
@@ -109,20 +129,6 @@ public class BulletPoolManager : MonoBehaviour
         tempBullet = null;  
     }
 
-   private void  RecycleMagicBullet(MagicBullet bullet)
-    {
-        magicBulletPool.Release( bullet);
-    }
-    private void RecycleBoom(Boom bullet)
-    {
-        boomPool.Release(bullet);
-    }
-
-    private void RecycleMagicArrow(MagicArrow bullet)
-    {
-        magicArrowPool.Release((MagicArrow)bullet);
-    }
-
     public void AddMagicToList(MagicBase magic)
     {
         Pair p = new Pair();
@@ -133,11 +139,40 @@ public class BulletPoolManager : MonoBehaviour
 
     public void AddEachMagicCount(int addValue)
     {
-        for(int i=0;i<magicEffects.Count;i++)
+        for (int i = 0; i < magicEffects.Count; i++)
         {
             Pair tempP = magicEffects[i];
             tempP.count += addValue;
             magicEffects[i] = tempP;
         }
     }
+
+    public void ClearMagicEffect()
+    {
+        magicEffects.Clear();
+    }
+    private void  RecycleMagicBullet(MagicBullet bullet)
+    {
+        magicBulletPool.Release( bullet);
+    }
+    private void RecycleBoom(Boom bullet)
+    {
+        boomPool.Release(bullet);
+    }
+
+    private void RecycleMagicArrow(MagicArrow bullet)
+    {
+        magicArrowPool.Release(bullet);
+    }
+    
+    private void RecycleT_MagicBullet(T_MagicBullet bullet)
+    {
+        T_magicBulletPool.Release(bullet);
+    }
+    private void RecycleT_MagicArrow(T_MagicArrow bullet)
+    {
+        T_magicArrowPool.Release(bullet);
+    }
+
+
 }

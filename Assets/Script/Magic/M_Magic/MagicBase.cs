@@ -13,7 +13,12 @@ public abstract class MagicBase : MonoBehaviour
     [SerializeField] protected float mana;
     [SerializeField] protected GameObject prefabToCreat;
     
+    public void TriggerMagic(Vector3 position)
+    {
+        BulletPoolManager.Instance().SpawnMagicBullet(position,this);
+    }
 
+   
     public string MagicName { get => magicName; set => magicName = value; }
     public string MagicDescription { get => magicDescription; set => magicDescription = value; }
     public Sprite Icon { get => icon; set => icon = value; }

@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c1351943296c71f448be82e734551ab2,
         type: 3}
       propertyPath: m_Name
-      value: MagicArrow
+      value: T_MagicArrow
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: c1351943296c71f448be82e734551ab2, type: 3}
@@ -99,7 +99,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c1351943296c71f448be82e734551ab2,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5655684467151754090}
+      addedObject: {fileID: -619347798707838110}
   m_SourcePrefab: {fileID: 100100000, guid: c1351943296c71f448be82e734551ab2, type: 3}
 --- !u!1 &4954921367809476363 stripped
 GameObject:
@@ -157,7 +157,7 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5655684467151754090
+--- !u!114 &-619347798707838110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4954921367809476363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b31c064498490742955ec38032ee6d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5704f1775cf5ff843a9fc4e8030385a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   basicSpeed: 5
@@ -181,7 +181,7 @@ MonoBehaviour:
   criticalRatio: 5
   basicCanCutThrough: 1
   canCutThrough: 1
-  isTriggerMagic: 0
+  isTriggerMagic: 1
   isTriggered: 0
   aimDirection: {x: 0, y: 0, z: 0}
   basicAimOffset: 10

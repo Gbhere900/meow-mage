@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.iOS;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -23,7 +24,7 @@ using UnityEngine.Pool;
                 //}
                 if(prefabs == null )
                 {
-                    Debug.Log("预制体为空");
+                    Debug.Log(typeof(T).Name+   "预制体为空");
                 }
                 _instance = new ObjectPool<T>(CreateFunction, ActionOnGet, ActionOnRelease, ActionOnDestroy);
             }
