@@ -73,20 +73,22 @@ abstract public class Bullet : MonoBehaviour
     private void TriggerNextMagic()
     {
         PlayerAttack playerAttack = PlayerAttack.Instance();
-        if (isTriggerMagic)
-        {
-            int tempIndex = playerAttack.magicIndex;
+
+           // int tempIndex = playerAttack.magicIndex;
             MagicBase magicToTrigger = null;
-            if (playerAttack.MagicQueue.Count >0 && playerAttack.Mana - playerAttack.MagicQueue.Peek().Mana  >=0)
+            if (playerAttack.MagicQueue.Count >0 )
             {
-                magicToTrigger = playerAttack.MagicQueue.Dequeue();
-                playerAttack.Mana -= magicToTrigger.Mana;
-               // playerAttack.magicIndex++;
-                magicToTrigger.TriggerMagic(transform.position);
+                if(playerAttack.Mana - playerAttack.MagicQueue.Peek().Mana >= 0)
+                    {
+                        magicToTrigger = playerAttack.MagicQueue.Dequeue();
+                        playerAttack.Mana -= magicToTrigger.Mana;
+                        // playerAttack.magicIndex++;
+                        magicToTrigger.TriggerMagic(transform.position);
+                    }
+                else
+                playerAttack.MagicQueue.Dequeue();
+
             }
-            playerAttack.MagicQueue.Dequeue();
-        }
-        
     }
 
     Boolean IsCritical()

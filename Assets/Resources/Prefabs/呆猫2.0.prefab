@@ -314,7 +314,7 @@ Transform:
   m_GameObject: {fileID: 3091850855486219416}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -665,21 +665,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4001e912ddaeec343b57e09aff8a5729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manaSlider: {fileID: 0}
+  manaText: {fileID: 0}
+  attackSlider: {fileID: 0}
+  reloadSlider: {fileID: 0}
   mana: 0
-  maxMana: 100
-  manaRecoverSpeed: 10
+  maxMana: 1000
+  manaRecoverSpeed: 0
   basicAttackCD: 0.5
   attackCD: 0.5
   attackTimer: 0
   basicReloadCD: 1
   reloadCD: 1
   reloadTimer: 0
-  magicBullet: {fileID: 2120639401180101120, guid: f3a3cfb8cbea2d2459d7f94f00f15de8,
-    type: 3}
-  magicArrow: {fileID: 7960194752627891779, guid: 98698c20cd2f719498db0db4143925ff,
-    type: 3}
-  Boom: {fileID: 661559530023228694, guid: 33a1d66815c857b42818d475c1df4c47, type: 3}
-  magicLine: []
+  magicIndex: 0
+  magicBullet: {fileID: 0}
+  magicArrow: {fileID: 0}
+  Boom: {fileID: 0}
+  magicLine:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   canAttack: 1
   reloadOver: 1
   attackPosition: {fileID: 3663481788624834710}

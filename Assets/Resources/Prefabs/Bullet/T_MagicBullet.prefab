@@ -156,15 +156,15 @@ MonoBehaviour:
   time: 5
   basicCriticalChance: 20
   criticalChance: 20
-  basicCriticalRatio: 5
-  criticalRatio: 5
+  basicCriticalRatio: 3
+  criticalRatio: 3
   basicCanCutThrough: 0
   canCutThrough: 0
   isTriggerMagic: 1
   isTriggered: 0
   aimDirection: {x: 0, y: 0, z: 0}
-  basicAimOffset: 10
-  aimOffset: 10
+  basicAimOffset: 3
+  aimOffset: 3
   shootDirection: {x: 0, y: 0, z: 0}
   basicIsShootByMouseDiretion: 1
   isShootByMouseDiretion: 1
