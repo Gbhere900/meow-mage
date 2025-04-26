@@ -8,17 +8,27 @@ using DG.Tweening;
 
 public class TrophyManager : MonoBehaviour
 {
+    static private TrophyManager instance;
     [SerializeField] private MagicSO[] magicSOs;
     [SerializeField] private HorizontalLayoutGroup horizontalLayoutGroup;
-
+    public TrophyButton TrophyButtonPrefabs;
     [SerializeField] private MagicBase[] magics;
 
+    
+    static public TrophyManager Instance()
+    {
+        return instance;
+    }
     private void Start()
     {
         ChangeTrophies();
     }
     private void Awake()
     {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this.gameObject);
         GameManager.OnSwitchGameState += ChangeTroPhiesOnSwitchGameState;
         
     }
@@ -29,17 +39,18 @@ public class TrophyManager : MonoBehaviour
       // ShuffleMagics();
         for (int i = 0; i < horizontalLayoutGroup.transform.childCount; i++)
         {
-            TrophyButton tempTrophyButton  = horizontalLayoutGroup.transform.GetChild(i).GetComponent<TrophyButton>();
-            //      tempTrophyButton.ChangeTrophyByMagicSO(magicSOs[i]);
-            tempTrophyButton.GetButton().onClick.RemoveAllListeners();
-            
-            tempTrophyButton.ChangeTrophyByMagic(magicSOs[i]);
-            tempTrophyButton.GetButton().onClick.AddListener(() => ChangeVisualEffect(tempTrophyButton));
-            tempTrophyButton.GetButton().onClick.AddListener(() =>
-            {
-                
-            });
+            GameObject tempTrophyButton = horizontalLayoutGroup.transform.GetChild(i).gameObject;
+            Destroy(tempTrophyButton);
         }
+        for(int i=0;i<3;i++)
+        {
+            TrophyButton trophyButton = Instantiate(TrophyButtonPrefabs, horizontalLayoutGroup.transform);
+
+            trophyButton.GetButton().onClick.RemoveAllListeners();
+            trophyButton.ChangeTrophyByMagic(magicSOs[i]);
+            trophyButton.GetButton().onClick.AddListener(() => ChangeVisualEffect(trophyButton));
+        }
+
     }
 
     private void ChangeVisualEffect(TrophyButton tempTrophyButton)

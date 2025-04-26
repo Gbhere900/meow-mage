@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6199624855865314634}
   - component: {fileID: 1371847685217975445}
   m_Layer: 0
-  m_Name: Text_reloadCD
+  m_Name: Text_reload
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,13 +183,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c3bc141a45de4640929a1ea5f4aa6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trophyName: {fileID: 1320054313044065852}
-  trophyDescription: {fileID: 7910745442961518595}
-  trophyImage: {fileID: 8705577215447650947}
-  trophyButton: {fileID: 5157489907224251801}
-  trophyMana: {fileID: 0}
-  trophyAttackCD: {fileID: 0}
-  trophyReloadCD: {fileID: 0}
+  magicSO: {fileID: 0}
+  name: {fileID: 1320054313044065852}
+  description: {fileID: 7910745442961518595}
+  image: {fileID: 8705577215447650947}
+  button: {fileID: 5157489907224251801}
+  mana: {fileID: 3746561487819983823}
+  delay: {fileID: 6129008205612658071}
+  reload: {fileID: 1371847685217975445}
+  canBeSelect: 1
 --- !u!1 &1837761064054368121
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +338,7 @@ GameObject:
   - component: {fileID: 3673118455652883435}
   - component: {fileID: 6129008205612658071}
   m_Layer: 0
-  m_Name: Text_attackCD
+  m_Name: Text_delay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

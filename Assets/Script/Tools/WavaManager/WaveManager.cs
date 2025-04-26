@@ -63,10 +63,10 @@ public class WaveManager : MonoBehaviour
                 isTimerCounting = false ;
                 //GameManager.instance.OnSwitchWaveCallBack();
                 if(PlayerResouces.instance.deltaLevel >0)
-                GameManager.instance.SwitchGameState(GameState.wavetransition);
+                GameManager.instance.SwitchGameState(GameState.trophy);
                 else
                 {
-                    GameManager.instance.SwitchGameState(GameState.trophy);
+                    GameManager.instance.SwitchGameState(GameState.wavetransition);
                 }
             }
             
