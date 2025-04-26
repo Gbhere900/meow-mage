@@ -87,7 +87,7 @@ public class WaveManager : MonoBehaviour
         currentWave++;
         UpdateCount();
         UpdateWavesText();
-        OnWaveSwitched.Invoke();
+        OnWaveSwitched?.Invoke();
     }
     void ManagerCurrentWave()
     {
