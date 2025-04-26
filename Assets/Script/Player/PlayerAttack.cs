@@ -43,18 +43,12 @@ public class PlayerAttack : MonoBehaviour
     public List<MagicBase> magicLine = new List<MagicBase>();
     [SerializeField]  public Queue<MagicBase> magicQueue = new Queue<MagicBase>();
 
-
-
     [SerializeField] private Boolean canAttack = true ;
     [SerializeField] private Boolean reloadOver = true;
-  //  Bullet tempBullet;
     [SerializeField] private Transform attackPosition;
     private PlayerInputControl playerInputControl;
 
 
-
-
-    // static public Action<PlayerAttack,MagicBase> OnplayerAttack;
 
     private void Awake()
     {
@@ -67,9 +61,6 @@ public class PlayerAttack : MonoBehaviour
         {
             instance = this;
         }
-        //magicLine.Add(magicBullet);
-        //magicLine.Add(magicArrow);
-        //magicLine.Add(Boom);
 
         playerInputControl = new PlayerInputControl();
 
@@ -137,35 +128,7 @@ public class PlayerAttack : MonoBehaviour
             if(Mana - magicQueue.Peek().magicSO.mana > 0)
             {
                 magicQueue.Dequeue().TriggerMagic(this.transform.position);
-            }
-            
-            //int i = magicIndex;
-            //magicIndex++;
-            //for(;i<magicIndex && i<magicLine.Count ;i++)
-            //{
-            //    if(Mana - magicLine[i].Mana <0 )        
-            //    {
-            //        continue;
-            //    }
-                //Mana -= magicLine[i].Mana;
-                //magicIndex += magicLine[i].ExtraTrigger;
-                //BulletPoolManager.Instance().AddEachMagicCount(magicLine[i].ExtraTrigger);
-
-                //AttackCD += magicLine[i].AttackCD;
-                //ReloadCD += magicLine[i].ReloadCD;
-                //// OnplayerAttack.Invoke(this, magicLine[i]);
-                ///
-
-                //magicLine[i].TriggerMagic(this.transform.position);
-                
-
-
-                //if (magicLine[i].GetComponent<I_MagicEffect>()!= null)
-                //{
-                //    BulletPoolManager.Instance().AddMagicToList(magicLine[i]);
-                //}
-            
-            
+            } 
         }
     }
 

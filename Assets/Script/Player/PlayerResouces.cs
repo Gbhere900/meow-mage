@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 public class PlayerResouces : MonoBehaviour
 {
-    PlayerResouces instance;
+    static public PlayerResouces instance;
     [Header("¾­Ñé")]
     [SerializeField] private Slider EXP_Slider;
     [SerializeField] private TextMeshProUGUI LevelText;
@@ -14,7 +14,7 @@ public class PlayerResouces : MonoBehaviour
     [SerializeField] private float currentEXP = 0;
     [SerializeField] private int level = 1;
     [SerializeField] private int lastLevel = 1;
-    [SerializeField] private int deltaLevel = 1;
+    public  int deltaLevel = 1;
 
     [Header("½ð±Ò")]
     [SerializeField] private TextMeshProUGUI goldText;

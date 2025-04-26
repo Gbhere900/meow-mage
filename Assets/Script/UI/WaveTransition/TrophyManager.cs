@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using DG.Tweening;
 
 public class TrophyManager : MonoBehaviour
 {
@@ -31,8 +32,13 @@ public class TrophyManager : MonoBehaviour
             TrophyButton tempTrophyButton  = horizontalLayoutGroup.transform.GetChild(i).GetComponent<TrophyButton>();
             //      tempTrophyButton.ChangeTrophyByMagicSO(magicSOs[i]);
             tempTrophyButton.GetButton().onClick.RemoveAllListeners();
+            
             tempTrophyButton.ChangeTrophyByMagic(magicSOs[i]);
             tempTrophyButton.GetButton().onClick.AddListener(() => ChangeVisualEffect(tempTrophyButton));
+            tempTrophyButton.GetButton().onClick.AddListener(() =>
+            {
+                
+            });
         }
     }
 
