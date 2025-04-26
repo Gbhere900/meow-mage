@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 
 public class TrophyButton : MonoBehaviour
 {
+    public MagicSO magicSO;
     [SerializeField] private TextMeshProUGUI trophyName;
     [SerializeField] private TextMeshProUGUI trophyDescription;
     [SerializeField] private Image trophyImage;
@@ -15,17 +17,19 @@ public class TrophyButton : MonoBehaviour
     [SerializeField] private TextMeshProUGUI trophyAttackCD;
     [SerializeField] private TextMeshProUGUI trophyReloadCD;
 
-    public void ChangeTrophyByMagicSO(MagicSO magicSO)
+
+    public void ChangeTrophyByMagic(MagicSO magicSO)
     {
-        if(magicSO .MagicName==null)
+        this.magicSO = magicSO;
+        if (magicSO.name == null)
         {
             Debug.Log("魔法名为空");
         }
-        if (magicSO.MagicDescription == null)
+        if (magicSO.description == null)
         {
             Debug.Log("魔法描述为空");
         }
-        if (magicSO.Icon == null)
+        if (magicSO.icon == null)
         {
             Debug.Log("魔法图标为空");
         }
@@ -42,49 +46,20 @@ public class TrophyButton : MonoBehaviour
         //    Debug.Log("魔法名为空");
         //}
 
-        trophyName.text = magicSO.MagicName;
-        trophyDescription.text = magicSO.MagicDescription;
-        trophyImage.sprite = magicSO.Icon;
-        trophyMana.text = magicSO.Mana.ToString(); 
-        trophyAttackCD.text = magicSO.AttackCD.ToString();
-        trophyReloadCD.text = magicSO.ReloadCD.ToString();
+        trophyName.text =magicSO.name;
+        trophyDescription.text =magicSO.description;
+        trophyImage.sprite = magicSO.icon;
+        trophyMana.text = magicSO.mana.ToString();
+        trophyAttackCD.text = magicSO.delay.ToString();
+        trophyReloadCD.text = magicSO.reload.ToString();
+
+        trophyButton.onClick.AddListener(GetMagic);
     }
 
-    public void ChangeTrophyByMagic(MagicBase magic)
+    public void  GetMagic()
     {
-        if (magic.MagicName == null)
-        {
-            Debug.Log("魔法名为空");
-        }
-        if (magic.MagicDescription == null)
-        {
-            Debug.Log("魔法描述为空");
-        }
-        if (magic.Icon == null)
-        {
-            Debug.Log("魔法图标为空");
-        }
-        //if (magicSO.Mana == null)
-        //{
-        //    Debug.Log("魔法名为空");
-        //}
-        //if (magicSO.AttackCD == null)
-        //{
-        //    Debug.Log("魔法名为空");
-        //}
-        //if (magicSO.ReloadCD == null)
-        //{
-        //    Debug.Log("魔法名为空");
-        //}
-
-        trophyName.text = magic.MagicName;
-        trophyDescription.text = magic.MagicDescription;
-        trophyImage.sprite = magic.Icon;
-        trophyMana.text = magic.Mana.ToString();
-        trophyAttackCD.text = magic.AttackCD.ToString();
-        trophyReloadCD.text = magic.ReloadCD.ToString();
+        PackageManager.Instance().AddToPackage(magicSO);
     }
-
 
     public void Selected()
     {

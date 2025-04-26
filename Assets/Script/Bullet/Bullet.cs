@@ -78,10 +78,10 @@ abstract public class Bullet : MonoBehaviour
             MagicBase magicToTrigger = null;
             if (playerAttack.MagicQueue.Count >0 )
             {
-                if(playerAttack.Mana - playerAttack.MagicQueue.Peek().Mana >= 0)
+                if(playerAttack.Mana - playerAttack.MagicQueue.Peek().magicSO.mana >= 0)
                     {
                         magicToTrigger = playerAttack.MagicQueue.Dequeue();
-                        playerAttack.Mana -= magicToTrigger.Mana;
+                        playerAttack.Mana -= magicToTrigger.magicSO.mana;
                         // playerAttack.magicIndex++;
                         magicToTrigger.TriggerMagic(transform.position);
                     }

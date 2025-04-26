@@ -5,9 +5,10 @@ using UnityEngine;
 [Serializable]
 public class M_AddDamage : MagicBase, I_MagicEffect
 {
+    public int damage = 20;
     public void TriggerEffect(Bullet bullet)
     {
-        bullet.Damage += 20;
+        bullet.Damage += damage;
         Debug.Log(bullet.Damage);
     }
 }

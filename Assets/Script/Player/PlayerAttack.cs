@@ -36,10 +36,10 @@ public class PlayerAttack : MonoBehaviour
 
     //[SerializeField] private Bullet PrefabsToCreat;
     [Header("∑® ı¡¥")]
+    public MagicBase baseMagic;
+    public int capacity = 5;
+    public int MaxCapacity = 15;
     public int magicIndex = 0 ;
-    public MagicBase magicBullet;
-    public MagicBase magicArrow;
-    public MagicBase Boom;
     public List<MagicBase> magicLine = new List<MagicBase>();
     [SerializeField]  public Queue<MagicBase> magicQueue = new Queue<MagicBase>();
 
@@ -58,6 +58,11 @@ public class PlayerAttack : MonoBehaviour
 
     private void Awake()
     {
+        for (int i = 0; i < capacity; i++)
+        {
+            magicLine.Add(baseMagic);
+        }
+
         if (instance == null)
         {
             instance = this;
@@ -101,7 +106,7 @@ public class PlayerAttack : MonoBehaviour
             BulletPoolManager.Instance().ClearMagicEffect();
             foreach (MagicBase magic in magicQueue)
             {
-                Debug.Log(magic.MagicName);
+                Debug.Log(magic.magicSO.name);
             }
         }
     }
@@ -129,7 +134,7 @@ public class PlayerAttack : MonoBehaviour
             canAttack = false;
             AttackTimer = 0;
             AttackCD = BasicAttackCD;
-            if(Mana - magicQueue.Peek().Mana > 0)
+            if(Mana - magicQueue.Peek().magicSO.mana > 0)
             {
                 magicQueue.Dequeue().TriggerMagic(this.transform.position);
             }

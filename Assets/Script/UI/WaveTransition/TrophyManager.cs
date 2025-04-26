@@ -12,21 +12,26 @@ public class TrophyManager : MonoBehaviour
 
     [SerializeField] private MagicBase[] magics;
 
-
+    private void Start()
+    {
+        ChangeTrophies();
+    }
     private void Awake()
     {
         GameManager.OnSwitchGameState += ChangeTroPhiesOnSwitchGameState;
+        
     }
     [NaughtyAttributes.Button]
     public void ChangeTrophies()
     {
-       // ShuffleMagicSOs();
-       ShuffleMagics();
+       ShuffleMagicSOs();
+      // ShuffleMagics();
         for (int i = 0; i < horizontalLayoutGroup.transform.childCount; i++)
         {
             TrophyButton tempTrophyButton  = horizontalLayoutGroup.transform.GetChild(i).GetComponent<TrophyButton>();
             //      tempTrophyButton.ChangeTrophyByMagicSO(magicSOs[i]);
-            tempTrophyButton.ChangeTrophyByMagic(magics[i]);
+            tempTrophyButton.GetButton().onClick.RemoveAllListeners();
+            tempTrophyButton.ChangeTrophyByMagic(magicSOs[i]);
             tempTrophyButton.GetButton().onClick.AddListener(() => ChangeVisualEffect(tempTrophyButton));
         }
     }
@@ -54,16 +59,16 @@ public class TrophyManager : MonoBehaviour
     }
 
 
-    public void ShuffleMagicSOs()
-    {
-        // Fisher-Yatesœ¥≈∆À„∑®
-        for (int i = magicSOs.Length - 1; i > 0; i--)
-        {
-            int j = UnityEngine.Random.Range(0, i + 1);
-            (magicSOs[i], magicSOs[j]) = (magicSOs[j], magicSOs[i]);
-        }
-        // return allBuffs.GetRange(0, Mathf.Min(count, allBuffs.Count));
-    }
+   public void ShuffleMagicSOs()
+   {
+      // Fisher-Yatesœ¥≈∆À„∑®
+      for (int i = magicSOs.Length - 1; i > 0; i--)
+      {
+          int j = UnityEngine.Random.Range(0, i + 1);
+          (magicSOs[i], magicSOs[j]) = (magicSOs[j], magicSOs[i]);
+       }
+    // return allBuffs.GetRange(0, Mathf.Min(count, allBuffs.Count));
+   }
     public void ShuffleMagics()
     {
         // Fisher-Yatesœ¥≈∆À„∑®

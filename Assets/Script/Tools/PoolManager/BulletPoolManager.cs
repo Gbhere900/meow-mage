@@ -76,7 +76,7 @@ public class BulletPoolManager : MonoBehaviour
     public  void SpawnMagicBullet(Vector3 position, MagicBase magic)
     {
 
-        switch(magic.MagicName)
+        switch(magic.magicSO.name)
         {
             case "Ä§·¨×Óµ¯":
                 tempBullet = magicBulletPool.Get();
@@ -107,7 +107,7 @@ public class BulletPoolManager : MonoBehaviour
         if (magicEffects.Count != 0)
         {
             
-            if(magic.Type ==E_MagicType.attack) 
+            if(magic.magicSO.type ==E_MagicType.attack) 
             {
                 for (int i = 0; i < magicEffects.Count; i++)
                 {

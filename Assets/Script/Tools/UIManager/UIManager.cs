@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject waveTransitionUI;
     [SerializeField] private GameObject trophyUI;
     [SerializeField] private GameObject shopUI;
-    [SerializeField] private GameObject bagUI;
+    [SerializeField] private GameObject packageUI;
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject victoryUI;
     
@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
                 break;
             case GameState.bag:
                 Debug.Log("UImanager«–ªªµΩbag");
-                bagUI.SetActive(true);
+                packageUI.SetActive(true);
                 break;
             case GameState.trophy:
                 trophyUI.SetActive(true);
@@ -62,7 +62,7 @@ public class UIManager : MonoBehaviour
         waveTransitionUI.SetActive(false);
         trophyUI.SetActive(false);
         shopUI.SetActive(false);
-        bagUI.SetActive(false);
+        packageUI.SetActive(false);
         victoryUI.SetActive(false);
         gameOverUI.SetActive(false);
 
