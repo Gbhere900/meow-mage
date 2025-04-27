@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9220a25a6b6a1a04c87fcdb047393556, type: 3}
   m_Name: MagicBullet
   m_EditorClassIdentifier: 
+  identifier: MagicBullet
   name: "\u9B54\u6CD5\u5F39"
   description: "\u54E6\u54E6\u662F\u9B54\u6CD5\u5F39"
   icon: {fileID: 21300000, guid: aa2b850aa80619e4a849009114ea1813, type: 3}

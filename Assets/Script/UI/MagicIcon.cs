@@ -110,6 +110,8 @@ public class MagicIcon : MonoBehaviour
             SetPosAndParent(beginParentTransform);
             Debug.Log("²»ÊÇICON");
         }
+        PlayerAttack.Instance().UpdateMagicLine();
+        PlayerAttack.Instance().ReloadMagicQueue();
         transform.GetComponentInChildren<Image>().raycastTarget = true;
     }
 

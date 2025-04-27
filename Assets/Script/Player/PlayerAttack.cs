@@ -23,6 +23,9 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private TextMeshProUGUI manaText;
     [SerializeField] private UnityEngine.UI.Slider attackSlider;
     [SerializeField] private UnityEngine.UI.Slider reloadSlider;
+    public HorizontalLayoutGroup packageHorizontalLayoutGroup;
+    public HorizontalLayoutGroup MagicChainHorizontalLayoutGroup;
+
     [Header("数值")]
     [SerializeField] private float mana;
     [SerializeField] private float maxMana = 100f;
@@ -48,10 +51,27 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform attackPosition;
     private PlayerInputControl playerInputControl;
 
+    [Header("法术库")]
+    public Dictionary<String, MagicBase> magicDic = new Dictionary<String, MagicBase>();
+
+
+
+
 
 
     private void Awake()
     {
+        AddMagicEntry("MagicBullet", "M_MagicBullet");
+        AddMagicEntry("MagicArrow", "M_MagicArrow");
+        AddMagicEntry("Boom", "M_Boom");
+        AddMagicEntry("T_MagicBullet", "TM_MagicBullet");
+        AddMagicEntry("T_MagicArrow", "TM_MagicArrow"); // 修正名称
+        AddMagicEntry("2Times", "M_2Times");
+        AddMagicEntry("3Times", "M_3Times");
+        AddMagicEntry("4Times", "M_4Times");
+        AddMagicEntry("AddDamage", "M_AddDamage");
+
+
         for (int i = 0; i < capacity; i++)
         {
             magicLine.Add(baseMagic);
@@ -65,8 +85,30 @@ public class PlayerAttack : MonoBehaviour
         playerInputControl = new PlayerInputControl();
 
         Mana = MaxMana;
-        UpdateMagicQueue();
+        ReloadMagicQueue();
     }
+
+    private void AddMagicEntry(string key, string objectName)
+    {
+        GameObject obj = GameObject.Find(objectName);
+
+        if (obj == null)
+        {
+            Debug.LogError($"找不到对象: {objectName}");
+            return;
+        }
+
+        if (obj.TryGetComponent(out MagicBase magic))
+        {
+            magicDic.Add(key, magic);
+        }
+        else
+        {
+            Debug.LogError($"{objectName} 上缺少 MagicBase 组件");
+        }
+    }
+
+
     private void OnEnable()
     {
         playerInputControl.Enable();
@@ -89,7 +131,7 @@ public class PlayerAttack : MonoBehaviour
         if (magicQueue.Count== 0)
         {
             // magicIndex = 0;
-            UpdateMagicQueue();
+            ReloadMagicQueue();
             //重置reload
             reloadOver = false;
             ReloadTimer = 0;
@@ -132,6 +174,19 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    public void UpdateMagicLine()
+    {
+        magicLine.Clear();
+        PackageManager package = PackageManager.Instance();
+        for(int i=0;i< package.horizontalLayoutGroup.transform.childCount;i++)
+        {
+            if(package.horizontalLayoutGroup.transform.GetChild(i).childCount >0)
+            {
+                string magicIdentifier = package.horizontalLayoutGroup.transform.GetChild(i).GetChild(0).GetComponent<MagicIcon>().magicSO.identifier;
+                magicLine.Add(magicDic[magicIdentifier]);
+            }
+        }
+    }
     private  void UpdateTimer()
     {
         AttackTimer += Time.deltaTime;
@@ -163,7 +218,7 @@ public class PlayerAttack : MonoBehaviour
         attackSlider.value = AttackTimer/ AttackCD;
         reloadSlider.value = ReloadTimer/ ReloadCD;
     }
-    public void UpdateMagicQueue()
+    public void ReloadMagicQueue()
     {
         magicQueue = new Queue<MagicBase>(magicLine);
     }

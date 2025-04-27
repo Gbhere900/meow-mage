@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9220a25a6b6a1a04c87fcdb047393556, type: 3}
   m_Name: AddDamage
   m_EditorClassIdentifier: 
+  identifier: AddDamage
   name: "\u4F24\u5BB3\u5F3A\u5316"
   description: "\u589E\u52A0\u4E0B\u4E00\u6B21\u65BD\u6CD5\u7684\u4F24\u5BB3\uFF08\u53EF\u4F7F\u7528\u4E8E\u591A\u91CD\u65BD\u6CD5\uFF09"
   icon: {fileID: 0}
-  attackCD: 0.2
-  reloadCD: 0.4
+  delay: 0
+  reload: 0
   extraTrigger: 1
   mana: 10
   type: 1
