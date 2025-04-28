@@ -19,12 +19,14 @@ public class PlayerAttack : MonoBehaviour
         return instance;
     }
     [Header("用户界面")]
+    public HorizontalLayoutGroup magicChainHorizontalLayoutGroup;
+    public MagicIcon_disabled MagicIcon_disablePrefabs;
     [SerializeField] private UnityEngine.UI.Slider manaSlider;
     [SerializeField] private TextMeshProUGUI manaText;
     [SerializeField] private UnityEngine.UI.Slider attackSlider;
     [SerializeField] private UnityEngine.UI.Slider reloadSlider;
     public HorizontalLayoutGroup packageHorizontalLayoutGroup;
-    public HorizontalLayoutGroup MagicChainHorizontalLayoutGroup;
+
 
     [Header("数值")]
     [SerializeField] private float mana;
@@ -113,6 +115,7 @@ public class PlayerAttack : MonoBehaviour
     {
         playerInputControl.Enable();
         playerInputControl.Player.Fire.started += Attack;
+        playerInputControl.Player.Fire.performed += Attack;
     }
 
 
@@ -142,6 +145,7 @@ public class PlayerAttack : MonoBehaviour
                 Debug.Log(magic.magicSO.name);
             }
         }
+        ChangeSelectedMagic();
     }
 
     private void UpdateMana()
@@ -209,7 +213,6 @@ public class PlayerAttack : MonoBehaviour
                 reloadOver = true;
                 ReloadCD = BasicReloadCD;
             }
-
         }
 
     }
@@ -220,8 +223,41 @@ public class PlayerAttack : MonoBehaviour
     }
     public void ReloadMagicQueue()
     {
+
         magicQueue = new Queue<MagicBase>(magicLine);
+        for (int i = 0; i < magicChainHorizontalLayoutGroup.transform.childCount; i++)
+        {
+            Destroy(magicChainHorizontalLayoutGroup.transform.GetChild(i).gameObject);
+        }
+      
+        for(int i=0;i<magicLine.Count;i++)
+        {
+            MagicIcon_disabled icon = GameObject.Instantiate(MagicIcon_disablePrefabs, magicChainHorizontalLayoutGroup.transform);
+            icon.Initialize(magicLine[i].magicSO);
+            
+        }
+        magicQueue = new Queue<MagicBase>(magicLine);
+        
     }
+
+    public void ChangeSelectedMagic()
+    {
+        int currentIndex = magicLine.Count - magicQueue.Count;
+        Debug.Log(currentIndex);
+        for (int i = 0; i < magicChainHorizontalLayoutGroup.transform.childCount; i++)
+        {
+            if (i == currentIndex)
+            {
+                magicChainHorizontalLayoutGroup.transform.GetChild(i).GetComponent<MagicIcon_disabled>().Selected();
+            }
+            else
+            {
+                magicChainHorizontalLayoutGroup.transform.GetChild(i).GetComponent<MagicIcon_disabled>().DisSelected();
+            }
+
+        }
+    }
+    
 
     public float Mana { get => mana; set => mana = value; }
     public float MaxMana { get => maxMana; set => maxMana = value; }

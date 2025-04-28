@@ -12,6 +12,8 @@ public class PackageManager : MonoBehaviour
     [Header("布局")]
     public HorizontalLayoutGroup horizontalLayoutGroup;
     public GridLayoutGroup gridLayoutGroup;
+    public int MaxGridCapacity = 40;
+
     [Header("预制体")]
     public MagicIcon MagicIconPrefabs;
     public GameObject beforeIconPrefabs;
@@ -45,7 +47,7 @@ public class PackageManager : MonoBehaviour
         playerPackage.CLearPackage();
         ReFreshGrid();
 
-        for(int i = 0;i<40;i++)
+        for(int i = 0;i< MaxGridCapacity ;i++)              //通过MaxGridCapacity限制背包空框的数量
         {
             GameObject beforeIcon = Instantiate(beforeIconPrefabs, gridLayoutGroup.transform);
             beforeIcon.name = "BeforeIcon" + i;
@@ -103,7 +105,9 @@ public class PackageManager : MonoBehaviour
             }
             
         }
-        for (int i = 0; i < playerPackage.magicSOs.Count; i++)
+
+        //当PlayerPackage中法术数量大于MaxGridCapacitys时，默认只显示前背包中MaxGridCapacitys个法术
+        for (int i = 0; i < playerPackage.magicSOs.Count && i < MaxGridCapacity; i++)           
         {
             MagicIcon magicIcon = CreateNewSlotInGrid(playerPackage.magicSOs[i],i);
             magicIcon.button.onClick.AddListener(() => ChangeVisualEffect(magicIcon));

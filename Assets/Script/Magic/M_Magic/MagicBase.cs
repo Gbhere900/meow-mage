@@ -12,6 +12,7 @@ public abstract class MagicBase : MonoBehaviour
         playerAttack.Mana -= magicSO.mana;
         playerAttack.AttackCD += magicSO.delay;
         playerAttack.ReloadCD += magicSO.reload;
+        playerAttack.ChangeSelectedMagic();
         BulletPoolManager.Instance().SpawnMagicBullet(position, this);
         if (magicSO.type == E_MagicType.times)
         {
