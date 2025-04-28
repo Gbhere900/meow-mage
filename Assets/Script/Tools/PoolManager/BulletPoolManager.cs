@@ -81,27 +81,27 @@ public class BulletPoolManager : MonoBehaviour
             case "Ä§·¨×Óµ¯":
                 tempBullet = magicBulletPool.Get();
                 tempBullet.transform.position = position;
-                tempBullet.shootByDirection();
+                tempBullet.shootByMouseDirection();
                 break;
             case "Ä§·¨¼ý":
                 tempBullet = magicArrowPool.Get();
                 tempBullet.transform.position = position;
-                tempBullet.shootByDirection();
+                tempBullet.shootByMouseDirection();
                 break;
             case "Õ¨µ¯":
                 tempBullet = boomPool.Get();
                 tempBullet.transform.position = position;
-                tempBullet.shootByDirection();
+                tempBullet.shootByMouseDirection();
                 break;
             case "´¥·¢Ä§·¨µ¯":
                 tempBullet = T_magicBulletPool.Get();
                 tempBullet.transform.position = position;
-                tempBullet.shootByDirection();
+                tempBullet.shootByMouseDirection();
                 break;
             case "´¥·¢Ä§·¨¼ý":
                 tempBullet = T_magicArrowPool.Get();
                 tempBullet.transform.position = position;
-                tempBullet.shootByDirection();
+                tempBullet.shootByMouseDirection();
                 break;
         }
         if (magicEffects.Count != 0)
@@ -129,6 +129,61 @@ public class BulletPoolManager : MonoBehaviour
         tempBullet = null;  
     }
 
+    public void SpawnMagicBullet(Vector3 position,Vector3 forward, MagicBase magic)
+    {
+
+        switch (magic.magicSO.name)
+        {
+            case "Ä§·¨×Óµ¯":
+                tempBullet = magicBulletPool.Get();
+                tempBullet.transform.position = position;
+                tempBullet.shootByDirection(forward);
+                break;
+            case "Ä§·¨¼ý":
+                tempBullet = magicArrowPool.Get();
+                tempBullet.transform.position = position;
+                tempBullet.shootByDirection(forward);
+                break;
+            case "Õ¨µ¯":
+                tempBullet = boomPool.Get();
+                tempBullet.transform.position = position;
+                tempBullet.shootByDirection(forward);
+                break;
+            case "´¥·¢Ä§·¨µ¯":
+                tempBullet = T_magicBulletPool.Get();
+                tempBullet.transform.position = position;
+                tempBullet.shootByDirection(forward);
+                break;
+            case "´¥·¢Ä§·¨¼ý":
+                tempBullet = T_magicArrowPool.Get();
+                tempBullet.transform.position = position;
+                tempBullet.shootByDirection(forward);
+                break;
+        }
+        if (magicEffects.Count != 0)
+        {
+
+            if (magic.magicSO.type == E_MagicType.attack)
+            {
+                for (int i = 0; i < magicEffects.Count; i++)
+                {
+
+                    magicEffects[i].magic.GetComponent<I_MagicEffect>().TriggerEffect(tempBullet);
+                    Pair tempP = magicEffects[i];
+                    tempP.count--;
+                    if (tempP.count <= 0)
+                    {
+                        magicEffects.RemoveAt(i);
+                    }
+                    else
+                    {
+                        magicEffects[i] = tempP;
+                    }
+                }
+            }
+        }
+        tempBullet = null;
+    }
     public void AddMagicToList(MagicBase magic)
     {
         Pair p = new Pair();

@@ -83,7 +83,7 @@ abstract public class Bullet : MonoBehaviour
                         magicToTrigger = playerAttack.MagicQueue.Dequeue();
                         playerAttack.Mana -= magicToTrigger.magicSO.mana;
                         // playerAttack.magicIndex++;
-                        magicToTrigger.TriggerMagic(transform.position);
+                        magicToTrigger.TriggerMagic(transform.position,transform.forward);
                     }
                 else
                 playerAttack.MagicQueue.Dequeue();
@@ -96,20 +96,26 @@ abstract public class Bullet : MonoBehaviour
         return UnityEngine.Random.Range(0, 100)<CriticalChance;
     }
 
-    public void shootByDirection()
+    public void shootByMouseDirection()
     {
-
-        if (IsShootByMouseDiretion)
-        {
-            SetAimDirection();
-            AddAimOffsetToShootDirection();
-        }
+         SetAimDirection();
+         AddAimOffsetToShootDirection();
         transform.forward = ShootDirection.normalized;
         rigidbody.velocity = ShootDirection.normalized * Speed;  //设置速度
     }
-    
 
-     protected virtual void OnTriggerEnter(Collider other)            //super
+    public void shootByDirection(Vector3 forward)
+    {
+        Vector3 offsetVector = new Vector3(-forward.z, 0, forward.x).normalized;
+        offsetVector *= UnityEngine.Random.Range((float)Math.Tan(-AimOffset * Mathf.Deg2Rad), (float)Math.Tan(AimOffset * Mathf.Deg2Rad));
+        ShootDirection = forward + offsetVector;
+        transform.forward = ShootDirection.normalized;
+        rigidbody.velocity = ShootDirection.normalized * Speed;  //设置速度
+    }
+
+
+
+    protected virtual void OnTriggerEnter(Collider other)            //super
     {
         if(other.GetComponent<EnemyHealth>() != null)
         {

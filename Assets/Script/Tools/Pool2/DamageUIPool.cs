@@ -7,7 +7,7 @@ public class DamageUIPool : BasicPoolClass<DamageUI>
     // Start is called before the first frame update
     static DamageUIPool()
     {
-        prefabs = Resources.Load<DamageUI>("Prefabs/DamageText");
+        prefabs = Resources.Load<DamageUI>("Prefabs/UI/DamageText");
     }
     static public void Init()
     {
