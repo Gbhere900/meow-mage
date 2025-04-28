@@ -114,9 +114,9 @@ public class PlayerAttack : MonoBehaviour
     private void OnEnable()
     {
         playerInputControl.Enable();
-        playerInputControl.Player.Fire.started += Attack;
-        playerInputControl.Player.Fire.performed += Attack;
+        playerInputControl.Player.Fire.started += OnFireTriggered;
     }
+
 
 
     void Start()
@@ -125,6 +125,13 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // Update is called once per frame
+    private void FixedUpdate()
+    {
+        if (playerInputControl.Player.Fire.ReadValue<float>() > 0)
+        {
+            Attack();
+        }
+    }
     void Update()
     {
         UpdateTimer();
@@ -162,9 +169,9 @@ public class PlayerAttack : MonoBehaviour
     private void OnDisable()
     {
         playerInputControl.Disable();
-        playerInputControl.Player.Fire.started -= Attack;
+        playerInputControl.Player.Fire.started -= OnFireTriggered;
     }
-   public  void Attack(InputAction.CallbackContext context)
+   public  void Attack()
     {
         if (canAttack && reloadOver)
         {
@@ -176,6 +183,10 @@ public class PlayerAttack : MonoBehaviour
                 magicQueue.Dequeue().TriggerMagic(this.transform.position);
             } 
         }
+    }
+    private void OnFireTriggered(InputAction.CallbackContext context)
+    {
+        Attack();
     }
 
     public void UpdateMagicLine()

@@ -11,12 +11,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c1351943296c71f448be82e734551ab2,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1351943296c71f448be82e734551ab2,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1351943296c71f448be82e734551ab2,
         type: 3}
@@ -71,6 +71,11 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c1351943296c71f448be82e734551ab2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c1351943296c71f448be82e734551ab2,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c1351943296c71f448be82e734551ab2,
@@ -173,8 +178,8 @@ MonoBehaviour:
   speed: 7
   basicDamage: 3
   damage: 3
-  basicTime: 3
-  time: 3
+  basicTime: 2
+  time: 2
   basicCriticalChance: 20
   criticalChance: 20
   basicCriticalRatio: 2
