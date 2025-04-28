@@ -67,16 +67,17 @@ public class PlayerAttack : MonoBehaviour
         AddMagicEntry("MagicArrow", "M_MagicArrow");
         AddMagicEntry("Boom", "M_Boom");
         AddMagicEntry("T_MagicBullet", "TM_MagicBullet");
-        AddMagicEntry("T_MagicArrow", "TM_MagicArrow"); // 修正名称
+        AddMagicEntry("T_MagicArrow", "TM_MagicArrow"); 
         AddMagicEntry("2Times", "M_2Times");
         AddMagicEntry("3Times", "M_3Times");
         AddMagicEntry("4Times", "M_4Times");
         AddMagicEntry("AddDamage", "M_AddDamage");
-
+        AddMagicEntry("Stop", "M_Stop");
+        AddMagicEntry("FlyAroundPlayer", "M_FlyAroundPlayer");
 
         for (int i = 0; i < capacity; i++)
         {
-            magicLine.Add(baseMagic);
+           // magicLine.Add(baseMagic);
         }
 
         if (instance == null)
@@ -90,25 +91,7 @@ public class PlayerAttack : MonoBehaviour
         ReloadMagicQueue();
     }
 
-    private void AddMagicEntry(string key, string objectName)
-    {
-        GameObject obj = GameObject.Find(objectName);
-
-        if (obj == null)
-        {
-            Debug.LogError($"找不到对象: {objectName}");
-            return;
-        }
-
-        if (obj.TryGetComponent(out MagicBase magic))
-        {
-            magicDic.Add(key, magic);
-        }
-        else
-        {
-            Debug.LogError($"{objectName} 上缺少 MagicBase 组件");
-        }
-    }
+    
 
 
     private void OnEnable()
@@ -225,12 +208,18 @@ public class PlayerAttack : MonoBehaviour
                 ReloadCD = BasicReloadCD;
             }
         }
+        else
+        {
+            ReloadTimer = reloadCD;
+        }
+
 
     }
     private void UpdateCDSlider()
     {
         attackSlider.value = AttackTimer/ AttackCD;
         reloadSlider.value = ReloadTimer/ ReloadCD;
+        
     }
     public void ReloadMagicQueue()
     {
@@ -268,8 +257,28 @@ public class PlayerAttack : MonoBehaviour
 
         }
     }
-    
 
+
+
+    private void AddMagicEntry(string key, string objectName)
+    {
+        GameObject obj = GameObject.Find(objectName);
+
+        if (obj == null)
+        {
+            Debug.LogError($"找不到对象: {objectName}");
+            return;
+        }
+
+        if (obj.TryGetComponent(out MagicBase magic))
+        {
+            magicDic.Add(key, magic);
+        }
+        else
+        {
+            Debug.LogError($"{objectName} 上缺少 MagicBase 组件");
+        }
+    }
     public float Mana { get => mana; set => mana = value; }
     public float MaxMana { get => maxMana; set => maxMana = value; }
     public float ManaRecoverSpeed { get => manaRecoverSpeed; set => manaRecoverSpeed = value; }

@@ -44,8 +44,8 @@ abstract public class Bullet : MonoBehaviour
 
 
     static public Action<Bullet> OnRecycled;
-
-  
+    public Action <EnemyMove>OnCollision;
+      
 
     private void Awake()
     {
@@ -67,9 +67,13 @@ abstract public class Bullet : MonoBehaviour
 
         
         StartCoroutine(WaitForDestroy());
-
     }
 
+    private void OnDisable()
+    {
+        OnCollision = null;
+
+    }
     private void TriggerNextMagic()
     {
         PlayerAttack playerAttack = PlayerAttack.Instance();
@@ -121,6 +125,7 @@ abstract public class Bullet : MonoBehaviour
         {
             
             other.GetComponent<EnemyHealth>().ReceiveDamage(IsCritical()?  Damage * CriticalRatio:Damage);
+            OnCollision?.Invoke(other.GetComponent<EnemyMove>());
 
             if (isTriggerMagic && !isTriggered)
             {

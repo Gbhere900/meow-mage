@@ -10,6 +10,7 @@ public class EnemyMove : MonoBehaviour
     private Rigidbody rigidbody;
     private Vector3 targetDirection;
 
+    public float originalSpeed = 2;
     public float speed = 2;
 
     void Awake()
@@ -28,8 +29,18 @@ public class EnemyMove : MonoBehaviour
         rigidbody.velocity = targetDirection * speed;
     }
 
+    public void ChangeSpeedForSeconds(float speed,float seconds)
+    {
+        this.speed = speed;
+        StartCoroutine(WaitForSeconds(seconds));
+        
+    }
 
-
+    IEnumerator WaitForSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        this.speed = originalSpeed;
+    }
 
 }
 

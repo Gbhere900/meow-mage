@@ -15,7 +15,7 @@ MonoBehaviour:
   identifier: 3Times
   name: "\u4E09\u91CD\u65BD\u6CD5"
   description: "\u4E00\u6B21\u6027\u91CA\u653E\u4E09\u4E2A\u6CD5\u672F"
-  icon: {fileID: 21300000, guid: 3c62c853506da8e4abdc34e951ed5362, type: 3}
+  icon: {fileID: 21300000, guid: ece518ef2ac30354ebcd8b51dc581b02, type: 3}
   delay: 0
   reload: 0
   extraTrigger: 3
