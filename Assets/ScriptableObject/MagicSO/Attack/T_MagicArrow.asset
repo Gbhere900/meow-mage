@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: T_MagicArrow
   m_EditorClassIdentifier: 
   identifier: T_MagicArrow
-  name: "\u89E6\u53D1\u9B54\u6CD5\u7BAD"
+  ChineseName: "\u89E6\u53D1\u9B54\u6CD5\u7BAD"
   description: "\u51FB\u4E2D\u65F6\u4F1A\u89E6\u53D1\u4E0B\u4E00\u4E2A\u6CD5\u672F\u7684\u9B54\u6CD5\u7BAD"
   icon: {fileID: 21300000, guid: 646a6c2a52df9ec42a73a89e67fb8700, type: 3}
   delay: 0.1
@@ -21,5 +21,6 @@ MonoBehaviour:
   extraTrigger: 0
   mana: 30
   type: 0
+  isTrigger: 1
   prefabToCreat: {fileID: 4954921367809476363, guid: d10976d43ef06e04587bc7034deb6241,
     type: 3}

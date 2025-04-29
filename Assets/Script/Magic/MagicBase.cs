@@ -4,16 +4,18 @@ using UnityEngine;
 
 public abstract class MagicBase : MonoBehaviour
 {
+    public int queueCount = -1;
     public MagicSO magicSO;
+    public bool isActive = true;
 
     public void TriggerMagic(Vector3 position)
     {
+        
         PlayerAttack playerAttack = PlayerAttack.Instance();
-        playerAttack.Mana -= magicSO.mana;
-        playerAttack.AttackCD += magicSO.delay;
-        playerAttack.ReloadCD += magicSO.reload;
-        playerAttack.ChangeSelectedMagic();
-        BulletPoolManager.Instance().SpawnMagicBullet(position, this);
+        //playerAttack.Mana -= magicSO.mana;
+        //playerAttack.AttackCD += magicSO.delay;
+        //playerAttack.ReloadCD += magicSO.reload;
+        BulletPoolManager.Instance().SpawnMagicBullet(position, this,queueCount);
         if (magicSO.type == E_MagicType.times)
         {
             BulletPoolManager.Instance().AddEachMagicCount(magicSO.extraTrigger - 1);
@@ -24,15 +26,26 @@ public abstract class MagicBase : MonoBehaviour
         }
         for (int i = 0; i < magicSO.extraTrigger; i++)
         {
-            if (playerAttack.MagicQueue.Count > 0)
+            //if (playerAttack.MagicQueue.Count > 0)
+            //{
+            //    if (playerAttack.Mana - magicSO.mana >= 0)
+            //    {
+            //        playerAttack.MagicQueue.Dequeue().TriggerMagic(position);
+            //    }
+            //    else
+            //    {
+            //        playerAttack.MagicQueue.Dequeue();
+            //    }
+            //}
+            if (playerAttack.magicQueues[queueCount].Count > 0)
             {
-                if (playerAttack.Mana - magicSO.mana >= 0)
+                if (playerAttack.magicQueues[queueCount].Peek().isActive)
                 {
-                    playerAttack.MagicQueue.Dequeue().TriggerMagic(position);
+                    playerAttack.magicQueues[queueCount].Dequeue().TriggerMagic(position);
                 }
                 else
                 {
-                    playerAttack.MagicQueue.Dequeue();
+                    playerAttack.magicQueues[queueCount].Dequeue();
                 }
             }
         }
@@ -42,10 +55,10 @@ public abstract class MagicBase : MonoBehaviour
     public void TriggerMagic(Vector3 position, Vector3 forward)
     {
         PlayerAttack playerAttack = PlayerAttack.Instance();
-        playerAttack.Mana -= magicSO.mana;
-        playerAttack.AttackCD += magicSO.delay;
-        playerAttack.ReloadCD += magicSO.reload;
-        BulletPoolManager.Instance().SpawnMagicBullet(position, forward, this);
+        //playerAttack.Mana -= magicSO.mana;
+        //playerAttack.AttackCD += magicSO.delay;
+        //playerAttack.ReloadCD += magicSO.reload;
+        BulletPoolManager.Instance().SpawnMagicBullet(position, forward, this,queueCount);
         if (magicSO.type == E_MagicType.times)
         {
             BulletPoolManager.Instance().AddEachMagicCount(magicSO.extraTrigger - 1);
@@ -56,17 +69,29 @@ public abstract class MagicBase : MonoBehaviour
         }
         for (int i = 0; i < magicSO.extraTrigger; i++)
         {
-            if (playerAttack.MagicQueue.Count > 0)
+        //    if (playerAttack.MagicQueue.Count > 0)
+        //    {
+        //        if (playerAttack.Mana - magicSO.mana >= 0)
+        //        {
+        //            playerAttack.MagicQueue.Dequeue().TriggerMagic(position, forward);
+        //        }
+        //        else
+        //        {
+        //            playerAttack.MagicQueue.Dequeue();
+        //        }
+        //    }
+
+        if (playerAttack.magicQueues[queueCount].Count > 0)
+        {
+            if (playerAttack.magicQueues[queueCount].Peek().isActive)
             {
-                if (playerAttack.Mana - magicSO.mana >= 0)
-                {
-                    playerAttack.MagicQueue.Dequeue().TriggerMagic(position, forward);
-                }
-                else
-                {
-                    playerAttack.MagicQueue.Dequeue();
-                }
+                  playerAttack.magicQueues[queueCount].Dequeue().TriggerMagic(position,forward);
             }
+            else
+            {
+                playerAttack.MagicQueue.Dequeue();
+            }
+        }
         }
     }
 

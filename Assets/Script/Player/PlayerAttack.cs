@@ -33,10 +33,10 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float maxMana = 100f;
     [SerializeField] private float manaRecoverSpeed = 10f;
     [SerializeField] private float basicAttackCD = 0.5f;
-    [SerializeField] private float attackCD = 0.5f;
-    [SerializeField] private float attackTimer = 0;
+    [SerializeField] private float delay = 0.5f;
+    [SerializeField] private float delayTimer = 0;
     [SerializeField] private float basicReloadCD = 1.0f;
-    [SerializeField] private float reloadCD = 1.0f;
+    [SerializeField] private float reload = 1.0f;
     [SerializeField] private float reloadTimer = 0;
 
     //[SerializeField] private Bullet PrefabsToCreat;
@@ -56,9 +56,10 @@ public class PlayerAttack : MonoBehaviour
     [Header("法术库")]
     public Dictionary<String, MagicBase> magicDic = new Dictionary<String, MagicBase>();
 
-
-
-
+    [Header("重构部分")]
+    public int maxQueueCount = 150;
+    public List<Queue<MagicBase>> magicQueues = new List<Queue<MagicBase>>(150);
+    public int queueCount = -1;
 
 
     private void Awake()
@@ -75,6 +76,10 @@ public class PlayerAttack : MonoBehaviour
         AddMagicEntry("Stop", "M_Stop");
         AddMagicEntry("FlyAroundPlayer", "M_FlyAroundPlayer");
 
+        for (int i = 0; i < maxQueueCount; i++)
+        {
+            magicQueues.Add(new Queue<MagicBase>());
+        }
         for (int i = 0; i < capacity; i++)
         {
            // magicLine.Add(baseMagic);
@@ -132,7 +137,7 @@ public class PlayerAttack : MonoBehaviour
             BulletPoolManager.Instance().ClearMagicEffect();
             foreach (MagicBase magic in magicQueue)
             {
-                Debug.Log(magic.magicSO.name);
+                Debug.Log(magic.magicSO.ChineseName);
             }
         }
         ChangeSelectedMagic();
@@ -154,17 +159,64 @@ public class PlayerAttack : MonoBehaviour
         playerInputControl.Disable();
         playerInputControl.Player.Fire.started -= OnFireTriggered;
     }
-   public  void Attack()
+
+    public void Attack()
     {
-        if (canAttack && reloadOver)
+        if(magicQueue.Count == magicLine.Count)
+            BulletPoolManager.Instance().ClearMagicEffect();
+
+        if (canAttack && reloadOver && Mana - magicQueue.Peek().magicSO.mana > 0)
         {
             canAttack = false;
             AttackTimer = 0;
             AttackCD = BasicAttackCD;
-            if(Mana - magicQueue.Peek().magicSO.mana > 0)
+            Queue<MagicBase> tempQueue =  CreateTempQueue();
+     
+            FillTempQueue(tempQueue);
+            magicQueues[queueCount].Dequeue().TriggerMagic(transform.position);
+        }
+        
+    }
+
+    public Queue<MagicBase> CreateTempQueue()
+    {
+        queueCount++;
+        Queue<MagicBase> tempQueue = new Queue<MagicBase>();
+        queueCount = queueCount % maxQueueCount;
+      //  magicQueues[queueCount] = null;             //防止占用内存
+        magicQueues[queueCount] = tempQueue;
+        
+        return tempQueue;
+    }
+
+    public void FillTempQueue(Queue<MagicBase> tempQueue)
+    {
+        if (magicQueue.Count > 0)
+        {
+            MagicBase magic = magicQueue.Dequeue();
+
+            magic.queueCount = queueCount;
+
+            if (mana - magic.magicSO.mana < 0)
+                magic.isActive = false;
+            else
             {
-                magicQueue.Dequeue().TriggerMagic(this.transform.position);
-            } 
+                mana -= magic.magicSO.mana;
+                reload += magic.magicSO.reload;
+                delay += magic.magicSO.delay;
+            }
+
+
+            tempQueue.Enqueue(magic);
+
+            if (magic.magicSO.isTrigger)
+            {
+                FillTempQueue(tempQueue);
+            }
+            for (int i = 0; i < magic.magicSO.extraTrigger; i++)
+            {
+                FillTempQueue(tempQueue);
+            }
         }
     }
     private void OnFireTriggered(InputAction.CallbackContext context)
@@ -210,7 +262,7 @@ public class PlayerAttack : MonoBehaviour
         }
         else
         {
-            ReloadTimer = reloadCD;
+            ReloadTimer = reload;
         }
 
 
@@ -243,7 +295,7 @@ public class PlayerAttack : MonoBehaviour
     public void ChangeSelectedMagic()
     {
         int currentIndex = magicLine.Count - magicQueue.Count;
-        Debug.Log(currentIndex);
+
         for (int i = 0; i < magicChainHorizontalLayoutGroup.transform.childCount; i++)
         {
             if (i == currentIndex)
@@ -283,10 +335,10 @@ public class PlayerAttack : MonoBehaviour
     public float MaxMana { get => maxMana; set => maxMana = value; }
     public float ManaRecoverSpeed { get => manaRecoverSpeed; set => manaRecoverSpeed = value; }
     public float BasicAttackCD { get => basicAttackCD; set => basicAttackCD = value; }
-    public float AttackCD { get => attackCD; set => attackCD = value; }
-    public float AttackTimer { get => attackTimer; set => attackTimer = value; }
+    public float AttackCD { get => delay; set => delay = value; }
+    public float AttackTimer { get => delayTimer; set => delayTimer = value; }
     public float BasicReloadCD { get => basicReloadCD; set => basicReloadCD = value; }
-    public float ReloadCD { get => reloadCD; set => reloadCD = value; }
+    public float ReloadCD { get => reload; set => reload = value; }
     public float ReloadTimer { get => reloadTimer; set => reloadTimer = value; }
     public Queue<MagicBase> MagicQueue { get => magicQueue; set => magicQueue = value; }
 }

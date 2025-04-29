@@ -73,12 +73,12 @@ public class BulletPoolManager : MonoBehaviour
         T_MagicArrow.OnRecycled -= RecycleT_MagicArrow;
     }
 
-    public  void SpawnMagicBullet(Vector3 position, MagicBase magic)
+    public  void SpawnMagicBullet(Vector3 position, MagicBase magic,int queueCount)
     {
 
-        switch(magic.magicSO.name)
+        switch(magic.magicSO.ChineseName)
         {
-            case "魔法子弹":
+            case "魔法弹":
                 tempBullet = magicBulletPool.Get();
                 tempBullet.transform.position = position;
                 tempBullet.shootByMouseDirection();
@@ -109,7 +109,7 @@ public class BulletPoolManager : MonoBehaviour
             
             if(magic.magicSO.type ==E_MagicType.attack) 
             {
-                for (int i = 0; i < magicEffects.Count; i++)
+                for (int i = magicEffects.Count - 1; i >= 0; i--)
                 {
 
                     magicEffects[i].magic.GetComponent<I_MagicEffect>().TriggerEffect(tempBullet);
@@ -126,15 +126,17 @@ public class BulletPoolManager : MonoBehaviour
                 }
             }
         }
+        if (tempBullet)
+        tempBullet.queueCount = queueCount;
         tempBullet = null;  
     }
 
-    public void SpawnMagicBullet(Vector3 position,Vector3 forward, MagicBase magic)
+    public void SpawnMagicBullet(Vector3 position,Vector3 forward, MagicBase magic,int queueCount)
     {
-
-        switch (magic.magicSO.name)
+        Debug.Log(magic.magicSO.ChineseName);
+        switch (magic.magicSO.ChineseName)
         {
-            case "魔法子弹":
+            case "魔法弹":
                 tempBullet = magicBulletPool.Get();
                 tempBullet.transform.position = position;
                 tempBullet.shootByDirection(forward);
@@ -165,7 +167,7 @@ public class BulletPoolManager : MonoBehaviour
 
             if (magic.magicSO.type == E_MagicType.attack)
             {
-                for (int i = 0; i < magicEffects.Count; i++)
+                for (int i = magicEffects.Count - 1; i >= 0; i--)
                 {
 
                     magicEffects[i].magic.GetComponent<I_MagicEffect>().TriggerEffect(tempBullet);
@@ -174,14 +176,18 @@ public class BulletPoolManager : MonoBehaviour
                     if (tempP.count <= 0)
                     {
                         magicEffects.RemoveAt(i);
+                       
                     }
                     else
                     {
                         magicEffects[i] = tempP;
                     }
                 }
+
             }
         }
+        if(tempBullet)
+        tempBullet.queueCount = queueCount;
         tempBullet = null;
     }
     public void AddMagicToList(MagicBase magic)

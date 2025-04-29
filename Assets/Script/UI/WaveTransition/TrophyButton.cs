@@ -23,7 +23,7 @@ public class TrophyButton : MonoBehaviour
     public void ChangeTrophyByMagic(MagicSO magicSO)
     {
         this.magicSO = magicSO;
-        if (magicSO.name == null)
+        if (magicSO.ChineseName == null)
         {
             Debug.Log("魔法名为空");
         }
@@ -48,7 +48,7 @@ public class TrophyButton : MonoBehaviour
         //    Debug.Log("魔法名为空");
         //}
 
-        name.text =magicSO.name;
+        name.text =magicSO.ChineseName;
         description.text =magicSO.description;
         image.sprite = magicSO.icon;
         mana.text = "法力消耗  " +magicSO.mana.ToString();

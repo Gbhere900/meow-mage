@@ -139,7 +139,7 @@ public class PackageManager : MonoBehaviour
 
     void ChangeDescription(MagicSO magicSO)
     {
-        description_name.text = magicSO.name;
+        description_name.text = magicSO.ChineseName;
         description_type.text = magicSO.type.ToString();
         description_description.text = magicSO.description;
         description_image.sprite = magicSO.icon;

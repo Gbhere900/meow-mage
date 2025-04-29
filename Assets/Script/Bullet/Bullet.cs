@@ -8,6 +8,8 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider))]
 abstract public class Bullet : MonoBehaviour
 {
+    [Header("所属法术链")]
+    public int queueCount;
     [Header("数值")]
     [SerializeField] private float basicSpeed = 5;
     [SerializeField] private float speed = 5;
@@ -45,7 +47,8 @@ abstract public class Bullet : MonoBehaviour
 
     static public Action<Bullet> OnRecycled;
     public Action <EnemyMove>OnCollision;
-      
+
+
 
     private void Awake()
     {
@@ -77,22 +80,19 @@ abstract public class Bullet : MonoBehaviour
     private void TriggerNextMagic()
     {
         PlayerAttack playerAttack = PlayerAttack.Instance();
+        MagicBase magicToTrigger = null;
 
-           // int tempIndex = playerAttack.magicIndex;
-            MagicBase magicToTrigger = null;
-            if (playerAttack.MagicQueue.Count >0 )
+        if (playerAttack.magicQueues[queueCount].Count > 0)
+        {
+            if (playerAttack.magicQueues[queueCount].Peek().isActive)
             {
-                if(playerAttack.Mana - playerAttack.MagicQueue.Peek().magicSO.mana >= 0)
-                    {
-                        magicToTrigger = playerAttack.MagicQueue.Dequeue();
-                        playerAttack.Mana -= magicToTrigger.magicSO.mana;
-                        // playerAttack.magicIndex++;
-                        magicToTrigger.TriggerMagic(transform.position,transform.forward);
-                    }
-                else
+                magicToTrigger = playerAttack.magicQueues[queueCount].Dequeue();
+                magicToTrigger.TriggerMagic(transform.position, transform.forward);
+            }
+            else
                 playerAttack.MagicQueue.Dequeue();
 
-            }
+        }
     }
 
     Boolean IsCritical()

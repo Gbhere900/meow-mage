@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: MagicArrow
   m_EditorClassIdentifier: 
   identifier: MagicArrow
-  name: "\u9B54\u6CD5\u7BAD"
+  ChineseName: "\u9B54\u6CD5\u7BAD"
   description: "\u53EF\u4EE5\u7A7F\u900F\u654C\u4EBA\u7684\u9B54\u6CD5\u7BAD"
   icon: {fileID: 21300000, guid: 646a6c2a52df9ec42a73a89e67fb8700, type: 3}
-  delay: -0.1
-  reload: -0.1
+  delay: 0.1
+  reload: 0.5
   extraTrigger: 0
   mana: 30
   type: 0
+  isTrigger: 0
   prefabToCreat: {fileID: 4954921367809476363, guid: 2e8175bd30cf31643ae4bc8b9a1bd60d,
     type: 3}

@@ -44,12 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce96830829eaa6479e3c7d39dbe1942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magicName: "\u589E\u52A0\u4F24\u5BB3"
-  magicDescription: "\u4E00\u5200999"
-  icon: {fileID: 21300000, guid: 0a2b554a5cddced4f886a5a10da8acb7, type: 3}
-  attackCD: 0
-  reloadCD: 0
-  extraTrigger: 1
-  mana: 0
-  type: 1
-  prefabToCreat: {fileID: 0}
+  queueCount: -1
+  magicSO: {fileID: 11400000, guid: 1a9c5092dbf3011478480e992524d3a0, type: 2}
+  isActive: 1
+  damage: 20

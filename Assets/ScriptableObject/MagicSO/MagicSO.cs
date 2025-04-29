@@ -6,7 +6,7 @@ using UnityEngine;
 public class MagicSO : ScriptableObject
 {
     public string identifier;
-    public string name;
+    public string ChineseName;
     public string description;
     public Sprite icon;
     public float delay;
@@ -14,6 +14,7 @@ public class MagicSO : ScriptableObject
     public int extraTrigger;
     public  float mana;
     public E_MagicType type;
+    public bool isTrigger = false;
     public GameObject prefabToCreat;
 
 
