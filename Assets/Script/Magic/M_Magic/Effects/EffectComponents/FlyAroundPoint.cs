@@ -1,18 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FlyAroundPoint : MonoBehaviour
 {
+    public GameObject centerObejct;
     public Vector3 centerPoint;
+    public float timeBeforeActive = 0.3f;
     public float rotationSpeed = 90f;
+    public float speed;
     public Rigidbody rb;
-    private void Awake()
+    public bool isActive = false;
+    private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
+        StartCoroutine(wait());
     }
-    private void FixedUpdate()
+
+    IEnumerator wait()
     {
+        yield return new WaitForSeconds(timeBeforeActive);
+        speed = rb.velocity.magnitude;
+        isActive = true;
+    }
+
+
+    private void Update()
+    {
+        if (!isActive)
+            return;
+        centerPoint = centerObejct.transform.position;
         if (centerPoint == Vector3.zero)
         {
             Debug.LogError("中心点为空");
@@ -20,10 +38,11 @@ public class FlyAroundPoint : MonoBehaviour
         
         Vector3 toCenter = centerPoint - transform.position;
         // 计算目标速度方向（垂直于圆心连线）
-        Vector3 targetVelocity = Vector3.Cross(toCenter.normalized, Vector3.up) * rb.velocity.magnitude;
+        Vector3 targetVelocity = Vector3.Cross(toCenter.normalized, Vector3.up) * speed;
 
         // 调整实际速度方向逼近目标方向
-        rb.velocity = Vector3.Lerp(rb.velocity, targetVelocity, Time.fixedDeltaTime * 5f);
+        rb.velocity = targetVelocity;
+        transform.forward = targetVelocity;
 
 
         //float deltaAngle = rotationSpeed * Time.fixedDeltaTime;

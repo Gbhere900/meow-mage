@@ -8,7 +8,7 @@ public class M_FlyAroundPlayer : MagicBase, I_MagicEffect
     public void TriggerEffect(Bullet bullet)
     {
         FlyAroundPoint flyAroundPoint =  bullet.AddComponent<FlyAroundPoint>();
-        flyAroundPoint.centerPoint = GameObject.Find("BulletSpawnPoint").transform.position;
+        flyAroundPoint.centerObejct = GameObject.Find("BulletSpawnPoint");
     }
      
 
