@@ -1,3 +1,4 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,8 @@ public class M_Stop : MagicBase, I_MagicEffect
         bullet.OnCollision += AddEffect;
     }
 
-    public void AddEffect(EnemyMove enemyMove)
+    public void AddEffect(AIPath AiPath)
     {
-        enemyMove.ChangeSpeedForSeconds(0, time);
+        AiPath.ChangeSpeedForSeconds(0, time);
     }
 }

@@ -1,3 +1,4 @@
+using Pathfinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ abstract public class Bullet : MonoBehaviour
 
 
     static public Action<Bullet> OnRecycled;
-    public Action <EnemyMove>OnCollision;
+    public Action <AIPath>OnCollision;
 
 
 
@@ -125,7 +126,7 @@ abstract public class Bullet : MonoBehaviour
         {
             
             other.GetComponent<EnemyHealth>().ReceiveDamage(IsCritical()?  Damage * CriticalRatio:Damage);
-            OnCollision?.Invoke(other.GetComponent<EnemyMove>());
+            OnCollision?.Invoke(other.GetComponent<AIPath>());
 
             if (isTriggerMagic && !isTriggered)
             {
