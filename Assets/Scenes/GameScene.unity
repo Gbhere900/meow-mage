@@ -6407,6 +6407,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 47303875345816171, guid: c08523d0d7c51b14dad22b1f8a158ccb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 67cf72bc9ae72d3468733a1206694876, type: 2}
     - target: {fileID: 1429887441914964596, guid: c08523d0d7c51b14dad22b1f8a158ccb,
         type: 3}
       propertyPath: healthText
