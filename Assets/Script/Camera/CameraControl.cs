@@ -15,7 +15,7 @@ public class CameraControl : MonoBehaviour
         
         cameraTransfrom.x = Math.Clamp(transfromToFollow.position.x, -constraint.position.x, constraint.position.x);
         cameraTransfrom.z = Math.Clamp(transfromToFollow.position.z, -constraint.position.z, constraint.position.z);
-        cameraTransfrom.y = 30;
+        cameraTransfrom.y = 40;
         this.transform.position = cameraTransfrom;
     }
     void Update()
