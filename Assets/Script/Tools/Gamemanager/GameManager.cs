@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     static public GameManager instance;
     static public Action<GameState> OnSwitchGameState;
+    public GameState gameState;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -19,12 +20,11 @@ public class GameManager : MonoBehaviour
 
         SwitchToMenu();
     }
-
-    // Update is called once per frame
-    void Update()
+    static public GameManager Instance()
     {
-        
+        return instance;
     }
+    // Update is called once per frame
 
     public void OnSwitchWaveCallBack()
     {
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     public void SwitchGameState(GameState gameState)
     {
-
+        this.gameState = gameState;
         OnSwitchGameState.Invoke(gameState);
         Debug.Log(gameState.ToString());
     }

@@ -9,8 +9,11 @@ public class PlayerController : MonoBehaviour
     private PlayerInputControl playerInputControl;
     private Rigidbody rigidbody;
 
-    public float speed = 3;
-
+    public float BasicSpeed = 4;
+    public float speed = 4;
+    public float timeToRecover = 2f;
+    public bool canControl = true;
+    public GameObject exclamationMark;
     [SerializeField] Vector3 inputDirection;
     
     void Awake()
@@ -32,9 +35,12 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        inputDirection.x = playerInputControl.Player.Move.ReadValue<Vector2>().x;
-        inputDirection.z = playerInputControl.Player.Move.ReadValue<Vector2>().y;
-        rigidbody.velocity = inputDirection * speed;
+        if (canControl)
+        {
+            inputDirection.x = playerInputControl.Player.Move.ReadValue<Vector2>().x;
+            inputDirection.z = playerInputControl.Player.Move.ReadValue<Vector2>().y;
+            rigidbody.velocity = inputDirection * speed;
+        }
     }
     private void SetRotation()
     {
@@ -42,8 +48,33 @@ public class PlayerController : MonoBehaviour
         forward.y = transform.position.y;
         transform.forward = forward - transform.position;
     }
+    
     private void OnDisable()
     {
         playerInputControl.Disable();
+    }
+
+    public void BePushed(Vector3 position, float force)
+    {
+        
+        StopCoroutine(WaitForRecover(timeToRecover));
+        StartCoroutine(WaitForRecover(timeToRecover));
+        Vector3 direction = (transform.position - position);
+        direction.y = 0;
+        direction = direction.normalized;
+        rigidbody.AddForce(direction * force, ForceMode.Force);
+    }
+    IEnumerator WaitForRecover(float time)
+    {
+        // speed = BasicSpeed / 2;
+        //playerInputControl.Disable();
+        canControl = false;
+        exclamationMark.SetActive(true);
+        yield return new WaitForSeconds(time);
+        exclamationMark.SetActive(false);
+        canControl = true;
+        //if (GameManager.Instance().gameState == GameState.game)
+           // playerInputControl.Enable();
+        //speed = BasicSpeed;
     }
 }

@@ -1160,8 +1160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace66cdfd35891a46824fef031400eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
-  force: 1
+  damage: 2
+  force: 10
   attackSpacing: 1
   attackTimer: 0
 --- !u!114 &6020589633527333520
@@ -1227,7 +1227,7 @@ MonoBehaviour:
   radius: 0.4
   height: 1.25
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 5
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2

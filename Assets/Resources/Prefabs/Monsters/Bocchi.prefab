@@ -42,17 +42,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
@@ -235,8 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace66cdfd35891a46824fef031400eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  force: 1
+  damage: 3
+  force: 50
   attackSpacing: 1
   attackTimer: 0
 --- !u!114 &4826299836266497880
@@ -251,10 +251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f634f58ecb07b4aa30505f9048ddf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  health: 10
-  EXPnum: 3
-  Goldnum: 3
+  maxHealth: 30
+  health: 30
+  EXPnum: 5
+  Goldnum: 5
   TMPSpawnPoint: {fileID: 4997891252039774961}
   hitAudio: {fileID: 0}
   passAwayAudio: {fileID: 0}
@@ -323,7 +323,7 @@ MonoBehaviour:
   radius: 1.1
   height: 1.09
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 2
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2

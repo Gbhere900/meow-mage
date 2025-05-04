@@ -21,8 +21,9 @@ public class EnemyAttack : MonoBehaviour
         {
             Debug.Log("ÕÊº“ ‹µΩ" + damage);
             attackTimer = attackSpacing;
-            AddAttackForce(collision.collider.gameObject);
+            //AddAttackForce(collision.collider.gameObject);
             collision.collider.GetComponent<PlayerHealth>()?.ReceiverDamage(damage);
+            collision.collider.GetComponentInParent<PlayerController>()?.BePushed(transform.position, force);
         }
     }
     void Update()

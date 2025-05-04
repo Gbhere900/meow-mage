@@ -42,17 +42,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.8581448
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.7842474
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3.2773886
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
@@ -97,8 +97,13 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       propertyPath: m_Name
-      value: Slime
+      value: GreenSlime
       objectReference: {fileID: 0}
+    - target: {fileID: 1860641818344424419, guid: 16ca756e4e68c1e4193918c897a5b02b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f5bd6ffd95daa143a5e9b03dfc25b4c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -214,8 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace66cdfd35891a46824fef031400eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  force: 1
+  damage: 3
+  force: 30
   attackSpacing: 1
   attackTimer: 0
 --- !u!114 &7359432318219327663
@@ -230,10 +235,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f634f58ecb07b4aa30505f9048ddf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  health: 10
-  EXPnum: 3
-  Goldnum: 3
+  maxHealth: 8
+  health: 8
+  EXPnum: 2
+  Goldnum: 2
   TMPSpawnPoint: {fileID: 179593557410258407}
   hitAudio: {fileID: 0}
   passAwayAudio: {fileID: 0}
@@ -299,10 +304,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
-  radius: 0.65
-  height: 1.09
+  radius: 60
+  height: 100
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 4
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
