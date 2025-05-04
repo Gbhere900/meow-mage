@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5364901309047525487}
   - component: {fileID: 1670876105953185061}
   m_Layer: 0
-  m_Name: EnemySpawnSpot_slime
+  m_Name: EnemySpawnSpot_bocchiSlime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0.35330775, b: 0.054901958, a: 0.31764707}
+  m_Color: {r: 1, g: 0.58176094, b: 0.83947724, a: 0.31764707}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25dd7a5127902f34492228ff49f34c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemytoSpawn: {fileID: 7182277849290612098, guid: 3aefd2b298a469548af8965e78f5c218,
+  enemytoSpawn: {fileID: 3712422601029067751, guid: c56b507ae05c6e443bdec0356403ced6,
     type: 3}
   SecondsToWait: 2
 --- !u!95 &1670876105953185061
