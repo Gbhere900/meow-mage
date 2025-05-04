@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-       
+        SetRotation();
     }
 
     private void Move()
@@ -35,6 +35,12 @@ public class PlayerController : MonoBehaviour
         inputDirection.x = playerInputControl.Player.Move.ReadValue<Vector2>().x;
         inputDirection.z = playerInputControl.Player.Move.ReadValue<Vector2>().y;
         rigidbody.velocity = inputDirection * speed;
+    }
+    private void SetRotation()
+    {
+        Vector3 forward = MousePosition.GetMousePosition();
+        forward.y = transform.position.y;
+        transform.forward = forward - transform.position;
     }
     private void OnDisable()
     {
