@@ -83,6 +83,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3331332643791011536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7638149202113793031}
+  m_Layer: 0
+  m_Name: TMPSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7638149202113793031
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3331332643791011536}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.587, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 798281963455569273}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4918540766756241002
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +242,6 @@ GameObject:
   - component: {fileID: 798281963455569273}
   - component: {fileID: 6442474820409635221}
   - component: {fileID: 242068577333649425}
-  - component: {fileID: 3465243054452567356}
   - component: {fileID: 3077956064123057364}
   - component: {fileID: 319412491731974980}
   - component: {fileID: 8171348119344284767}
@@ -238,6 +268,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2173099458233516358}
+  - {fileID: 7638149202113793031}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6442474820409635221
@@ -290,20 +321,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &3465243054452567356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7182277849290612098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639c6de865eb0744eafa61198c177247, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  originalSpeed: 2
-  speed: 0
 --- !u!114 &3077956064123057364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace66cdfd35891a46824fef031400eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 3
   force: 10
   attackSpacing: 1
   attackTimer: 0
@@ -336,6 +353,9 @@ MonoBehaviour:
   health: 10
   EXPnum: 3
   Goldnum: 3
+  TMPSpawnPoint: {fileID: 7638149202113793031}
+  hitAudio: {fileID: 8300000, guid: 3eea3a94a7c2f8647bbd98fde570acde, type: 3}
+  passAwayAudio: {fileID: 8300000, guid: 0268552887ccd524382c8b9228ee22f0, type: 3}
 --- !u!114 &8171348119344284767
 MonoBehaviour:
   m_ObjectHideFlags: 0

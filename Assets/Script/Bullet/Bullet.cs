@@ -11,7 +11,8 @@ abstract public class Bullet : MonoBehaviour
 {
     [Header("所属法术链")]
     public int queueCount;
-    [Header("数值")]
+    [Header("音效")]
+    public AudioClip triggerAudio;
     [SerializeField] private float basicSpeed = 5;
     [SerializeField] private float speed = 5;
 
@@ -53,7 +54,11 @@ abstract public class Bullet : MonoBehaviour
 
     private void Awake()
     {
-        
+        triggerAudio = Resources.Load<AudioClip>("Audio/SoundEffect/ObstacleHit");
+        if(triggerAudio==null)
+        {
+            Debug.Log("读取不到音频文件");
+        }
         rigidbody = GetComponent<Rigidbody>();  
     }
     private void OnEnable()
@@ -142,6 +147,25 @@ abstract public class Bullet : MonoBehaviour
                 Recycle();
             }
 
+        }
+        if(other.gameObject.layer == 3)
+        {
+            if (isTriggerMagic && !isTriggered)
+            {
+                Debug.Log("触发了");
+                TriggerNextMagic();
+                isTriggered = true;
+                AudioManager.Instance().PlaySound(triggerAudio);
+            }
+
+
+            if (!CanCutThrough)
+            {
+                AudioManager.Instance().PlaySound(triggerAudio);
+                StopCoroutine(WaitForDestroy());
+                Recycle();
+            }
+            
         }
     }
     public IEnumerator WaitForDestroy()

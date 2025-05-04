@@ -24,9 +24,13 @@ public class PlayerResouces : MonoBehaviour
     [Header("收集半径")]
     [SerializeField]private SphereCollider sphereCollider;
     protected float colliderRadius = 2;
+
+    [Header("音效")]
+    AudioClip levelUPAudio;
     
     private void Awake()
     {
+        levelUPAudio = Resources.Load<AudioClip>("Audio/SoundEffect/LevelUP");
         if(instance != null)
         {
             GameObject.Destroy(gameObject);
@@ -62,6 +66,7 @@ public class PlayerResouces : MonoBehaviour
             Debug.Log("碰撞到Colllectable");
             Collectable tempCollectable=other.gameObject.GetComponent<Collectable>();
             tempCollectable.Collect();
+
         }
     }
 
@@ -91,6 +96,8 @@ public class PlayerResouces : MonoBehaviour
         level++;
         currentEXP = 0;
         maxEXP = level * 5;
+
+        AudioManager.Instance().PlaySound(levelUPAudio);
     }
 
     void UpdateLevelUI()

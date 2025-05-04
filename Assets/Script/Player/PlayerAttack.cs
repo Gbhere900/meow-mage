@@ -173,7 +173,7 @@ public class PlayerAttack : MonoBehaviour
             Queue<MagicBase> tempQueue =  CreateTempQueue();
      
             FillTempQueue(tempQueue);
-            magicQueues[queueCount].Dequeue().TriggerMagic(transform.position);
+            magicQueues[queueCount].Dequeue().TriggerMagic(attackPosition.transform.position);
         }
         
     }

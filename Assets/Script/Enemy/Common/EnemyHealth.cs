@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.iOS;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -16,15 +17,27 @@ public class EnemyHealth : MonoBehaviour
 
 
     [Header("粒子效果")]
-
+    public Transform TMPSpawnPoint;
 
     [Header("伤害文字效果")]
     [SerializeField] static public Action<float, Vector3> OnReceivedDamage;
     static public Action<Vector3> OnPassAway;
     static public Action<Vector3,int,int> OnGeneratingCollectable;
+
+    [Header("音效")]
+    public AudioClip hitAudio;
+    public AudioClip passAwayAudio;
     private void Awake()
     {
-
+        if ((hitAudio == null))
+        {
+            hitAudio = Resources.Load<AudioClip>("Audio/SoundEffect/EnemyHit");
+        }
+        if ((passAwayAudio == null))
+        {
+            passAwayAudio = Resources.Load<AudioClip>("Audio/SoundEffect/EnemyPassAway");
+        }
+       
     }
     private void OnEnable()
     {
@@ -39,8 +52,9 @@ public class EnemyHealth : MonoBehaviour
     [NaughtyAttributes.Button]
     public void ReceiveDamage(float damage = 8)
     {
-        OnReceivedDamage.Invoke(damage, transform.position);
+        OnReceivedDamage.Invoke(damage, TMPSpawnPoint.position);
         health -= Math.Min(health, damage);
+        AudioManager.Instance().PlaySound(hitAudio);
         if (health == 0)
         {
             PassAway();
@@ -48,6 +62,7 @@ public class EnemyHealth : MonoBehaviour
     }
     public void PassAway()
     {
+        AudioManager.Instance().PlaySound(passAwayAudio);
         OnPassAway?.Invoke(transform.position);
         OnGeneratingCollectable?.Invoke(transform.position,EXPnum,Goldnum);
         Destroy(gameObject);

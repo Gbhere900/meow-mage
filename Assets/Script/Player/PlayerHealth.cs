@@ -12,6 +12,9 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TextMeshProUGUI healthText;
+
+    public AudioClip hitAudio;
+
     private void Awake()
     {
         health = maxHealth;
@@ -26,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
         {
             GameManager.instance.SwitchGameState(GameState.gameOver);
         }
-        
+        AudioManager.Instance().PlaySound(hitAudio);
     }
  
     private void UpdateHealthUI()
