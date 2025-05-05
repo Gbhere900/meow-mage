@@ -148,16 +148,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3bf73df172bd742ad474b941033466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicSpeed: 10
+  queueCount: 0
+  basicSpeed: 5
   speed: 5
-  basicDamage: 3
+  basicDamage: 10
   damage: 10
-  basicTime: 5
-  time: 3
-  basicCriticalChance: 20
-  criticalChance: 20
-  basicCriticalRatio: 5
-  criticalRatio: 5
+  basicTime: 1
+  time: 1
+  basicCriticalChance: 0
+  criticalChance: 0
+  basicCriticalRatio: 2
+  criticalRatio: 2
   basicCanCutThrough: 0
   canCutThrough: 0
   isTriggerMagic: 0
@@ -168,3 +169,8 @@ MonoBehaviour:
   shootDirection: {x: 0, y: 0, z: 0}
   basicIsShootByMouseDiretion: 1
   isShootByMouseDiretion: 1
+  triggerAudio: {fileID: 0}
+  timeBeforeExplosion: 0
+  radius: 3
+  maxCapacity: 50
+  ExplosionAudio: {fileID: 8300000, guid: 1d4949be76153484ca4d926c41713e3b, type: 3}

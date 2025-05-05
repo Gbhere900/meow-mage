@@ -12,9 +12,6 @@ public abstract class MagicBase : MonoBehaviour
     {
         
         PlayerAttack playerAttack = PlayerAttack.Instance();
-        //playerAttack.Mana -= magicSO.mana;
-        //playerAttack.AttackCD += magicSO.delay;
-        //playerAttack.ReloadCD += magicSO.reload;
         BulletPoolManager.Instance().SpawnMagicBullet(position, this,queueCount);
         if (magicSO.type == E_MagicType.times)
         {
@@ -26,17 +23,6 @@ public abstract class MagicBase : MonoBehaviour
         }
         for (int i = 0; i < magicSO.extraTrigger; i++)
         {
-            //if (playerAttack.MagicQueue.Count > 0)
-            //{
-            //    if (playerAttack.Mana - magicSO.mana >= 0)
-            //    {
-            //        playerAttack.MagicQueue.Dequeue().TriggerMagic(position);
-            //    }
-            //    else
-            //    {
-            //        playerAttack.MagicQueue.Dequeue();
-            //    }
-            //}
             if (playerAttack.magicQueues[queueCount].Count > 0)
             {
                 if (playerAttack.magicQueues[queueCount].Peek().isActive)
@@ -49,15 +35,10 @@ public abstract class MagicBase : MonoBehaviour
                 }
             }
         }
-        // playerAttack.magicIndex += extraTrigger;
-
     }
     public void TriggerMagic(Vector3 position, Vector3 forward)
     {
         PlayerAttack playerAttack = PlayerAttack.Instance();
-        //playerAttack.Mana -= magicSO.mana;
-        //playerAttack.AttackCD += magicSO.delay;
-        //playerAttack.ReloadCD += magicSO.reload;
         BulletPoolManager.Instance().SpawnMagicBullet(position, forward, this,queueCount);
         if (magicSO.type == E_MagicType.times)
         {
@@ -69,29 +50,17 @@ public abstract class MagicBase : MonoBehaviour
         }
         for (int i = 0; i < magicSO.extraTrigger; i++)
         {
-        //    if (playerAttack.MagicQueue.Count > 0)
-        //    {
-        //        if (playerAttack.Mana - magicSO.mana >= 0)
-        //        {
-        //            playerAttack.MagicQueue.Dequeue().TriggerMagic(position, forward);
-        //        }
-        //        else
-        //        {
-        //            playerAttack.MagicQueue.Dequeue();
-        //        }
-        //    }
-
-        if (playerAttack.magicQueues[queueCount].Count > 0)
-        {
-            if (playerAttack.magicQueues[queueCount].Peek().isActive)
+            if (playerAttack.magicQueues[queueCount].Count > 0)
             {
-                  playerAttack.magicQueues[queueCount].Dequeue().TriggerMagic(position,forward);
+                if (playerAttack.magicQueues[queueCount].Peek().isActive)
+                {
+                      playerAttack.magicQueues[queueCount].Dequeue().TriggerMagic(position,forward);
+                }
+                else
+                {
+                    playerAttack.MagicQueue.Dequeue();
+                }
             }
-            else
-            {
-                playerAttack.MagicQueue.Dequeue();
-            }
-        }
         }
     }
 

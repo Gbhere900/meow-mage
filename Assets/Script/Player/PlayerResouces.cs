@@ -95,7 +95,7 @@ public class PlayerResouces : MonoBehaviour
     {
         level++;
         currentEXP = 0;
-        maxEXP = level * 5;
+        maxEXP = level * 4;
 
         AudioManager.Instance().PlaySound(levelUPAudio);
     }

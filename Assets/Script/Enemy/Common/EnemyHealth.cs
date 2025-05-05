@@ -50,7 +50,7 @@ public class EnemyHealth : MonoBehaviour
         
     }
     [NaughtyAttributes.Button]
-    public void ReceiveDamage(float damage = 8)
+    public void ReceiveDamage(float damage)
     {
         OnReceivedDamage.Invoke(damage, TMPSpawnPoint.position);
         health -= Math.Min(health, damage);

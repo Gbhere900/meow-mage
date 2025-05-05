@@ -4,12 +4,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class VFXPool_PassAway : BasicPoolClass<VFX_PassAway>
+public class VFXPool_Explosion : BasicPoolClass<VFX_Explosion>
 {
 
-    static VFXPool_PassAway()
+    static VFXPool_Explosion()
     {
-        prefabs = Resources.Load<VFX_PassAway>("Prefabs/VFX/VFX_PassAway");
+        prefabs = Resources.Load<VFX_Explosion>("Prefabs/VFX/VFX_Explosion");
     }
     static public void Init()
     {

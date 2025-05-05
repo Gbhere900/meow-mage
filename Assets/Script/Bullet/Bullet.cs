@@ -11,16 +11,16 @@ abstract public class Bullet : MonoBehaviour
 {
     [Header("所属法术链")]
     public int queueCount;
-    [Header("音效")]
-    public AudioClip triggerAudio;
+
+    [Header("Bullet数值")]
     [SerializeField] private float basicSpeed = 5;
     [SerializeField] private float speed = 5;
 
     [SerializeField] private float basicDamage = 3;
-    [SerializeField] private float damage = 3;
+    [SerializeField] protected float damage = 3;
 
     [SerializeField] private float basicTime = 5;
-    [SerializeField] private float time = 5;
+    public float time = 5;
 
     [SerializeField] private float basicCriticalChance = 20;
     [SerializeField] private float criticalChance = 20;
@@ -50,9 +50,11 @@ abstract public class Bullet : MonoBehaviour
     static public Action<Bullet> OnRecycled;
     public Action <AIPath>OnCollision;
 
+    [Header("音效")]
+    public AudioClip triggerAudio;
 
 
-    private void Awake()
+    protected void Awake()
     {
         triggerAudio = Resources.Load<AudioClip>("Audio/SoundEffect/ObstacleHit");
         if(triggerAudio==null)
@@ -61,7 +63,7 @@ abstract public class Bullet : MonoBehaviour
         }
         rigidbody = GetComponent<Rigidbody>();  
     }
-    private void OnEnable()
+    protected void OnEnable()
     {
         Speed = BasicSpeed;
         Damage = BasicDamage;
@@ -78,7 +80,7 @@ abstract public class Bullet : MonoBehaviour
         StartCoroutine(WaitForDestroy());
     }
 
-    private void OnDisable()
+    protected  void OnDisable()
     {
         OnCollision = null;
 

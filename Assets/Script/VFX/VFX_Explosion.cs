@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class VFX : MonoBehaviour
+public class VFX_Explosion : MonoBehaviour
 {
     [SerializeField] ParticleSystem particleSystem;
 
-
-   static public Action<VFX> OnRecycled;
+   static public Action<VFX_Explosion> OnRecycled;
     // Start is called before the first frame update
     void Start()
     {
