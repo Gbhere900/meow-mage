@@ -24,7 +24,7 @@ public class BulletPoolManager : MonoBehaviour
     ObjectPool<T_MagicBullet> T_magicBulletPool;
     ObjectPool<T_MagicArrow> T_magicArrowPool;
     ObjectPool<InstantBoom> instantBoomPool;
-
+    ObjectPool<LightSaber> lightSaberPool;
 
 
 
@@ -50,12 +50,14 @@ public class BulletPoolManager : MonoBehaviour
         T_MagicBulletPool.Init();
         T_MagicArrowPool.Init();
         InstantBoomPool.Init();
+        LightSaberPool.Init();
         magicArrowPool = MagicArrowPool.Instance;
         magicBulletPool = MagicBulletPool.Instance;
         boomPool = BoomPool.Instance;
         T_magicBulletPool = T_MagicBulletPool.Instance;
         T_magicArrowPool = T_MagicArrowPool.Instance;
         instantBoomPool = InstantBoomPool.Instance;
+        lightSaberPool = LightSaberPool.Instance;
     }
     private void OnEnable()
     {
@@ -66,6 +68,7 @@ public class BulletPoolManager : MonoBehaviour
         T_MagicBullet.OnRecycled += RecycleT_MagicBullet;
         T_MagicArrow.OnRecycled += RecycleT_MagicArrow;
         InstantBoom.OnRecycled += RecycleInstantBoom;
+        LightSaber.OnRecycled += RecycleLightSaber;
     }
     private void OnDisable()
     {
@@ -77,6 +80,7 @@ public class BulletPoolManager : MonoBehaviour
         T_MagicBullet.OnRecycled -= RecycleT_MagicBullet;
         T_MagicArrow.OnRecycled -= RecycleT_MagicArrow;
         InstantBoom.OnRecycled -= RecycleInstantBoom;
+        LightSaber.OnRecycled -= RecycleLightSaber;
     }
 
     public  void SpawnMagicBullet(Vector3 position, MagicBase magic,int queueCount)
@@ -111,6 +115,11 @@ public class BulletPoolManager : MonoBehaviour
                 break;
             case "±¬Õ¨Ä§·¨":
                 tempBullet = instantBoomPool.Get();
+                tempBullet.transform.position = position;
+                tempBullet.shootByMouseDirection();
+                break;
+            case "¹â½£":
+                tempBullet = lightSaberPool.Get();
                 tempBullet.transform.position = position;
                 tempBullet.shootByMouseDirection();
                 break;
@@ -174,6 +183,11 @@ public class BulletPoolManager : MonoBehaviour
                 break;
             case "±¬Õ¨Ä§·¨":
                 tempBullet = instantBoomPool.Get();
+                tempBullet.transform.position = position;
+                tempBullet.shootByDirection(forward);
+                break;
+            case "¹â½£":
+                tempBullet = lightSaberPool.Get();
                 tempBullet.transform.position = position;
                 tempBullet.shootByDirection(forward);
                 break;
@@ -253,6 +267,11 @@ public class BulletPoolManager : MonoBehaviour
     private void RecycleInstantBoom(InstantBoom bullet)
     {
         instantBoomPool.Release(bullet);
+    }
+
+    private void RecycleLightSaber(LightSaber bullet)
+    {
+        lightSaberPool.Release(bullet);
     }
 
 }
