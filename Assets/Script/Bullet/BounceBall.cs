@@ -27,8 +27,10 @@ public class BounceBall : Bullet
     {
         if(collision.collider.GetComponent<EnemyHealth>() || collision.collider.gameObject.layer == 3)
         {
-
-            
+            if (collision.collider.GetComponent<AIPath>() != null)
+            {
+                OnCollision?.Invoke(collision.collider.GetComponent<AIPath>());
+            }
             collision.collider.GetComponent<EnemyHealth>()?.ReceiveDamage(damage);
             // 获取第一个碰撞点的法线
             ContactPoint contact = collision.contacts[0];
@@ -45,15 +47,7 @@ public class BounceBall : Bullet
             rigidbody.velocity = reflectVelocity * Speed;
         }
     }
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    if (collision.collider.GetComponent<EnemyHealth>() || collision.collider.tag == "Obstacle")
-    //    {
-    //        Vector3  vector3 = rigidbody.velocity;
-    //        vector3.y = 0;
-    //        rigidbody.velocity = vector3.normalized * Speed;
-    //    }
-    //}
+
         
     protected override void Recycle()
     {

@@ -26,6 +26,7 @@ public class BulletPoolManager : MonoBehaviour
     ObjectPool<InstantBoom> instantBoomPool;
     ObjectPool<LightSaber> lightSaberPool;
     ObjectPool<BounceBall> bounceBallPool;
+    ObjectPool<BlackHole> blackHolePool;
 
 
     Bullet tempBullet;
@@ -52,6 +53,7 @@ public class BulletPoolManager : MonoBehaviour
         InstantBoomPool.Init();
         LightSaberPool.Init();
         BounceBallPool.Init();
+        BlackHolePool.Init();
         magicArrowPool = MagicArrowPool.Instance;
         magicBulletPool = MagicBulletPool.Instance;
         boomPool = BoomPool.Instance;
@@ -60,6 +62,7 @@ public class BulletPoolManager : MonoBehaviour
         instantBoomPool = InstantBoomPool.Instance;
         lightSaberPool = LightSaberPool.Instance;
         bounceBallPool = BounceBallPool.Instance;
+        blackHolePool = BlackHolePool.Instance;
     }
     private void OnEnable()
     {
@@ -72,6 +75,7 @@ public class BulletPoolManager : MonoBehaviour
         InstantBoom.OnRecycled += RecycleInstantBoom;
         LightSaber.OnRecycled += RecycleLightSaber;
         BounceBall.OnRecycled += RecycleBounceBall;
+        BlackHole.OnRecycled += RecycleBlackHole;
     }
     private void OnDisable()
     {
@@ -85,6 +89,7 @@ public class BulletPoolManager : MonoBehaviour
         InstantBoom.OnRecycled -= RecycleInstantBoom;
         LightSaber.OnRecycled -= RecycleLightSaber;
         BounceBall.OnRecycled -= RecycleBounceBall;
+        BlackHole.OnRecycled -= RecycleBlackHole;
     }
 
     public  void SpawnMagicBullet(Vector3 position, MagicBase magic,int queueCount)
@@ -129,6 +134,11 @@ public class BulletPoolManager : MonoBehaviour
                 break;
             case "µ¯ÌøÄ§·¨µ¯":
                 tempBullet = bounceBallPool.Get();
+                tempBullet.transform.position = position;
+                tempBullet.shootByMouseDirection();
+                break;
+            case "ºÚ¶´":
+                tempBullet = blackHolePool.Get();
                 tempBullet.transform.position = position;
                 tempBullet.shootByMouseDirection();
                 break;
@@ -202,6 +212,11 @@ public class BulletPoolManager : MonoBehaviour
                 break;
             case "µ¯ÌøÄ§·¨µ¯":
                 tempBullet = bounceBallPool.Get();
+                tempBullet.transform.position = position;
+                tempBullet.shootByDirection(forward);
+                break;
+            case "ºÚ¶´":
+                tempBullet = blackHolePool.Get();
                 tempBullet.transform.position = position;
                 tempBullet.shootByDirection(forward);
                 break;
@@ -292,5 +307,8 @@ public class BulletPoolManager : MonoBehaviour
     {
         bounceBallPool.Release(bullet);
     }
-
+    private void RecycleBlackHole(BlackHole bullet)
+    {
+        blackHolePool.Release(bullet);
+    }
 }
