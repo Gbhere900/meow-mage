@@ -78,6 +78,8 @@ public class PlayerAttack : MonoBehaviour
         AddMagicEntry("FlyAroundPlayer", "M_FlyAroundPlayer");
         AddMagicEntry("LightSaber", "M_LightSaber");
         AddMagicEntry("BounceBall", "M_BounceBall");
+        AddMagicEntry("BlackHole", "M_BlackHole");
+        AddMagicEntry("Chainsaw", "M_Chainsaw");
 
         for (int i = 0; i < maxQueueCount; i++)
         {
