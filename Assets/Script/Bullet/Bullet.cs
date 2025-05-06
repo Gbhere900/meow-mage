@@ -31,9 +31,9 @@ abstract public class Bullet : MonoBehaviour
     [SerializeField] private Boolean basicCanCutThrough = false;
     [SerializeField] private Boolean canCutThrough = false;
 
-    [SerializeField] private Boolean isTriggerMagic = false;
+    [SerializeField] protected Boolean isTriggerMagic = false;
 
-    [SerializeField] private Boolean isTriggered = false;
+    [SerializeField] protected Boolean isTriggered = false;
 
     //[SerializeField] private MagicBase magicToTrigger = null;
 
@@ -85,7 +85,7 @@ abstract public class Bullet : MonoBehaviour
         OnCollision = null;
 
     }
-    private void TriggerNextMagic()
+    protected void TriggerNextMagic()
     {
         PlayerAttack playerAttack = PlayerAttack.Instance();
         MagicBase magicToTrigger = null;
@@ -103,7 +103,7 @@ abstract public class Bullet : MonoBehaviour
         }
     }
 
-    Boolean IsCritical()
+    protected Boolean IsCritical()
     {
         return UnityEngine.Random.Range(0, 100)<CriticalChance;
     }

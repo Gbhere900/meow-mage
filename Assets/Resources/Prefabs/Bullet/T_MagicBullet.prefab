@@ -5079,7 +5079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   queueCount: 0
   basicSpeed: 20
-  speed: 10
+  speed: 20
   basicDamage: 1
   damage: 1
   basicTime: 5
@@ -5098,3 +5098,4 @@ MonoBehaviour:
   shootDirection: {x: 0, y: 0, z: 0}
   basicIsShootByMouseDiretion: 1
   isShootByMouseDiretion: 1
+  triggerAudio: {fileID: 0}
