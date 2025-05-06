@@ -23,9 +23,11 @@ public class BulletPoolManager : MonoBehaviour
     ObjectPool<MagicArrow> magicArrowPool;
     ObjectPool<T_MagicBullet> T_magicBulletPool;
     ObjectPool<T_MagicArrow> T_magicArrowPool;
+    ObjectPool<InstantBoom> instantBoomPool;
 
 
-    
+
+
     Bullet tempBullet;
 
     static public BulletPoolManager Instance()
@@ -47,11 +49,13 @@ public class BulletPoolManager : MonoBehaviour
         BoomPool.Init();
         T_MagicBulletPool.Init();
         T_MagicArrowPool.Init();
+        InstantBoomPool.Init();
         magicArrowPool = MagicArrowPool.Instance;
         magicBulletPool = MagicBulletPool.Instance;
         boomPool = BoomPool.Instance;
         T_magicBulletPool = T_MagicBulletPool.Instance;
         T_magicArrowPool = T_MagicArrowPool.Instance;
+        instantBoomPool = InstantBoomPool.Instance;
     }
     private void OnEnable()
     {
@@ -61,6 +65,7 @@ public class BulletPoolManager : MonoBehaviour
         MagicArrow.OnRecycled += RecycleMagicArrow;
         T_MagicBullet.OnRecycled += RecycleT_MagicBullet;
         T_MagicArrow.OnRecycled += RecycleT_MagicArrow;
+        InstantBoom.OnRecycled += RecycleInstantBoom;
     }
     private void OnDisable()
     {
@@ -71,6 +76,7 @@ public class BulletPoolManager : MonoBehaviour
         MagicArrow.OnRecycled -= RecycleMagicArrow;
         T_MagicBullet.OnRecycled -= RecycleT_MagicBullet;
         T_MagicArrow.OnRecycled -= RecycleT_MagicArrow;
+        InstantBoom.OnRecycled -= RecycleInstantBoom;
     }
 
     public  void SpawnMagicBullet(Vector3 position, MagicBase magic,int queueCount)
@@ -100,6 +106,11 @@ public class BulletPoolManager : MonoBehaviour
                 break;
             case "´¥·¢Ä§·¨¼ý":
                 tempBullet = T_magicArrowPool.Get();
+                tempBullet.transform.position = position;
+                tempBullet.shootByMouseDirection();
+                break;
+            case "±¬Õ¨Ä§·¨":
+                tempBullet = instantBoomPool.Get();
                 tempBullet.transform.position = position;
                 tempBullet.shootByMouseDirection();
                 break;
@@ -158,6 +169,11 @@ public class BulletPoolManager : MonoBehaviour
                 break;
             case "´¥·¢Ä§·¨¼ý":
                 tempBullet = T_magicArrowPool.Get();
+                tempBullet.transform.position = position;
+                tempBullet.shootByDirection(forward);
+                break;
+            case "±¬Õ¨Ä§·¨":
+                tempBullet = instantBoomPool.Get();
                 tempBullet.transform.position = position;
                 tempBullet.shootByDirection(forward);
                 break;
@@ -234,6 +250,9 @@ public class BulletPoolManager : MonoBehaviour
     {
         T_magicArrowPool.Release(bullet);
     }
-
+    private void RecycleInstantBoom(InstantBoom bullet)
+    {
+        instantBoomPool.Release(bullet);
+    }
 
 }

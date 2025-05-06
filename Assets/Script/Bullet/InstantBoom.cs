@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boom : Bullet
+public class InstantBoom : Bullet
 {
     [Header("Boom ˝÷µ")]
     public float timeBeforeExplosion;
@@ -12,7 +12,7 @@ public class Boom : Bullet
     [Header("“Ù–ß")]
     public AudioClip ExplosionAudio;
     Collider[] colliders;
-    static public Action<Boom> OnRecycled;
+    static public Action<InstantBoom> OnRecycled;
 
     private void Awake()
     {
@@ -24,9 +24,8 @@ public class Boom : Bullet
     {
         
         base.OnEnable();
-        timeBeforeExplosion = time - 0.01f;
         StartCoroutine(WaitForExplosion());
-        
+        timeBeforeExplosion = time - 0.01f;
     }
 
     IEnumerator WaitForExplosion()

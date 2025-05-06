@@ -748,7 +748,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 48.3
+    angle: 47.82
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -5098,3 +5098,4 @@ MonoBehaviour:
   shootDirection: {x: 0, y: 0, z: 0}
   basicIsShootByMouseDiretion: 1
   isShootByMouseDiretion: 1
+  triggerAudio: {fileID: 0}
