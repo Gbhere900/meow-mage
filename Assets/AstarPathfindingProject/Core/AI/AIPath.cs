@@ -65,13 +65,13 @@ namespace Pathfinding {
 		public float basicSpeed;
         private void Awake()
         {
-			basicSpeed = speed;
+			basicSpeed = maxSpeed;
         }
         
         public void ChangeSpeedForSeconds(float speed, float seconds)
         {
 			
-            this.speed = speed;
+            this.maxSpeed = speed;
             StartCoroutine(WaitForSeconds(seconds));
 
         }
@@ -79,7 +79,7 @@ namespace Pathfinding {
         IEnumerator WaitForSeconds(float seconds)
         {
             yield return new WaitForSeconds(seconds);
-            this.speed = basicSpeed;
+            this.maxSpeed = basicSpeed;
         }
         /// <summary>
         /// How quickly the agent accelerates.

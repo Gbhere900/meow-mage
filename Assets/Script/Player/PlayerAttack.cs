@@ -81,7 +81,7 @@ public class PlayerAttack : MonoBehaviour
         AddMagicEntry("AddDamage", "M_AddDamage");
         AddMagicEntry("Stop", "M_Stop");
         AddMagicEntry("FlyAroundPlayer", "M_FlyAroundPlayer");
-        AddMagicEntry("FlyAroundMagicArrow", "M_FlyAroundMagicArrow");
+        AddMagicEntry("FlyAroundEnergyBall", "M_FlyAroundEnergyBall");
 
 
         for (int i = 0; i < maxQueueCount; i++)

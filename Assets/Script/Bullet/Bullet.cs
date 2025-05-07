@@ -67,6 +67,16 @@ abstract public class Bullet : MonoBehaviour
     }
     protected void OnEnable()
     {
+
+
+        
+        StartCoroutine(WaitForDestroy());
+    }
+
+    protected  void OnDisable()
+    {
+        OnCollision = null;
+
         Speed = BasicSpeed;
         //maxSpeed = basicSpeed * 3;
         Damage = BasicDamage;
@@ -79,14 +89,6 @@ abstract public class Bullet : MonoBehaviour
         IsShootByMouseDiretion = BasicIsShootByMouseDiretion;
         isTriggered = false;
         //magicToTrigger = null;
-
-        
-        StartCoroutine(WaitForDestroy());
-    }
-
-    protected  void OnDisable()
-    {
-        OnCollision = null;
 
     }
     protected void TriggerNextMagic()

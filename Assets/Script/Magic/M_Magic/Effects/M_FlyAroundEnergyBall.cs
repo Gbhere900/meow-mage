@@ -13,7 +13,7 @@ public class M_FlyAroundMagicArrow: MagicBase, I_MagicEffect
    // public float radiusCorrection = 0.3f;
     private void Awake()
     {
-        M_MagicArrow = GameObject.Find("M_MagicArrow").GetComponent<M_MagicArrow>();
+        M_MagicArrow = GameObject.Find("M_EnergyBall").GetComponent<M_EnergyBall>();
     }
     public override void TriggerMagic(Vector3 position)
     {
@@ -71,17 +71,20 @@ public class M_FlyAroundMagicArrow: MagicBase, I_MagicEffect
             tempBullet = GameObject.Instantiate(bullet);
             tempBullet.GetComponent<Rigidbody>().velocity = bullet.GetComponent<Rigidbody>().velocity;
             tempBullet.SetSpeed(tempBullet.Speed * accelerate);
+            tempBullet.OnCollision = bullet.OnCollision;       
             tempBullet.transform.position += Vector3.forward/4;
             
 
             tempBullet = GameObject.Instantiate(bullet);
             tempBullet.GetComponent<Rigidbody>().velocity = bullet.GetComponent<Rigidbody>().velocity;
             tempBullet.SetSpeed(tempBullet.Speed * accelerate);
+            tempBullet.OnCollision = bullet.OnCollision;
             tempBullet.transform.position += Vector3.left/4  ;
 
             tempBullet = GameObject.Instantiate(bullet);
             tempBullet.GetComponent<Rigidbody>().velocity = bullet.GetComponent<Rigidbody>().velocity;
             tempBullet.SetSpeed(tempBullet.Speed * accelerate);
+            tempBullet.OnCollision = bullet.OnCollision;
             tempBullet.transform.position += Vector3.right/4  ;
 
             bullet.transform.position += Vector3.back/4  ;

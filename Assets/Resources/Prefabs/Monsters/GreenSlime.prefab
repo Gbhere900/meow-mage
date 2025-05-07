@@ -42,17 +42,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.8581448
+      value: -2.97
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7842474
+      value: 0.778456
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.2773886
+      value: 0.61
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
@@ -99,6 +99,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenSlime
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 16ca756e4e68c1e4193918c897a5b02b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1860641818344424419, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -128,6 +133,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7359432318219327663}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16ca756e4e68c1e4193918c897a5b02b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2151122220641755162}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       insertIndex: -1
@@ -235,13 +244,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f634f58ecb07b4aa30505f9048ddf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 8
+  maxHealth: 11
   health: 8
   EXPnum: 2
   Goldnum: 2
   TMPSpawnPoint: {fileID: 179593557410258407}
   hitAudio: {fileID: 0}
   passAwayAudio: {fileID: 0}
+--- !u!114 &2151122220641755162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725765564873608320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23fdeda2706eca64fbf2300444e71b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  timeBeforeFirstJump: 3
+  checkInterval: 1
+  distance: 3
+  force: 100
 --- !u!95 &3625806638113959528
 Animator:
   serializedVersion: 5
@@ -307,7 +333,7 @@ MonoBehaviour:
   radius: 60
   height: 100
   canMove: 1
-  maxSpeed: 4
+  maxSpeed: 1
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
