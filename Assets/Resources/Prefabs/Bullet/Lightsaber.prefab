@@ -50,10 +50,12 @@ MonoBehaviour:
   queueCount: 0
   basicSpeed: 50
   speed: 50
+  maxSpeed: 100
   basicDamage: 3
   damage: 3
   basicTime: 0.04
   time: 0.04
+  maxTime: 15
   basicCriticalChance: 20
   criticalChance: 20
   basicCriticalRatio: 2

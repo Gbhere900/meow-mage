@@ -44,7 +44,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202386260982859246}
   serializedVersion: 4
-  m_Mass: 0.2
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -101,10 +101,12 @@ MonoBehaviour:
   queueCount: 0
   basicSpeed: 20
   speed: 20
+  maxSpeed: 60
   basicDamage: 1
   damage: 1
   basicTime: 5
   time: 5
+  maxTime: 15
   basicCriticalChance: 10
   criticalChance: 10
   basicCriticalRatio: 2

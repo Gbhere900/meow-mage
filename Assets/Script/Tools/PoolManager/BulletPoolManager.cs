@@ -28,8 +28,9 @@ public class BulletPoolManager : MonoBehaviour
     ObjectPool<BounceBall> bounceBallPool;
     ObjectPool<BlackHole> blackHolePool;
     ObjectPool<Chainsaw> chainsawPool;
+    ObjectPool<EnergyBall> energyBallPool;
 
-    Bullet tempBullet;
+    Bullet tempBullet = null;
 
     static public BulletPoolManager Instance()
     {
@@ -55,6 +56,7 @@ public class BulletPoolManager : MonoBehaviour
         BounceBallPool.Init();
         BlackHolePool.Init();
         ChainsawPool.Init();
+        EnergyBallPool.Init();
         magicArrowPool = MagicArrowPool.Instance;
         magicBulletPool = MagicBulletPool.Instance;
         boomPool = BoomPool.Instance;
@@ -65,6 +67,7 @@ public class BulletPoolManager : MonoBehaviour
         bounceBallPool = BounceBallPool.Instance;
         blackHolePool = BlackHolePool.Instance;
         chainsawPool = ChainsawPool.Instance;
+        energyBallPool = EnergyBallPool.Instance;
     }
     private void OnEnable()
     {
@@ -79,6 +82,7 @@ public class BulletPoolManager : MonoBehaviour
         BounceBall.OnRecycled += RecycleBounceBall;
         BlackHole.OnRecycled += RecycleBlackHole;
         Chainsaw.OnRecycled += RecycleChainsaw;
+        EnergyBall.OnRecycled += RecycleEnergyBall;
     }
     private void OnDisable()
     {
@@ -94,175 +98,185 @@ public class BulletPoolManager : MonoBehaviour
         BounceBall.OnRecycled -= RecycleBounceBall;
         BlackHole.OnRecycled -= RecycleBlackHole;
         Chainsaw.OnRecycled -= RecycleChainsaw;
+        EnergyBall.OnRecycled-= RecycleEnergyBall;
     }
 
-    public  void SpawnMagicBullet(Vector3 position, MagicBase magic,int queueCount)
+    public  Bullet SpawnMagicBullet(Vector3 position, MagicBase magic,int queueCount, int bulletCount = 1)
     {
-
-        switch(magic.magicSO.ChineseName)
-        {
-            case "Ä§·¨µ¯":
-                tempBullet = magicBulletPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByMouseDirection();
-                break;
-            case "Ä§·¨¼ý":
-                tempBullet = magicArrowPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByMouseDirection();
-                break;
-            case "Õ¨µ¯":
-                tempBullet = boomPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByMouseDirection();
-                break;
-            case "´¥·¢Ä§·¨µ¯":
-                tempBullet = T_magicBulletPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByMouseDirection();
-                break;
-            case "´¥·¢Ä§·¨¼ý":
-                tempBullet = T_magicArrowPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByMouseDirection();
-                break;
-            case "±¬Õ¨Ä§·¨":
-                tempBullet = instantBoomPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByMouseDirection();
-                break;
-            case "¹â½£":
-                tempBullet = lightSaberPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByMouseDirection();
-                break;
-            case "µ¯ÌøÄ§·¨µ¯":
-                tempBullet = bounceBallPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByMouseDirection();
-                break;
-            case "ºÚ¶´":
-                tempBullet = blackHolePool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByMouseDirection();
-                break;
-            case "Á´¾â":
-                tempBullet = chainsawPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByMouseDirection();
-                break;
-
-        }
-        if (magicEffects.Count != 0)
-        {
-            
-            if(magic.magicSO.type ==E_MagicType.attack) 
-            {
-                for (int i = magicEffects.Count - 1; i >= 0; i--)
-                {
-
-                    magicEffects[i].magic.GetComponent<I_MagicEffect>().TriggerEffect(tempBullet);
-                    Pair tempP = magicEffects[i];
-                    tempP.count--;
-                    if (tempP.count <= 0)
-                    {
-                        magicEffects.RemoveAt(i);
-                    }
-                    else
-                    {
-                        magicEffects[i] = tempP;
-                    }
-                }
-            }
-        }
-        if (tempBullet)
-        tempBullet.queueCount = queueCount;
-        tempBullet = null;  
-    }
-
-    public void SpawnMagicBullet(Vector3 position,Vector3 forward, MagicBase magic,int queueCount)
-    {
-        Debug.Log(magic.magicSO.ChineseName);
-        switch (magic.magicSO.ChineseName)
-        {
-            case "Ä§·¨µ¯":
-                tempBullet = magicBulletPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByDirection(forward);
-                break;
-            case "Ä§·¨¼ý":
-                tempBullet = magicArrowPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByDirection(forward);
-                break;
-            case "Õ¨µ¯":
-                tempBullet = boomPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByDirection(forward);
-                break;
-            case "´¥·¢Ä§·¨µ¯":
-                tempBullet = T_magicBulletPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByDirection(forward);
-                break;
-            case "´¥·¢Ä§·¨¼ý":
-                tempBullet = T_magicArrowPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByDirection(forward);
-                break;
-            case "±¬Õ¨Ä§·¨":
-                tempBullet = instantBoomPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByDirection(forward);
-                break;
-            case "¹â½£":
-                tempBullet = lightSaberPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByDirection(forward);
-                break;
-            case "µ¯ÌøÄ§·¨µ¯":
-                tempBullet = bounceBallPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByDirection(forward);
-                break;
-            case "ºÚ¶´":
-                tempBullet = blackHolePool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByDirection(forward);
-                break;
-            case "Á´¾â":
-                tempBullet = chainsawPool.Get();
-                tempBullet.transform.position = position;
-                tempBullet.shootByDirection(forward);
-                break;
-        }
-        if (magicEffects.Count != 0)
-        {
-
-            if (magic.magicSO.type == E_MagicType.attack)
-            {
-                for (int i = magicEffects.Count - 1; i >= 0; i--)
-                {
-
-                    magicEffects[i].magic.GetComponent<I_MagicEffect>().TriggerEffect(tempBullet);
-                    Pair tempP = magicEffects[i];
-                    tempP.count--;
-                    if (tempP.count <= 0)
-                    {
-                        magicEffects.RemoveAt(i);
-                       
-                    }
-                    else
-                    {
-                        magicEffects[i] = tempP;
-                    }
-                }
-
-            }
-        }
-        if(tempBullet)
-        tempBullet.queueCount = queueCount;
         tempBullet = null;
+        //for (int j = 0; j < bulletCount; j++)
+        //{
+        switch (magic.magicSO.ChineseName)
+            {
+                case "Ä§·¨µ¯":
+                    tempBullet = magicBulletPool.Get();
+                    //tempBullet.transform.position = position;
+                    //tempBullet.shootByMouseDirection();
+                    break;
+                case "Ä§·¨¼ý":
+                    tempBullet = magicArrowPool.Get();
+;
+                    break;
+                case "Õ¨µ¯":
+                    tempBullet = boomPool.Get();
+
+                    break;
+                case "´¥·¢Ä§·¨µ¯":
+                    tempBullet = T_magicBulletPool.Get();
+
+                    break;
+                case "´¥·¢Ä§·¨¼ý":
+                    tempBullet = T_magicArrowPool.Get();
+
+                    break;
+                case "±¬Õ¨Ä§·¨":
+                    tempBullet = instantBoomPool.Get();
+
+                    break;
+                case "¹â½£":
+                    tempBullet = lightSaberPool.Get();
+
+                    break;
+                case "µ¯ÌøÄ§·¨µ¯":
+                    tempBullet = bounceBallPool.Get();
+
+                    break;
+                case "ºÚ¶´":
+                    tempBullet = blackHolePool.Get();
+
+                    break;
+                case "Á´¾â":
+                    tempBullet = chainsawPool.Get();
+
+                    break;
+                case "ÄÜÁ¿Çò":
+                    tempBullet = energyBallPool.Get();
+                break; 
+
+            }
+        if (tempBullet)
+        {
+            tempBullet.transform.position = position;
+            tempBullet.shootByMouseDirection();
+            tempBullet.queueCount = queueCount;
+        }
+        if (magicEffects.Count != 0)
+            {
+
+                if (magic.magicSO.type == E_MagicType.attack)
+                {
+                    for (int i=0; i <magicEffects.Count; i++)
+                    {
+
+                        magicEffects[i].magic.GetComponent<I_MagicEffect>().TriggerEffect(tempBullet);
+                       // if (j == bulletCount - 1)
+                        //{
+                            Pair tempP = magicEffects[i];
+                            tempP.count--;
+                            if (tempP.count <= 0)
+                            {
+                                magicEffects.RemoveAt(i);
+                                i--;
+                            }
+                            else
+                            {
+                                magicEffects[i] = tempP;
+                            }
+                      //  }
+                    }
+                }
+            }
+
+        return tempBullet;
+
+        //}
+    }
+
+    public Bullet SpawnMagicBullet(Vector3 position, Vector3 forward, MagicBase magic, int queueCount, int bulletCount = 1)
+    {
+        tempBullet = null;
+        //for (int j = 0; j < bulletCount; j++)
+        //{
+        Debug.Log(magic.magicSO.ChineseName);
+            switch (magic.magicSO.ChineseName)
+            {
+                case "Ä§·¨µ¯":
+                    tempBullet = magicBulletPool.Get();
+                    break;
+                case "Ä§·¨¼ý":
+                    tempBullet = magicArrowPool.Get();
+                    break;
+                case "Õ¨µ¯":
+                    tempBullet = boomPool.Get();
+                    //tempBullet.transform.position = position;
+                    //tempBullet.shootByDirection(forward);
+                    break;
+                case "´¥·¢Ä§·¨µ¯":
+                    tempBullet = T_magicBulletPool.Get();
+                    break;
+                case "´¥·¢Ä§·¨¼ý":
+                    tempBullet = T_magicArrowPool.Get();
+                    break;
+                case "±¬Õ¨Ä§·¨":
+                    tempBullet = instantBoomPool.Get();
+                    break;
+                case "¹â½£":
+                    tempBullet = lightSaberPool.Get();
+                    break;
+                case "µ¯ÌøÄ§·¨µ¯":
+                    tempBullet = bounceBallPool.Get();
+                    break;
+                case "ºÚ¶´":
+                    tempBullet = blackHolePool.Get();
+                    break;
+                case "Á´¾â":
+                    tempBullet = chainsawPool.Get();
+                    break;
+                case "ÄÜÁ¿Çò":
+                    tempBullet = energyBallPool.Get();
+                    break;
+        }
+
+
+        if (tempBullet)
+        {
+            tempBullet.transform.position = position;
+            tempBullet.shootByDirection(forward);
+            tempBullet.queueCount = queueCount;
+        }
+        if (magicEffects.Count != 0)
+            {
+                if (magic.magicSO.type == E_MagicType.attack)
+                {
+                    for (int i = 0; i < magicEffects.Count; i++)
+                    {
+
+                        magicEffects[i].magic.GetComponent<I_MagicEffect>().TriggerEffect(tempBullet);
+                        //if (j == bulletCount - 1)
+                        //{
+                            Pair tempP = magicEffects[i];
+                            tempP.count--;
+                            if (tempP.count <= 0)
+                            {
+                                magicEffects.RemoveAt(i);
+                                i--;
+                            }
+                            else
+                            {
+                                magicEffects[i] = tempP;
+                            }
+                       // }
+                        
+                    }
+
+                }
+            }
+            
+        return tempBullet;
+
+               
+                
+       // }
     }
     public void AddMagicToList(MagicBase magic)
     {
@@ -330,5 +344,9 @@ public class BulletPoolManager : MonoBehaviour
     private void RecycleChainsaw(Chainsaw bullet)
     {
         chainsawPool.Release(bullet);
+    }
+    private void RecycleEnergyBall(EnergyBall bullet)
+    {
+        energyBallPool.Release(bullet);
     }
 }

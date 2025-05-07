@@ -8,7 +8,7 @@ public abstract class MagicBase : MonoBehaviour
     public MagicSO magicSO;
     public bool isActive = true;
 
-    public void TriggerMagic(Vector3 position)
+    public virtual void TriggerMagic(Vector3 position)
     {
         
         PlayerAttack playerAttack = PlayerAttack.Instance();
@@ -36,7 +36,7 @@ public abstract class MagicBase : MonoBehaviour
             }
         }
     }
-    public void TriggerMagic(Vector3 position, Vector3 forward)
+    public virtual void TriggerMagic(Vector3 position, Vector3 forward)
     {
         PlayerAttack playerAttack = PlayerAttack.Instance();
         BulletPoolManager.Instance().SpawnMagicBullet(position, forward, this,queueCount);

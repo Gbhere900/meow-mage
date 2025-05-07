@@ -15,12 +15,14 @@ abstract public class Bullet : MonoBehaviour
     [Header("BulletÊýÖµ")]
     [SerializeField] private float basicSpeed = 5;
     [SerializeField] private float speed = 5;
+    [SerializeField] private float maxSpeed = 15;
 
     [SerializeField] private float basicDamage = 3;
     [SerializeField] protected float damage = 3;
 
     [SerializeField] private float basicTime = 5;
     public float time = 5;
+    public float maxTime = 15;
 
     [SerializeField] private float basicCriticalChance = 20;
     [SerializeField] private float criticalChance = 20;
@@ -66,8 +68,10 @@ abstract public class Bullet : MonoBehaviour
     protected void OnEnable()
     {
         Speed = BasicSpeed;
+        //maxSpeed = basicSpeed * 3;
         Damage = BasicDamage;
         Time = BasicTime;
+        //maxTime = BasicTime * 3;
         CriticalChance = BasicCriticalChance;
         CriticalRatio = BasicCriticalRatio;
         CanCutThrough = BasicCanCutThrough;
@@ -196,8 +200,17 @@ abstract public class Bullet : MonoBehaviour
         ShootDirection = AimDirection + offsetVector;
 
     }
+    public void SetTime(float time)
+    {
+        this.time = Math.Min(maxTime, time);
+    }
+    public void SetSpeed(float  speed)
+    {
+        this.speed = Math.Min(maxSpeed,speed);
+        rigidbody.velocity = rigidbody.velocity.normalized * speed;
+    }
     public float BasicSpeed { get => basicSpeed; set => basicSpeed = value; }
-    public float Speed { get => speed; set => speed = value; }
+    public float Speed { get => speed; set => speed = value;}
     public float BasicDamage { get => basicDamage; set => basicDamage = value; }
     public float Damage { get => damage; set => damage = value; }
     public float BasicTime { get => basicTime; set => basicTime = value; }

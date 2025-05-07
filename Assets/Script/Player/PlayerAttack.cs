@@ -70,16 +70,19 @@ public class PlayerAttack : MonoBehaviour
         AddMagicEntry("T_MagicBullet", "TM_MagicBullet");
         AddMagicEntry("T_MagicArrow", "TM_MagicArrow");
         AddMagicEntry("InstantBoom", "M_InstantBoom");
+        AddMagicEntry("LightSaber", "M_LightSaber");
+        AddMagicEntry("BounceBall", "M_BounceBall");
+        AddMagicEntry("BlackHole", "M_BlackHole");
+        AddMagicEntry("Chainsaw", "M_Chainsaw");
+        AddMagicEntry("EnergyBall", "M_EnergyBall");
         AddMagicEntry("2Times", "M_2Times");
         AddMagicEntry("3Times", "M_3Times");
         AddMagicEntry("4Times", "M_4Times");
         AddMagicEntry("AddDamage", "M_AddDamage");
         AddMagicEntry("Stop", "M_Stop");
         AddMagicEntry("FlyAroundPlayer", "M_FlyAroundPlayer");
-        AddMagicEntry("LightSaber", "M_LightSaber");
-        AddMagicEntry("BounceBall", "M_BounceBall");
-        AddMagicEntry("BlackHole", "M_BlackHole");
-        AddMagicEntry("Chainsaw", "M_Chainsaw");
+        AddMagicEntry("FlyAroundMagicArrow", "M_FlyAroundMagicArrow");
+
 
         for (int i = 0; i < maxQueueCount; i++)
         {

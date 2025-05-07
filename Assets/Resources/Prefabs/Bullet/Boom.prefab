@@ -4991,10 +4991,12 @@ MonoBehaviour:
   queueCount: 0
   basicSpeed: 5
   speed: 5
+  maxSpeed: 60
   basicDamage: 10
   damage: 10
   basicTime: 1
   time: 1
+  maxTime: 15
   basicCriticalChance: 0
   criticalChance: 0
   basicCriticalRatio: 2

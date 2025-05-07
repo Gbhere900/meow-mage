@@ -5017,10 +5017,12 @@ MonoBehaviour:
   queueCount: 0
   basicSpeed: 10
   speed: 10
+  maxSpeed: 60
   basicDamage: 3
   damage: 3
   basicTime: 10
   time: 10
+  maxTime: 15
   basicCriticalChance: 20
   criticalChance: 20
   basicCriticalRatio: 2
@@ -5035,6 +5037,7 @@ MonoBehaviour:
   shootDirection: {x: 0, y: 0, z: 0}
   basicIsShootByMouseDiretion: 1
   isShootByMouseDiretion: 1
+  triggerAudio: {fileID: 0}
 --- !u!1001 &7912694293111271953
 PrefabInstance:
   m_ObjectHideFlags: 0

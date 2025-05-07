@@ -8,21 +8,28 @@ public class FlyAroundPoint : MonoBehaviour
     public GameObject centerObejct;
     public Vector3 centerPoint;
     public float timeBeforeActive = 0.3f;
+    public float timer = 0;
     public float rotationSpeed = 90f;
-    public float speed;
     public Rigidbody rb;
+    public Bullet bullet;
     public bool isActive = false;
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
-        StartCoroutine(wait());
+        bullet = GetComponent<Bullet>();
+        
+        
     }
 
-    IEnumerator wait()
+
+      
+        private void Update()
     {
-        yield return new WaitForSeconds(timeBeforeActive);
-        speed = rb.velocity.magnitude;
-        isActive = true;
+        timer += Time.deltaTime;
+        if(timer>=timeBeforeActive)
+        {
+            isActive = true;
+        }
     }
 
 
@@ -30,6 +37,10 @@ public class FlyAroundPoint : MonoBehaviour
     {
         if (!isActive)
             return;
+        if(!centerObejct.active)
+        {
+            isActive = false;
+        }
         centerPoint = centerObejct.transform.position;
         if (centerPoint == Vector3.zero)
         {
@@ -38,7 +49,7 @@ public class FlyAroundPoint : MonoBehaviour
         
         Vector3 toCenter = centerPoint - transform.position;
         // 计算目标速度方向（垂直于圆心连线）
-        Vector3 targetVelocity = Vector3.Cross(toCenter.normalized, Vector3.up) * speed;
+        Vector3 targetVelocity = Vector3.Cross(toCenter.normalized, Vector3.up) * bullet.Speed;
 
         // 调整实际速度方向逼近目标方向
         rb.velocity = targetVelocity;
