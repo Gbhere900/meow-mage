@@ -44,12 +44,6 @@ public class EnemyHealth : MonoBehaviour
         health = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    [NaughtyAttributes.Button]
     public void ReceiveDamage(float damage)
     {
         OnReceivedDamage.Invoke(damage, TMPSpawnPoint.position);

@@ -57,17 +57,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 452fd6a5c3ec74d4ebe0780d8ab73761,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.484474
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 452fd6a5c3ec74d4ebe0780d8ab73761,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.6
+      value: 0.7741889
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 452fd6a5c3ec74d4ebe0780d8ab73761,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.3066921
+      value: -7.39
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 452fd6a5c3ec74d4ebe0780d8ab73761,
         type: 3}
@@ -1055,6 +1055,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 452fd6a5c3ec74d4ebe0780d8ab73761,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1445005636207490498}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 452fd6a5c3ec74d4ebe0780d8ab73761,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 458235195555730703}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 452fd6a5c3ec74d4ebe0780d8ab73761,
         type: 3}
@@ -1183,6 +1187,22 @@ MonoBehaviour:
   TMPSpawnPoint: {fileID: 8666506852514019219}
   hitAudio: {fileID: 0}
   passAwayAudio: {fileID: 0}
+--- !u!114 &1445005636207490498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058168500704810336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09364076069f5aa448dd194eb4e108db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swayDirection: {x: 0, y: 0, z: 0}
+  swayForce: 100
+  timeBeforeFirstSway: 1
+  swayInterval: 2
 --- !u!114 &458235195555730703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1227,7 +1247,7 @@ MonoBehaviour:
   radius: 0.4
   height: 1.25
   canMove: 1
-  maxSpeed: 5
+  maxSpeed: 3
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
