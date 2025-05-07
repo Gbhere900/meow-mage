@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9220a25a6b6a1a04c87fcdb047393556, type: 3}
   m_Name: FlyAroundMagicBullet
   m_EditorClassIdentifier: 
-  identifier: FlyAroundMagicArrow
-  ChineseName: "\u9B54\u6CD5\u7BAD\u73AF\u7ED5"
-  description: "\u8BA9\u4E0B\u4E00\u4E2A\u6295\u5C04\u7269\u7684\u56DB\u4E2A\u590D\u5236\u7ED5\u7740\u4E00\u4E2A\u9B54\u6CD5\u7BAD\u73AF\u7ED5"
+  identifier: FlyAroundEnerguBall
+  ChineseName: "\u80FD\u91CF\u7403\u73AF\u7ED5"
+  description: "\u8BA9\u4E0B\u4E00\u4E2A\u6295\u5C04\u7269\u7684\u56DB\u4E2A\u590D\u5236\u7ED5\u7740\u4E00\u4E2A\u80FD\u91CF\u7403\u73AF\u7ED5"
   icon: {fileID: 21300000, guid: ef31bc3f46d6047b29ff513e55daf05b, type: 3}
   delay: 0.5
   reload: 1
@@ -22,5 +22,5 @@ MonoBehaviour:
   mana: 100
   type: 1
   isTrigger: 0
-  prefabToCreat: {fileID: 801459978079272052, guid: 2e8175bd30cf31643ae4bc8b9a1bd60d,
+  prefabToCreat: {fileID: 2965383577065440168, guid: 7f3539b5add92b5468599c30b8e0cc8a,
     type: 3}

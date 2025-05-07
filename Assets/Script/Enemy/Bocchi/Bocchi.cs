@@ -37,8 +37,6 @@ public class Bocchi : MonoBehaviour
 
     void Shoot()
     {
-
-        Debug.LogError("shoot");
         SlimeGelBullet slimeGelBullet =  EnemyBulletPoolManager.Instance().SpawnSlimeGelBullet(transform.position);
         
         //¥¶¿Ìdirection

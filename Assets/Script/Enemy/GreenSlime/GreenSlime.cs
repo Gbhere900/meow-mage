@@ -35,7 +35,6 @@ public class GreenSlime : MonoBehaviour
     void Jump()
     {
 
-        Debug.LogError("jump");
         Vector3 direction = player.transform.position - transform.position;
         rb.AddForce(direction * force);
     }
