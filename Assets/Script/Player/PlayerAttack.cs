@@ -1,15 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
-using Microsoft.SqlServer.Server;
 using TMPro;
-using System.ComponentModel;
-using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -74,6 +70,9 @@ public class PlayerAttack : MonoBehaviour
     public int maxQueueCount = 150;
     public List<Queue<MagicBase>> magicQueues = new List<Queue<MagicBase>>(150);
     public int queueCount = -1;
+
+    [Header("射线检测")]
+    public Camera mainCamera;
 
     public int queueIndex = 1;
     private void Awake()
@@ -147,13 +146,13 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void FixedUpdate()
-    {
-        if (playerInputControl.Player.Fire.ReadValue<float>() > 0)
-        {
-            Attack();
-        }
-    }
+    //private void FixedUpdate()
+    //{
+    //    if (playerInputControl.Player.Fire.ReadValue<float>() > 0)
+    //    {
+    //        Attack();
+    //    }
+    //}
     void Update()
     {
         UpdateTimer();
@@ -321,9 +320,42 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnFireTriggered(InputAction.CallbackContext context)
     {
-        Attack();
+        if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())//在UI上
+        {
+            Attack();
+        }
+        else
+            GetClickedUIObject();
+        
     }
 
+    private GameObject GetClickedUIObject()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Mouse.current.position.ReadValue();
+
+        System.Collections.Generic.List<RaycastResult> results = new System.Collections.Generic.List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        if (results.Count > 0)
+        {
+            for(int i=0;i<results.Count;i++) 
+                Debug.LogWarning(results[i].gameObject.name);
+                return results[0].gameObject;
+        }
+
+        return null;
+    }
+    private bool IsPointerOverUI()
+    {
+        // 获取鼠标位置
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        // 从鼠标位置发射射线
+        Ray ray = mainCamera.ScreenPointToRay(mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, 5);
+
+        return hit.collider != null;
+    }
     public void UpdateMagicLine1()           //分两个MagicLine
     {
         magicLine1.Clear();  //

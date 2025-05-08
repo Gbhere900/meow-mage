@@ -11,9 +11,9 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     private void OnEnable()
     {
-        GameManager.OnSwitchGameState += ChangeKeyBoardActive;
-        playerAttack.enabled = false;
-        playerController.enabled = false;
+       // GameManager.OnSwitchGameState += ChangeKeyBoardActive;
+      //  playerAttack.enabled = false;
+      //  playerController.enabled = false;
     }
 
     private void OnDisable()

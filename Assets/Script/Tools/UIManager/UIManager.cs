@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour
                 break;
             case GameState.wavetransition:
                 waveTransitionUI.SetActive(true);
+                gameUI.SetActive(true);
                 break;
             case GameState.bag:
                 Debug.Log("UImanager«–ªªµΩbag");

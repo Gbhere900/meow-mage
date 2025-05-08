@@ -44,6 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907823e8bfb50054e8a2c7b601244472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  queueIndex: 0
   queueCount: -1
   magicSO: {fileID: 11400000, guid: d75093843b85e7047873805329825ce4, type: 2}
   isActive: 1
+  accelerate: 3
+  timeBeforeActive: 0
+  M_MagicArrow: {fileID: 0}
+  centerBullet: {fileID: 0}
