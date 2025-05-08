@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BounceBall
+  m_Name: Boom
   m_Shader: {fileID: 4800000, guid: 313fcf3aebc04cf4ab4f8c5f2850be7f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -123,15 +123,15 @@ Material:
     - _OcclusionStrength: 1
     - _Offset: 0
     - _OtlWidth: 1
-    - _OutlineWidth: 0
+    - _OutlineWidth: 0.318
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimStep: 0.523
-    - _RimStepSmooth: 0
+    - _RimStepSmooth: 0.034
     - _Segmented: 1
-    - _ShadowStep: 0.705
-    - _ShadowStepSmooth: 0.04
+    - _ShadowStep: 0.722
+    - _ShadowStepSmooth: 0.108
     - _ShnIntense: 0
     - _ShnOverlap: 0
     - _ShnRange: 0.15
@@ -139,7 +139,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularStep: 0.455
+    - _SpecularStep: 0.608
     - _SpecularStepSmooth: 0
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
@@ -149,7 +149,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.10196079, g: 0.882353, b: 0.9176471, a: 1}
+    - _BaseColor: {r: 0.44705886, g: 0.427451, b: 0.4039216, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OtlColor: {r: 0, g: 0, b: 0, a: 1}
