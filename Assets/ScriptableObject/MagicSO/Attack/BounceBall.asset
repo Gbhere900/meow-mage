@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9220a25a6b6a1a04c87fcdb047393556, type: 3}
   m_Name: BounceBall
   m_EditorClassIdentifier: 
+  bulletSO: {fileID: 11400000, guid: 7091a065b45b19b45887a2e5581fa190, type: 2}
   identifier: BounceBall
   ChineseName: "\u5F39\u8DF3\u9B54\u6CD5\u5F39"
   description: "\u6709\u5F39\u6027\u7684\u9B54\u6CD5\u5F39"

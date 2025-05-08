@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9220a25a6b6a1a04c87fcdb047393556, type: 3}
   m_Name: LightSaber
   m_EditorClassIdentifier: 
+  bulletSO: {fileID: 11400000, guid: 259d3e0e27e7db04dbef7ecacedd3269, type: 2}
   identifier: LightSaber
   ChineseName: "\u5149\u5251"
   description: "\u8FD1\u8DDD\u79BB\u653B\u51FB\u6CD5\u672F"

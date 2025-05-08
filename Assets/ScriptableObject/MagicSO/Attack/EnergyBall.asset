@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9220a25a6b6a1a04c87fcdb047393556, type: 3}
   m_Name: EnergyBall
   m_EditorClassIdentifier: 
+  bulletSO: {fileID: 11400000, guid: 5c6ba04ef2db29a4fb1bbc4595714871, type: 2}
   identifier: EnergyBall
   ChineseName: "\u80FD\u91CF\u7403"
   description: "\u884C\u52A8\u7F13\u6162\u4F46\u662F\u5F3A\u529B\u7684\u53EF\u7A7F\u900F\u6295\u5C04\u7269"

@@ -25,6 +25,9 @@ public class PackageManager : MonoBehaviour
     public TextMeshProUGUI description_type;
     public Image description_image;
     public TextMeshProUGUI description_description;
+    public TextMeshProUGUI description_damage;
+    public TextMeshProUGUI description_time;
+    public TextMeshProUGUI description_aimOffset;
     public TextMeshProUGUI description_mana;
     public TextMeshProUGUI description_delay;
     public TextMeshProUGUI description_reload;
@@ -179,9 +182,21 @@ public class PackageManager : MonoBehaviour
         description_type.text = magicSO.type.ToString();
         description_description.text = magicSO.description;
         description_image.sprite = magicSO.icon;
-        description_mana.text = "魔力消耗"+ magicSO.mana.ToString();
-        description_delay.text = "延迟" + magicSO.delay.ToString();
-        description_reload.text = "充能时间" + magicSO.reload.ToString();
+        if (magicSO.bulletSO != null)
+        {
+            description_damage.text = magicSO.bulletSO.basicDamage.ToString();
+            description_time.text = magicSO.bulletSO.basicTime.ToString()+"s";
+            description_aimOffset.text = magicSO.bulletSO.basicAimOffset.ToString()+"度";
+        }
+        else
+        {
+            description_damage.text = null;
+            description_time.text = null;
+            description_aimOffset.text = null;
+        }
+        description_mana.text = magicSO.mana.ToString();
+        description_delay.text =  magicSO.delay.ToString()+"s";
+        description_reload.text = magicSO.reload.ToString()+"s";
     }
 
 

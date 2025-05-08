@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9220a25a6b6a1a04c87fcdb047393556, type: 3}
   m_Name: BlackHole
   m_EditorClassIdentifier: 
+  bulletSO: {fileID: 11400000, guid: b2d8fd05eabc99543bdab887290c85f1, type: 2}
   identifier: BlackHole
   ChineseName: "\u9ED1\u6D1E"
   description: "\u5728\u547D\u4E2D\u5904\u751F\u6210\u4E00\u4E2A\u9ED1\u6D1E"
