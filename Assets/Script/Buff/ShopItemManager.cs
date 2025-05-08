@@ -8,12 +8,15 @@ public class ShopItemManager : MonoBehaviour
 {
     public static ShopItemManager instance;
     
+  [SerializeField] List<BasicBuff> buffLib = new List<BasicBuff>();
   [SerializeField] List<BasicBuff> buffs = new List<BasicBuff>();
+
   [SerializeField] private HorizontalLayoutGroup horizontalLayoutGroup;
 
 
     private void Awake()
     {
+        buffs = buffLib;
         GameManager.OnSwitchGameState += ChangeShopItemsOnSwitchGameState;
 
         if (instance != null&&instance !=this)
@@ -32,21 +35,16 @@ public class ShopItemManager : MonoBehaviour
         }
     }
 
-    public static ShopItemManager Instance()
-    {
-        return instance;
-    }
-
     [NaughtyAttributes.Button]
     public void ChangerShopItems()
     {
         ShuffleBuffs();
 
-        for (int i = 0; i < horizontalLayoutGroup.transform.childCount; i++)
+        for (int i = 0; i < horizontalLayoutGroup.transform.childCount && i<buffs.Count; i++)
         {
             ShopItemButton tempBuffButton = horizontalLayoutGroup.transform.GetChild(i).GetComponent<ShopItemButton>();
             tempBuffButton.ChangeShopItemByBuff(buffs[i]);
-            
+            buffs.RemoveAt(i);
         }
     }
     public List<BasicBuff> GetBuffs()
@@ -65,5 +63,8 @@ public class ShopItemManager : MonoBehaviour
        // return allBuffs.GetRange(0, Mathf.Min(count, allBuffs.Count));
     }
 
-
+    public static ShopItemManager Instance()
+    {
+        return instance;
+    }
 }

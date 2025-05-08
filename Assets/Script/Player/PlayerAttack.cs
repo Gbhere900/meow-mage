@@ -71,9 +71,9 @@ public class PlayerAttack : MonoBehaviour
     public List<Queue<MagicBase>> magicQueues = new List<Queue<MagicBase>>(150);
     public int queueCount = -1;
 
-    [Header("射线检测")]
-    public Camera mainCamera;
 
+    public GameObject MagicWandn1;
+    public GameObject MagicWandn2;
     public int queueIndex = 1;
     private void Awake()
     {
@@ -129,9 +129,6 @@ public class PlayerAttack : MonoBehaviour
         ReloadMagicQueue2();                         //
     }
 
-    
-
-
     private void OnEnable()
     {
         playerInputControl.Enable();
@@ -145,14 +142,6 @@ public class PlayerAttack : MonoBehaviour
         AttackTimer = 0;
     }
 
-    // Update is called once per frame
-    //private void FixedUpdate()
-    //{
-    //    if (playerInputControl.Player.Fire.ReadValue<float>() > 0)
-    //    {
-    //        Attack();
-    //    }
-    //}
     void Update()
     {
         UpdateTimer();
@@ -241,9 +230,19 @@ public class PlayerAttack : MonoBehaviour
     public void SwitchMagicQueue()
     {
         if (queueIndex == 1)
+        {
             queueIndex = 2;
+            MagicWandn1.SetActive(false);
+            MagicWandn2.SetActive(true);
+        }
+            
         else if (queueIndex == 2)
+        {
             queueIndex = 1;
+            MagicWandn1.SetActive(true);
+            MagicWandn2.SetActive(false);
+        }
+            
     }
 
     public Queue<MagicBase> CreateTempQueue()
@@ -346,16 +345,7 @@ public class PlayerAttack : MonoBehaviour
 
         return null;
     }
-    private bool IsPointerOverUI()
-    {
-        // 获取鼠标位置
-        Vector2 mousePosition = Mouse.current.position.ReadValue();
-        // 从鼠标位置发射射线
-        Ray ray = mainCamera.ScreenPointToRay(mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, 5);
 
-        return hit.collider != null;
-    }
     public void UpdateMagicLine1()           //分两个MagicLine
     {
         magicLine1.Clear();  //

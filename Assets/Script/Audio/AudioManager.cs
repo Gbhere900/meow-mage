@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+    public float volume = 1;
     private List<AudioSource> audioSources = new List<AudioSource>();
 
     private void Awake()
@@ -27,6 +28,7 @@ public class AudioManager : MonoBehaviour
             if (availableSource == null)
             {
                 availableSource = gameObject.AddComponent<AudioSource>();
+                availableSource.volume = volume;
                 audioSources.Add(availableSource);
             }
             availableSource.PlayOneShot(clip);

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9220a25a6b6a1a04c87fcdb047393556, type: 3}
   m_Name: Chainsaw
   m_EditorClassIdentifier: 
+  bulletSO: {fileID: 11400000, guid: 15e8f113417cc1c4eba428a3dd253676, type: 2}
   identifier: Chainsaw
   ChineseName: "\u94FE\u952F"
   description: "\u8DDD\u79BB\u6781\u77ED\u7684\u653B\u51FB\u6CD5\u672F\uFF0C\u53EF\u4EE5\u5C06\u6CD5\u672F\u5EF6\u8FDF\u5F52\u96F6"

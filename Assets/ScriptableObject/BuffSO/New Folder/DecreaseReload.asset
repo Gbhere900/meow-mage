@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b41997054673c24fae552d3bc7d7268, type: 3}
+  m_Name: DecreaseReload
+  m_EditorClassIdentifier: 
+  name: "\u5FEB\u901F\u88C5\u586B"
+  description: "\u964D\u4F4E0.2s\u5145\u80FD\u65F6\u95F4"
+  icon: {fileID: 21300000, guid: 1b1030321aa24c247889f6fa0d2a2af5, type: 3}
+  OnApplied:
+    m_PersistentCalls:
+      m_Calls: []
