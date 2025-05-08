@@ -211,6 +211,10 @@ abstract public class Bullet : MonoBehaviour
         this.speed = Math.Min(maxSpeed,speed);
         rigidbody.velocity = rigidbody.velocity.normalized * speed;
     }
+    public void SetAimOffSet(float aimOffset)
+    {
+        this.aimOffset = Math.Max(0,aimOffset); 
+    }
     public float BasicSpeed { get => basicSpeed; set => basicSpeed = value; }
     public float Speed { get => speed; set => speed = value;}
     public float BasicDamage { get => basicDamage; set => basicDamage = value; }

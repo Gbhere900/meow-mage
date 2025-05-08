@@ -169,20 +169,19 @@ public class BulletPoolManager : MonoBehaviour
                     {
 
                         magicEffects[i].magic.GetComponent<I_MagicEffect>().TriggerEffect(tempBullet);
-                       // if (j == bulletCount - 1)
-                        //{
-                            Pair tempP = magicEffects[i];
-                            tempP.count--;
-                            if (tempP.count <= 0)
-                            {
-                                magicEffects.RemoveAt(i);
-                                i--;
-                            }
-                            else
-                            {
-                                magicEffects[i] = tempP;
-                            }
-                      //  }
+                        tempBullet.shootByMouseDirection();
+                        Pair tempP = magicEffects[i];
+                        tempP.count--;
+                        if (tempP.count <= 0)
+                        {
+                            magicEffects.RemoveAt(i);
+                            i--;
+                        }
+                        else
+                        {
+                            magicEffects[i] = tempP;
+                        }
+  
                     }
                 }
             }
@@ -252,9 +251,10 @@ public class BulletPoolManager : MonoBehaviour
                     {
 
                         magicEffects[i].magic.GetComponent<I_MagicEffect>().TriggerEffect(tempBullet);
+                        tempBullet.shootByDirection(forward);
                         //if (j == bulletCount - 1)
                         //{
-                            Pair tempP = magicEffects[i];
+                        Pair tempP = magicEffects[i];
                             tempP.count--;
                             if (tempP.count <= 0)
                             {
