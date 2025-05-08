@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   identifier: AddSpeed_L2
   ChineseName: "\u4E2D\u7EA7\u52A0\u901F\u6CD5\u672F"
-  description: "\u8BA9\u4E0B\u4E00\u6B21\u53D1\u5C04\u7684\u6295\u5C04\u7269\u73AF\u7ED5\u4F60"
-  icon: {fileID: 21300000, guid: d80c2dd932149834ba24d5be935e27c6, type: 3}
+  description: "\u8BA9\u4E0B\u4E00\u6B21\u53D1\u5C04\u7684\u6295\u5C04\u7269\u52A0\u901F"
+  icon: {fileID: 21300000, guid: ece518ef2ac30354ebcd8b51dc581b02, type: 3}
   delay: 0
   reload: 0
   extraTrigger: 1
-  mana: 10
+  mana: 5
   type: 1
   isTrigger: 0
   prefabToCreat: {fileID: 0}

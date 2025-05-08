@@ -12,10 +12,11 @@ public class Bat : MonoBehaviour
     public float timeBeforeFirstSway = 1;
     public float swayInterval;
     int flag = 1;
+    GameObject player;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        
+        player = GameObject.FindWithTag("Player");
     }
     private void OnEnable()
     {
@@ -24,8 +25,8 @@ public class Bat : MonoBehaviour
 
     public void Sway()
     {
-
-        swayDirection = new Vector3(-rb.velocity.z * flag, 0f, rb.velocity.x * flag).normalized;
+        Vector3 aimDirection = player.transform.position - transform.position;
+        swayDirection = new Vector3(-aimDirection.z * flag, 0f, aimDirection.x * flag).normalized + aimDirection.normalized;
         //swayDirection = GameObject.FindGameObjectWithTag("Player").transform.position - transform.position;
         flag *= -1;
         rb.AddForce(swayDirection * swayForce);
