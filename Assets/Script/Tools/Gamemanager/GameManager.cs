@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
     }
     public void SwitchToBag()
     {
-        Debug.Log("ÇÐ»»µ½bag");
         SwitchGameState(GameState.bag);
     }
     public void SwitchToThophy()
