@@ -88,6 +88,7 @@ public class PlayerAttack : MonoBehaviour
         AddMagicEntry("AddTime_L1","M_AddTime_L1");
         AddMagicEntry("AddTime_L2","M_AddTime_L2");
         AddMagicEntry("LowerOffset", "M_LowerOffset");
+        AddMagicEntry("AddOffsetButLowerDelay", "M_AddOffsetButLowerDelay");
 
 
         for (int i = 0; i < maxQueueCount; i++)
