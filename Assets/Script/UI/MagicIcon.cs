@@ -86,9 +86,10 @@ public class MagicIcon : MonoBehaviour
             go.transform.SetParent(topOfUiT);
             if (System.Math.Abs(go.transform.position.x - beginParentTransform.position.x) <= 0) //以下 执行置换动画，完成位置互换 （关于数据的交换，根据自己的工程情况，在下边实现）
             {
+                go.transform.SetParent(beginParentTransform);            //逻辑先于动画完成，防止显示bug
                 go.transform.DOMoveY(beginParentTransform.position.y, 0.3f).OnComplete(() =>
                 {
-                    go.transform.SetParent(beginParentTransform);
+                    
                     transform.GetComponent<Image>().raycastTarget = true;
                     //解决关卡内显示错误bug
                     PlayerAttack.Instance().UpdateMagicLine1();
@@ -97,11 +98,12 @@ public class MagicIcon : MonoBehaviour
             }
             else
             {
+                go.transform.SetParent(beginParentTransform);     //逻辑先于动画完成,防止显示bug
                 go.transform.DOMoveX(beginParentTransform.position.x, 0.2f).OnComplete(() =>
                 {
                     go.transform.DOMoveY(beginParentTransform.position.y, 0.3f).OnComplete(() =>
                     {
-                        go.transform.SetParent(beginParentTransform);
+                        
                         transform.GetComponent<Image>().raycastTarget = true;
                         //解决关卡内显示错误bug
                         PlayerAttack.Instance().UpdateMagicLine1();

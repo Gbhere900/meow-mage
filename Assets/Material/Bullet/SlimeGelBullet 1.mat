@@ -123,14 +123,14 @@ Material:
     - _OcclusionStrength: 1
     - _Offset: 0
     - _OtlWidth: 1
-    - _OutlineWidth: 0.949
+    - _OutlineWidth: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimStep: 0
     - _RimStepSmooth: 0
     - _Segmented: 1
-    - _ShadowStep: 0.926
+    - _ShadowStep: 0.83
     - _ShadowStepSmooth: 0.04
     - _ShnIntense: 0
     - _ShnOverlap: 0
@@ -149,7 +149,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.90196085, g: 0.06666667, b: 0.427451, a: 1}
+    - _BaseColor: {r: 0.8470589, g: 0.14117648, b: 0.16470589, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OtlColor: {r: 0, g: 0, b: 0, a: 1}
