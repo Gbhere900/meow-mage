@@ -19,13 +19,18 @@ public class PlayerAttack : MonoBehaviour
         return instance;
     }
     [Header("用户界面")]
-    public HorizontalLayoutGroup magicChainHorizontalLayoutGroup;
-    public MagicIcon_disabled MagicIcon_disablePrefabs;
+    public HorizontalLayoutGroup magicChainHorizontalLayoutGroup1;//
+    public HorizontalLayoutGroup magicChainHorizontalLayoutGroup2;//
+
+    public MagicIcon_disabled MagicIcon_disablePrefabs;//?
+
     [SerializeField] private UnityEngine.UI.Slider manaSlider;
     [SerializeField] private TextMeshProUGUI manaText;
     [SerializeField] private UnityEngine.UI.Slider attackSlider;
     [SerializeField] private UnityEngine.UI.Slider reloadSlider;
-    public HorizontalLayoutGroup packageHorizontalLayoutGroup;
+
+    public HorizontalLayoutGroup packageHorizontalLayoutGroup1;  //
+    public HorizontalLayoutGroup packageHorizontalLayoutGroup2;  //
 
 
     [Header("数值")]
@@ -41,12 +46,21 @@ public class PlayerAttack : MonoBehaviour
 
     //[SerializeField] private Bullet PrefabsToCreat;
     [Header("法术链")]
-    public MagicBase baseMagic;
-    public int capacity = 5;
-    public int MaxCapacity = 15;
-    public int magicIndex = 0 ;
-    public List<MagicBase> magicLine = new List<MagicBase>();
-    [SerializeField]  public Queue<MagicBase> magicQueue = new Queue<MagicBase>();
+    public MagicBase baseMagic;  //?
+    public int capacity1 = 5;        //
+    public int capacity2 = 5;        //
+
+    public int MaxCapacity1 = 15;    //
+    public int MaxCapacity2 = 15;    //
+
+    public int magicIndex1 = 0 ;  //
+    public int magicIndex2 = 0 ;  //
+
+    public List<MagicBase> magicLine1 = new List<MagicBase>(); //
+    public List<MagicBase> magicLine2 = new List<MagicBase>(); //
+
+    [SerializeField]  public Queue<MagicBase> magicQueue1 = new Queue<MagicBase>(); //
+    [SerializeField]  public Queue<MagicBase> magicQueue2 = new Queue<MagicBase>(); //
 
     [SerializeField] private Boolean canAttack = true ;
     [SerializeField] private Boolean reloadOver = true;
@@ -61,7 +75,7 @@ public class PlayerAttack : MonoBehaviour
     public List<Queue<MagicBase>> magicQueues = new List<Queue<MagicBase>>(150);
     public int queueCount = -1;
 
-
+    public int queueIndex = 1;
     private void Awake()
     {
         AddMagicEntry("MagicBullet", "M_MagicBullet");
@@ -93,11 +107,15 @@ public class PlayerAttack : MonoBehaviour
 
         for (int i = 0; i < maxQueueCount; i++)
         {
-            magicQueues.Add(new Queue<MagicBase>());
+            magicQueues.Add(new Queue<MagicBase>());        //?
         }
-        for (int i = 0; i < capacity; i++)
+        for (int i = 0; i < capacity1; i++)
         {
-           // magicLine.Add(baseMagic);
+           // magicLine1.Add(baseMagic);                     //
+        }
+        for (int i = 0; i < capacity2; i++)
+        {
+            // magicLine2.Add(baseMagic);                     //
         }
 
         if (instance == null)
@@ -108,7 +126,8 @@ public class PlayerAttack : MonoBehaviour
         playerInputControl = new PlayerInputControl();
 
         Mana = MaxMana;
-        ReloadMagicQueue();
+        ReloadMagicQueue1();                         //
+        ReloadMagicQueue2();                         //
     }
 
     
@@ -118,8 +137,8 @@ public class PlayerAttack : MonoBehaviour
     {
         playerInputControl.Enable();
         playerInputControl.Player.Fire.started += OnFireTriggered;
+        playerInputControl.Player.Switch.started += OnSwitchTriggered;
     }
-
 
 
     void Start()
@@ -141,21 +160,28 @@ public class PlayerAttack : MonoBehaviour
         UpdateCDSlider();
         UpdateMana();
         UpdateManaSlider();
-        if (magicQueue.Count== 0)
+        if (magicQueue1.Count== 0)               //
         {
             // magicIndex = 0;
-            ReloadMagicQueue();
+            ReloadMagicQueue1();                //
+            //重置reload
+            reloadOver = false;                 
+            ReloadTimer = 0;
+
+            BulletPoolManager.Instance().ClearMagicEffect();
+        }
+        if (magicQueue2.Count == 0)               //
+        {
+            // magicIndex = 0;
+            ReloadMagicQueue2();                //
             //重置reload
             reloadOver = false;
             ReloadTimer = 0;
 
             BulletPoolManager.Instance().ClearMagicEffect();
-            foreach (MagicBase magic in magicQueue)
-            {
-                Debug.Log(magic.magicSO.ChineseName);
-            }
         }
-        ChangeSelectedMagic();
+        ChangeSelectedMagic1();                      //
+        ChangeSelectedMagic2();                      //
     }
 
     private void UpdateMana()
@@ -173,24 +199,52 @@ public class PlayerAttack : MonoBehaviour
     {
         playerInputControl.Disable();
         playerInputControl.Player.Fire.started -= OnFireTriggered;
+        playerInputControl.Player.Switch.started -= OnSwitchTriggered;
     }
 
     public void Attack()
     {
-        if(magicQueue.Count == magicLine.Count)
-            BulletPoolManager.Instance().ClearMagicEffect();
-
-        if (canAttack && reloadOver && Mana - magicQueue.Peek().magicSO.mana > 0)
+        if(queueIndex == 1)
         {
-            canAttack = false;
-            AttackTimer = 0;
-            AttackCD = BasicAttackCD;
-            Queue<MagicBase> tempQueue =  CreateTempQueue();
-     
-            FillTempQueue(tempQueue);
-            magicQueues[queueCount].Dequeue().TriggerMagic(attackPosition.transform.position);
+            if (magicQueue1.Count == magicLine1.Count)                         //
+                BulletPoolManager.Instance().ClearMagicEffect();            //magicEff
+
+            if (canAttack && reloadOver && Mana - magicQueue1.Peek().magicSO.mana > 0)//
+            {
+                canAttack = false;
+                AttackTimer = 0;
+                AttackCD = BasicAttackCD;
+                Queue<MagicBase> tempQueue = CreateTempQueue();
+
+                FillTempQueue1(tempQueue);
+                magicQueues[queueCount].Dequeue().TriggerMagic(attackPosition.transform.position);
+            }
         }
-        
+        if (queueIndex == 2)
+        {
+            if (magicQueue2.Count == magicLine2.Count)                         //
+                BulletPoolManager.Instance().ClearMagicEffect();            //magicEff
+
+            if (canAttack && reloadOver && Mana - magicQueue2.Peek().magicSO.mana > 0)//
+            {
+                canAttack = false;
+                AttackTimer = 0;
+                AttackCD = BasicAttackCD;
+                Queue<MagicBase> tempQueue = CreateTempQueue();
+
+                FillTempQueue2(tempQueue);
+                magicQueues[queueCount].Dequeue().TriggerMagic(attackPosition.transform.position);
+            }
+        }
+
+    }
+
+    public void SwitchMagicQueue()
+    {
+        if (queueIndex == 1)
+            queueIndex = 2;
+        else if (queueIndex == 2)
+            queueIndex = 1;
     }
 
     public Queue<MagicBase> CreateTempQueue()
@@ -204,11 +258,41 @@ public class PlayerAttack : MonoBehaviour
         return tempQueue;
     }
 
-    public void FillTempQueue(Queue<MagicBase> tempQueue)
+    public void FillTempQueue1(Queue<MagicBase> tempQueue)
     {
-        if (magicQueue.Count > 0)
+        if (magicQueue1.Count > 0)   //
         {
-            MagicBase magic = magicQueue.Dequeue();
+            MagicBase magic = magicQueue1.Dequeue(); //
+
+            magic.queueCount = queueCount;
+
+            if (mana - magic.magicSO.mana < 0)
+                magic.isActive = false;
+            else
+            {
+                mana -= magic.magicSO.mana;
+                reload += magic.magicSO.reload;
+                delay += magic.magicSO.delay;
+            }
+
+
+            tempQueue.Enqueue(magic);    
+
+            if (magic.magicSO.isTrigger)
+            {
+                FillTempQueue1(tempQueue);
+            }
+            for (int i = 0; i < magic.magicSO.extraTrigger; i++)
+            {
+                FillTempQueue1(tempQueue);
+            }
+        }
+    }
+    public void FillTempQueue2(Queue<MagicBase> tempQueue)
+    {
+        if (magicQueue2.Count > 0)   //
+        {
+            MagicBase magic = magicQueue2.Dequeue(); //
 
             magic.queueCount = queueCount;
 
@@ -226,29 +310,44 @@ public class PlayerAttack : MonoBehaviour
 
             if (magic.magicSO.isTrigger)
             {
-                FillTempQueue(tempQueue);
+                FillTempQueue2(tempQueue);
             }
             for (int i = 0; i < magic.magicSO.extraTrigger; i++)
             {
-                FillTempQueue(tempQueue);
+                FillTempQueue2(tempQueue);
             }
         }
     }
+
     private void OnFireTriggered(InputAction.CallbackContext context)
     {
         Attack();
     }
 
-    public void UpdateMagicLine()
+    public void UpdateMagicLine1()           //分两个MagicLine
     {
-        magicLine.Clear();
+        magicLine1.Clear();  //
         PackageManager package = PackageManager.Instance();
-        for(int i=0;i< package.horizontalLayoutGroup.transform.childCount;i++)
+        for(int i=0;i< package.horizontalLayoutGroup1.transform.childCount;i++)  //背包也分两个水平栏
         {
-            if(package.horizontalLayoutGroup.transform.GetChild(i).childCount >0)
+            if(package.horizontalLayoutGroup1.transform.GetChild(i).childCount >0)  //背包也分两个水平栏
             {
-                string magicIdentifier = package.horizontalLayoutGroup.transform.GetChild(i).GetChild(0).GetComponent<MagicIcon>().magicSO.identifier;
-                magicLine.Add(magicDic[magicIdentifier]);
+                string magicIdentifier = package.horizontalLayoutGroup1.transform.GetChild(i).GetChild(0).GetComponent<MagicIcon>().magicSO.identifier;
+                magicLine1.Add(magicDic[magicIdentifier]);  //
+            }
+        }
+    }
+
+        public void UpdateMagicLine2()           //分两个MagicLine
+    {
+        magicLine2.Clear();  //
+        PackageManager package = PackageManager.Instance();
+        for(int i=0;i< package.horizontalLayoutGroup2.transform.childCount;i++)  //背包也分两个水平栏
+        {
+            if(package.horizontalLayoutGroup2.transform.GetChild(i).childCount >0)  //背包也分两个水平栏
+            {
+                string magicIdentifier = package.horizontalLayoutGroup2.transform.GetChild(i).GetChild(0).GetComponent<MagicIcon>().magicSO.identifier;
+                magicLine2.Add(magicDic[magicIdentifier]);  //
             }
         }
     }
@@ -279,8 +378,6 @@ public class PlayerAttack : MonoBehaviour
         {
             ReloadTimer = reload;
         }
-
-
     }
     private void UpdateCDSlider()
     {
@@ -288,43 +385,80 @@ public class PlayerAttack : MonoBehaviour
         reloadSlider.value = ReloadTimer/ ReloadCD;
         
     }
-    public void ReloadMagicQueue()
+    public void ReloadMagicQueue1()  //分两个MagicQueue;
     {
 
-        magicQueue = new Queue<MagicBase>(magicLine);
-        for (int i = 0; i < magicChainHorizontalLayoutGroup.transform.childCount; i++)
+        magicQueue1 = new Queue<MagicBase>(magicLine1);  //
+        for (int i = 0; i < magicChainHorizontalLayoutGroup1.transform.childCount; i++)  //hori
         {
-            Destroy(magicChainHorizontalLayoutGroup.transform.GetChild(i).gameObject);
+            Destroy(magicChainHorizontalLayoutGroup1.transform.GetChild(i).gameObject);  
         }
       
-        for(int i=0;i<magicLine.Count;i++)
+        for(int i=0;i<magicLine1.Count;i++)  //
         {
-            MagicIcon_disabled icon = GameObject.Instantiate(MagicIcon_disablePrefabs, magicChainHorizontalLayoutGroup.transform);
-            icon.Initialize(magicLine[i].magicSO);
+            MagicIcon_disabled icon = GameObject.Instantiate(MagicIcon_disablePrefabs, magicChainHorizontalLayoutGroup1.transform);  //
+            icon.Initialize(magicLine1[i].magicSO);     //
             
         }
-        magicQueue = new Queue<MagicBase>(magicLine);
+        magicQueue1 = new Queue<MagicBase>(magicLine1);  //
         
     }
 
-    public void ChangeSelectedMagic()
+    public void ReloadMagicQueue2()  //分两个MagicQueue;
     {
-        int currentIndex = magicLine.Count - magicQueue.Count;
 
-        for (int i = 0; i < magicChainHorizontalLayoutGroup.transform.childCount; i++)
+        magicQueue2= new Queue<MagicBase>(magicLine2);  //
+        for (int i = 0; i < magicChainHorizontalLayoutGroup2.transform.childCount; i++)  //hori
         {
-            if (i == currentIndex)
+            Destroy(magicChainHorizontalLayoutGroup2.transform.GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < magicLine2.Count; i++)  //
+        {
+            MagicIcon_disabled icon = GameObject.Instantiate(MagicIcon_disablePrefabs, magicChainHorizontalLayoutGroup2.transform);  //
+            icon.Initialize(magicLine2[i].magicSO);     //
+
+        }
+        magicQueue2 = new Queue<MagicBase>(magicLine2);  //
+
+    }
+
+
+    public void ChangeSelectedMagic1()
+    {
+        int currentIndex = magicLine1.Count - magicQueue1.Count;    //currentindex也分两个
+
+        for (int i = 0; i < magicChainHorizontalLayoutGroup1.transform.childCount; i++)  //
+        {
+            if (i == currentIndex)                                      //
             {
-                magicChainHorizontalLayoutGroup.transform.GetChild(i).GetComponent<MagicIcon_disabled>().Selected();
+                magicChainHorizontalLayoutGroup1.transform.GetChild(i).GetComponent<MagicIcon_disabled>().Selected();//
             }
             else
             {
-                magicChainHorizontalLayoutGroup.transform.GetChild(i).GetComponent<MagicIcon_disabled>().DisSelected();
+                magicChainHorizontalLayoutGroup1.transform.GetChild(i).GetComponent<MagicIcon_disabled>().DisSelected();//
             }
 
         }
     }
 
+    public void ChangeSelectedMagic2()
+    {
+        int currentIndex = magicLine2.Count - magicQueue2.Count;    //currentindex也分两个
+
+        for (int i = 0; i < magicChainHorizontalLayoutGroup2.transform.childCount; i++)  //
+        {
+            if (i == currentIndex)                                      //
+            {
+                magicChainHorizontalLayoutGroup2.transform.GetChild(i).GetComponent<MagicIcon_disabled>().Selected();//
+            }
+            else
+            {
+                magicChainHorizontalLayoutGroup2.transform.GetChild(i).GetComponent<MagicIcon_disabled>().DisSelected();//
+            }
+
+        }
+    }
 
 
     private void AddMagicEntry(string key, string objectName)
@@ -346,6 +480,12 @@ public class PlayerAttack : MonoBehaviour
             Debug.LogError($"{objectName} 上缺少 MagicBase 组件");
         }
     }
+
+
+    private void OnSwitchTriggered(InputAction.CallbackContext context)
+    {
+        SwitchMagicQueue();
+    }
     public float Mana { get => mana; set => mana = value; }
     public float MaxMana { get => maxMana; set => maxMana = value; }
     public float ManaRecoverSpeed { get => manaRecoverSpeed; set => manaRecoverSpeed = value; }
@@ -355,5 +495,6 @@ public class PlayerAttack : MonoBehaviour
     public float BasicReloadCD { get => basicReloadCD; set => basicReloadCD = value; }
     public float ReloadCD { get => reload; set => reload = value; }
     public float ReloadTimer { get => reloadTimer; set => reloadTimer = value; }
-    public Queue<MagicBase> MagicQueue { get => magicQueue; set => magicQueue = value; }
+    public Queue<MagicBase> MagicQueue1 { get => magicQueue1; set => magicQueue1 = value; }
+    public Queue<MagicBase> MagicQueue2 { get => magicQueue2; set => magicQueue2 = value; }
 }

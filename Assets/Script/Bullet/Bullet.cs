@@ -10,6 +10,7 @@ using UnityEngine;
 abstract public class Bullet : MonoBehaviour
 {
     [Header("所属法术链")]
+
     public int queueCount;
 
     [Header("Bullet数值")]
@@ -104,7 +105,7 @@ abstract public class Bullet : MonoBehaviour
                 magicToTrigger.TriggerMagic(transform.position, transform.forward);
             }
             else
-                playerAttack.MagicQueue.Dequeue();
+                playerAttack.magicQueues[queueCount].Dequeue();     //有点奇怪
 
         }
     }

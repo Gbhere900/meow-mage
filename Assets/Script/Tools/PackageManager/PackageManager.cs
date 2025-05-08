@@ -10,7 +10,8 @@ public class PackageManager : MonoBehaviour
 {
     static PackageManager instance;
     [Header("²¼¾Ö")]
-    public HorizontalLayoutGroup horizontalLayoutGroup;
+    public HorizontalLayoutGroup horizontalLayoutGroup1;
+    public HorizontalLayoutGroup horizontalLayoutGroup2;
     public GridLayoutGroup gridLayoutGroup;
     public int MaxGridCapacity = 40;
 
@@ -29,9 +30,7 @@ public class PackageManager : MonoBehaviour
     public TextMeshProUGUI description_reload;
     static public PackageManager Instance()
     {
-            
-        return instance; 
-
+        return instance;
     }
     private void Awake()
     {
@@ -52,7 +51,8 @@ public class PackageManager : MonoBehaviour
             GameObject beforeIcon = Instantiate(beforeIconPrefabs, gridLayoutGroup.transform);
             beforeIcon.name = "BeforeIcon" + i;
         }
-        RefreshMagicChain();     
+        RefreshMagicChain1();     
+        RefreshMagicChain2();     
     }
 
     public void AddToPackage(MagicSO magicSO)
@@ -67,29 +67,57 @@ public class PackageManager : MonoBehaviour
         magicIcon.Initialize(magicSO);
         return magicIcon;
     }
-    public MagicIcon CreateNewSlotInHori(MagicSO magicSO, int SlotNumber)
+    public MagicIcon CreateNewSlotInHori1(MagicSO magicSO, int SlotNumber)
     {
-        MagicIcon magicIcon = Instantiate(MagicIconPrefabs, horizontalLayoutGroup.transform.GetChild(SlotNumber).transform);
+        MagicIcon magicIcon = Instantiate(MagicIconPrefabs, horizontalLayoutGroup1.transform.GetChild(SlotNumber).transform);
         magicIcon.Initialize(magicSO);
         return magicIcon;
     }
 
-    public void RefreshMagicChain()
+    public MagicIcon CreateNewSlotInHori2(MagicSO magicSO, int SlotNumber)
     {
-        for (int i = 0; i < horizontalLayoutGroup.transform.childCount; i++)
+        MagicIcon magicIcon = Instantiate(MagicIconPrefabs, horizontalLayoutGroup2.transform.GetChild(SlotNumber).transform);
+        magicIcon.Initialize(magicSO);
+        return magicIcon;
+    }
+
+    public void RefreshMagicChain1()
+    {
+        for (int i = 0; i < horizontalLayoutGroup1.transform.childCount; i++)
         {
-            Destroy(horizontalLayoutGroup.transform.GetChild(i));
+            Destroy(horizontalLayoutGroup1.transform.GetChild(i));
         }
 
-        for (int i = 0; i < PlayerAttack.Instance().capacity; i++)
+        for (int i = 0; i < PlayerAttack.Instance().capacity1; i++)
         {
-            GameObject beforeIcon = Instantiate(beforeIconPrefabs, horizontalLayoutGroup.transform);
+            GameObject beforeIcon = Instantiate(beforeIconPrefabs, horizontalLayoutGroup1.transform);
             beforeIcon.name = "BeforeIcon" + i;
         }
-        for (int i = 0; i < PlayerAttack.Instance().magicLine.Count; i++)
+        for (int i = 0; i < PlayerAttack.Instance().magicLine1.Count; i++)
         {
-            MagicIcon magicIcon = CreateNewSlotInHori(PlayerAttack.Instance().magicLine[i].magicSO, i);
-            magicIcon.transform.SetParent(horizontalLayoutGroup.transform.GetChild(i));
+            MagicIcon magicIcon = CreateNewSlotInHori1(PlayerAttack.Instance().magicLine1[i].magicSO, i);
+            magicIcon.transform.SetParent(horizontalLayoutGroup1.transform.GetChild(i));
+            magicIcon.button.onClick.AddListener(() => ChangeVisualEffect(magicIcon));
+            magicIcon.button.onClick.AddListener(() => ChangeDescription(magicIcon.magicSO));
+        }
+    }
+
+    public void RefreshMagicChain2()
+    {
+        for (int i = 0; i < horizontalLayoutGroup2.transform.childCount; i++)
+        {
+            Destroy(horizontalLayoutGroup2.transform.GetChild(i));
+        }
+
+        for (int i = 0; i < PlayerAttack.Instance().capacity2; i++)
+        {
+            GameObject beforeIcon = Instantiate(beforeIconPrefabs, horizontalLayoutGroup2.transform);
+            beforeIcon.name = "BeforeIcon" + i;
+        }
+        for (int i = 0; i < PlayerAttack.Instance().magicLine2.Count; i++)
+        {
+            MagicIcon magicIcon = CreateNewSlotInHori2(PlayerAttack.Instance().magicLine2[i].magicSO, i);
+            magicIcon.transform.SetParent(horizontalLayoutGroup2.transform.GetChild(i));
             magicIcon.button.onClick.AddListener(() => ChangeVisualEffect(magicIcon));
             magicIcon.button.onClick.AddListener(() => ChangeDescription(magicIcon.magicSO));
         }
@@ -127,9 +155,17 @@ public class PackageManager : MonoBehaviour
                 beforeIcon.transform.GetChild(0).GetComponent<MagicIcon>().DisSelected();
             }
         }
-        for(int i = 0;i<horizontalLayoutGroup.transform.childCount; i++)
+        for(int i = 0;i<horizontalLayoutGroup1.transform.childCount; i++)
         {
-            GameObject beforeIcon = horizontalLayoutGroup.transform.GetChild(i).gameObject;
+            GameObject beforeIcon = horizontalLayoutGroup1.transform.GetChild(i).gameObject;
+            if (beforeIcon.transform.childCount != 0 && beforeIcon.transform.GetChild(0).GetComponent<MagicIcon>() != magicIcon)
+            {
+                beforeIcon.transform.GetChild(0).GetComponent<MagicIcon>().DisSelected();
+            }
+        }
+        for (int i = 0; i < horizontalLayoutGroup2.transform.childCount; i++)
+        {
+            GameObject beforeIcon = horizontalLayoutGroup2.transform.GetChild(i).gameObject;
             if (beforeIcon.transform.childCount != 0 && beforeIcon.transform.GetChild(0).GetComponent<MagicIcon>() != magicIcon)
             {
                 beforeIcon.transform.GetChild(0).GetComponent<MagicIcon>().DisSelected();

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class MagicBase : MonoBehaviour
 {
+    public int queueIndex;
     public int queueCount = -1;
     public MagicSO magicSO;
     public bool isActive = true;
@@ -58,7 +59,7 @@ public abstract class MagicBase : MonoBehaviour
                 }
                 else
                 {
-                    playerAttack.MagicQueue.Dequeue();
+                    playerAttack.magicQueues[queueCount].Dequeue();  //”–µ„∆Êπ÷
                 }
             }
         }

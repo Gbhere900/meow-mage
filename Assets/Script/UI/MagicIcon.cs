@@ -90,6 +90,9 @@ public class MagicIcon : MonoBehaviour
                 {
                     go.transform.SetParent(beginParentTransform);
                     transform.GetComponent<Image>().raycastTarget = true;
+                    //解决关卡内显示错误bug
+                    PlayerAttack.Instance().UpdateMagicLine1();
+                    PlayerAttack.Instance().UpdateMagicLine2();
                 }).SetEase(Ease.InOutQuint);
             }
             else
@@ -100,6 +103,9 @@ public class MagicIcon : MonoBehaviour
                     {
                         go.transform.SetParent(beginParentTransform);
                         transform.GetComponent<Image>().raycastTarget = true;
+                        //解决关卡内显示错误bug
+                        PlayerAttack.Instance().UpdateMagicLine1();
+                        PlayerAttack.Instance().UpdateMagicLine2();
                     }).SetEase(Ease.InOutQuint);
                 });
             }
@@ -110,8 +116,10 @@ public class MagicIcon : MonoBehaviour
             SetPosAndParent(beginParentTransform);
             Debug.Log("不是ICON");
         }
-        PlayerAttack.Instance().UpdateMagicLine();
-        PlayerAttack.Instance().ReloadMagicQueue();
+        PlayerAttack.Instance().UpdateMagicLine1();
+        PlayerAttack.Instance().UpdateMagicLine2();
+        PlayerAttack.Instance().ReloadMagicQueue1();
+        PlayerAttack.Instance().ReloadMagicQueue2();
         transform.GetComponentInChildren<Image>().raycastTarget = true;
     }
 

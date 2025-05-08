@@ -14,7 +14,7 @@ public struct Pair
 
 public class BulletPoolManager : MonoBehaviour
 {
-    static BulletPoolManager instance;
+    static BulletPoolManager instance; 
 
     [SerializeField] private List< Pair> magicEffects= new List< Pair>();
     //magicBullet

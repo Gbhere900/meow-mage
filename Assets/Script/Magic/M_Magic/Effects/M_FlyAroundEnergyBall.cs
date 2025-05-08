@@ -53,7 +53,7 @@ public class M_FlyAroundMagicArrow: MagicBase, I_MagicEffect
                 }
                 else
                 {
-                    playerAttack.MagicQueue.Dequeue();
+                    playerAttack.magicQueues[queueCount].Dequeue();         //”–µ„∆Êπ÷
                 }
             }
         
