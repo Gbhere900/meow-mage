@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MagicData", menuName = "ScriptableObject/法术数据", order = 0)]
 public class MagicSO : ScriptableObject
 {
+    public BulletSO bulletSO;
+
     public string identifier;
     public string ChineseName;
     public string description;

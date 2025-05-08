@@ -14,6 +14,7 @@ public class M_Stop : MagicBase, I_MagicEffect
 
     public void AddEffect(AIPath AiPath)
     {
+        if(AiPath != null)
         AiPath.ChangeSpeedForSeconds(0, time);
     }
 }

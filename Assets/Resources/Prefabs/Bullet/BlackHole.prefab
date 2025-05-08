@@ -182,24 +182,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   queueCount: 0
-  basicSpeed: 3
+  bulletSO: {fileID: 11400000, guid: b2d8fd05eabc99543bdab887290c85f1, type: 2}
   speed: 3
-  maxSpeed: 60
-  basicDamage: 1
   damage: 1
-  basicTime: 5
   time: 5
-  maxTime: 15
-  basicCriticalChance: 0
   criticalChance: 0
-  basicCriticalRatio: 1
   criticalRatio: 1
-  basicCanCutThrough: 0
   canCutThrough: 0
   isTriggerMagic: 0
   isTriggered: 0
   aimDirection: {x: 0, y: 0, z: 0}
-  basicAimOffset: 20
   aimOffset: 20
   shootDirection: {x: 0, y: 0, z: 0}
   basicIsShootByMouseDiretion: 1

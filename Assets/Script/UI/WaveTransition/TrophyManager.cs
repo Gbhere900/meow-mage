@@ -47,7 +47,7 @@ public class TrophyManager : MonoBehaviour
             TrophyButton trophyButton = Instantiate(TrophyButtonPrefabs, horizontalLayoutGroup.transform);
 
             trophyButton.GetButton().onClick.RemoveAllListeners();
-            trophyButton.ChangeTrophyByMagic(magicSOs[i]);
+            trophyButton.ChangeTrophyByMagicSO(magicSOs[i]);
             trophyButton.GetButton().onClick.AddListener(() => ChangeVisualEffect(trophyButton));
         }
 

@@ -14,13 +14,16 @@ public class TrophyButton : MonoBehaviour
     [SerializeField] private TextMeshProUGUI description;
     [SerializeField] private Image image;
     [SerializeField] private Button button;
+    [SerializeField] private TextMeshProUGUI damage;
+    [SerializeField] private TextMeshProUGUI time;
+    [SerializeField] private TextMeshProUGUI aimOffset;
     [SerializeField] private TextMeshProUGUI mana;
     [SerializeField] private TextMeshProUGUI delay;
     [SerializeField] private TextMeshProUGUI reload;
     public bool canBeSelect = true;
 
 
-    public void ChangeTrophyByMagic(MagicSO magicSO)
+    public void ChangeTrophyByMagicSO(MagicSO magicSO)
     {
         this.magicSO = magicSO;
         if (magicSO.ChineseName == null)
@@ -51,9 +54,21 @@ public class TrophyButton : MonoBehaviour
         name.text =magicSO.ChineseName;
         description.text =magicSO.description;
         image.sprite = magicSO.icon;
-        mana.text = "法力消耗  " +magicSO.mana.ToString();
-        delay.text = "延迟  " +magicSO.delay.ToString();
-        reload.text = "充能时间  "+magicSO.reload.ToString();
+        if (magicSO.bulletSO != null)
+        {
+            damage.text = magicSO.bulletSO.basicDamage.ToString();
+            time.text =   magicSO.bulletSO.basicTime.ToString() + "s";
+            aimOffset.text =   magicSO.bulletSO.basicAimOffset.ToString() +"度";
+        }
+        else
+        {
+            damage.text = null;
+            time.text = null;
+            aimOffset.text = null;
+        }
+        mana.text =   magicSO.mana.ToString();
+        delay.text =  magicSO.delay.ToString() + "s";
+        reload.text = magicSO.reload.ToString() +"s";
 
         button.onClick.AddListener(GetMagic);
     }
