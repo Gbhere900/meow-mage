@@ -19,7 +19,7 @@ public class PlayerResouces : MonoBehaviour
     [Header("金币")]
     [SerializeField] private TextMeshProUGUI goldText1;
     [SerializeField] private TextMeshProUGUI goldText2;
-    [SerializeField] private float currentGold = 0;
+    [SerializeField] private  int currentGold = 0;
 
 
     [Header("收集半径")]
@@ -28,6 +28,9 @@ public class PlayerResouces : MonoBehaviour
 
     [Header("音效")]
     AudioClip levelUPAudio;
+
+    [Header("事件")]
+    public Action<int> OnGoldChanged;
     
     private void Awake()
     {
@@ -38,6 +41,11 @@ public class PlayerResouces : MonoBehaviour
         }
         else
         instance = this;
+    }
+
+    static public PlayerResouces Instance()
+    {
+        return instance;
     }
     private void OnEnable()
     {
@@ -107,15 +115,25 @@ public class PlayerResouces : MonoBehaviour
         LevelText.text = level.ToString();
     }
 
+    public void DecreaseGold(int cost)
+    {
+        currentGold -= cost;
+        OnGoldChanged.Invoke(currentGold);
+    }
     private void IncreaceGold()
     {
         currentGold++;
-
+        OnGoldChanged.Invoke(currentGold);
         UpdateGoldUI();
     }
     void UpdateGoldUI()
     {
         goldText1.text = currentGold.ToString() + "G";
         goldText2.text = currentGold.ToString() + "G";
+    }
+
+    public int GetCurrentGold()
+    {
+        return currentGold;
     }
 }

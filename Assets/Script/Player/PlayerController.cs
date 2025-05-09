@@ -77,4 +77,9 @@ public class PlayerController : MonoBehaviour
            // playerInputControl.Enable();
         //speed = BasicSpeed;
     }
+
+    public void AddSpeed()
+    {
+        speed += 1f;
+    }
 }

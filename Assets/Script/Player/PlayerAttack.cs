@@ -33,7 +33,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float mana;
     [SerializeField] private float maxMana = 100f;
     [SerializeField] private float manaRecoverSpeed = 10f;
-    [SerializeField] private float basicAttackCD = 0.5f;
+    [SerializeField] private float basicDelayCD = 0.5f;
     [SerializeField] private float delay = 0.5f;
     [SerializeField] private float delayTimer = 0;
     [SerializeField] private float basicReloadCD = 1.0f;
@@ -523,10 +523,31 @@ public class PlayerAttack : MonoBehaviour
         capacity2 = Math.Min(MaxCapacity2, capacity2 + 3);
         PackageManager.Instance().RefreshMagicChain2();
     }
+
+    public void DecreaseDelay()
+    {
+        basicDelayCD -= 0.1f;
+    }
+    public void DecreaseReload()
+    {
+        basicReloadCD -= 0.2f;
+    }
+
+
+    public void AddManaRecoverSpeed()
+    {
+        manaRecoverSpeed += 50;
+    }
+
+    public void AddMaxMana()
+    {
+        MaxMana += 200;
+    }
+
     public float Mana { get => mana; set => mana = value; }
     public float MaxMana { get => maxMana; set => maxMana = value; }
     public float ManaRecoverSpeed { get => manaRecoverSpeed; set => manaRecoverSpeed = value; }
-    public float BasicAttackCD { get => basicAttackCD; set => basicAttackCD = value; }
+    public float BasicAttackCD { get => basicDelayCD; set => basicDelayCD = value; }
     public float AttackCD { get => delay; set => delay = value; }
     public float AttackTimer { get => delayTimer; set => delayTimer = value; }
     public float BasicReloadCD { get => basicReloadCD; set => basicReloadCD = value; }
