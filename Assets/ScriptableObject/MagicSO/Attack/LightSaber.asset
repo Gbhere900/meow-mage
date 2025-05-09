@@ -16,7 +16,7 @@ MonoBehaviour:
   identifier: LightSaber
   ChineseName: "\u5149\u5251"
   description: "\u8FD1\u8DDD\u79BB\u653B\u51FB\u6CD5\u672F"
-  icon: {fileID: 21300000, guid: d835741a3c4a14a0aa5f7536c46456c4, type: 3}
+  icon: {fileID: 21300000, guid: e8efe9ab57f85d84da705be69e050547, type: 3}
   delay: -0.3
   reload: -0.17
   extraTrigger: 0

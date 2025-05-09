@@ -7678,7 +7678,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GameOver
+  m_text: "\u4F60\u6B7B\u5566"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
@@ -12631,7 +12631,7 @@ PrefabInstance:
         type: 3}
       propertyPath: magicLine2.Array.data[0]
       value: 
-      objectReference: {fileID: 2109720608}
+      objectReference: {fileID: 2066024170}
     - target: {fileID: 6666270770856498223, guid: c08523d0d7c51b14dad22b1f8a158ccb,
         type: 3}
       propertyPath: magicLine2.Array.data[1]
@@ -12687,6 +12687,11 @@ PrefabInstance:
       propertyPath: EXP_Slider
       value: 
       objectReference: {fileID: 1199852009}
+    - target: {fileID: 6895722992522118916, guid: c08523d0d7c51b14dad22b1f8a158ccb,
+        type: 3}
+      propertyPath: currentGold
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 7878282451454197451, guid: c08523d0d7c51b14dad22b1f8a158ccb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15240,7 +15245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1361810190
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15535,7 +15540,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ReturnToMainMenu
+  m_text: "\u518D\u73A9\u4E00\u6B21 :)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
@@ -19819,7 +19824,7 @@ MonoBehaviour:
     description: "\u63D0\u53475\u70B9\u6700\u5927\u751F\u547D\u503C"
     icon: {fileID: 21300000, guid: 64d68ac95f3a6ec4ea7c98a654ce3b74, type: 3}
     count: 4
-    cost: 20
+    cost: 10
     OnApplied:
       m_PersistentCalls:
         m_Calls:
@@ -19855,17 +19860,97 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - name: "\u6211\u9700\u8981\u6CBB\u7597"
-    description: "\u6062\u590D\u6240\u6709\u751F\u547D\u503C"
-    icon: {fileID: 21300000, guid: 1b1030321aa24c247889f6fa0d2a2af5, type: 3}
-    count: 100
+  - name: "\u5FEB\u901F\u65BD\u6CD5"
+    description: "\u51CF\u5C110.1\u79D2\u5EF6\u8FDF"
+    icon: {fileID: 21300000, guid: 57ab3c81a6069224481eb4b0770af36f, type: 3}
+    count: 1
+    cost: 30
+    OnApplied:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1899197411}
+          m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
+          m_MethodName: DecreaseDelay
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - name: "\u5FEB\u901F\u5145\u80FD"
+    description: "\u51CF\u5C110.2\u79D2\u5145\u80FD\u65F6\u95F4"
+    icon: {fileID: 21300000, guid: 187f098390ef2a04eb7ba5c1d7353de3, type: 3}
+    count: 2
+    cost: 30
+    OnApplied:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1899197411}
+          m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
+          m_MethodName: DecreaseReload
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - name: "\u51B2\u523A\uFF01\u51B2\u523A\uFF01"
+    description: "\u63D0\u9AD8\u79FB\u52A8\u901F\u5EA6"
+    icon: {fileID: 21300000, guid: efe2671bd131235439a8371868b72124, type: 3}
+    count: 2
+    cost: 30
+    OnApplied:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1899197412}
+          m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+          m_MethodName: AddSpeed
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - name: "\u6CD5\u529B\u6062\u590D"
+    description: "\u6CD5\u529B\u503C\u56DE\u590D\u901F\u5EA6\u63D0\u534750/s"
+    icon: {fileID: 21300000, guid: aa2b850aa80619e4a849009114ea1813, type: 3}
+    count: 5
     cost: 20
     OnApplied:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1985781303}
-          m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
-          m_MethodName: RecoverAllHealth
+        - m_Target: {fileID: 1899197411}
+          m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
+          m_MethodName: AddManaRecoverSpeed
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - name: "\u6CD5\u5E08\u4E4B\u9B42"
+    description: "\u6CD5\u529B\u6700\u5927\u503C\u63D0\u5347200"
+    icon: {fileID: 21300000, guid: 3753410b39499224392999e1d53a7536, type: 3}
+    count: 3
+    cost: 30
+    OnApplied:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1899197411}
+          m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
+          m_MethodName: AddMaxMana
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -21149,6 +21234,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c51e01e175d6dd246b2cab9124b06b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1899197411 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6666270770856498223, guid: c08523d0d7c51b14dad22b1f8a158ccb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1143273965}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4001e912ddaeec343b57e09aff8a5729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1899197412 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1255901995214934133, guid: c08523d0d7c51b14dad22b1f8a158ccb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1143273965}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf0f4ab7ba404947ab08fe17bb4d844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1899550711
@@ -22710,6 +22819,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0c16f0ea935ea64297ca1d4d55d9746, type: 3}
+--- !u!114 &2066024170 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3696842962604289715, guid: 2c3c4d470feebac4fb375b33c17112f4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2398050530754319250}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126917897f5b7dc4eb05f49d432fd2cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2069073006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4263922822445036487, guid: 3cdafb3c2f54d434894928d72d282874,
@@ -23351,18 +23472,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2499218462658002443}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2109720608 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7960194752627891779, guid: 98698c20cd2f719498db0db4143925ff,
-    type: 3}
-  m_PrefabInstance: {fileID: 2499218462658002443}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df6fae13bfb8ecd43959981b7752c6a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2109885910
 GameObject:
   m_ObjectHideFlags: 0

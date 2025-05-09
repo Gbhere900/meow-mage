@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9220a25a6b6a1a04c87fcdb047393556, type: 3}
   m_Name: LowerOffset
   m_EditorClassIdentifier: 
+  bulletSO: {fileID: 0}
   identifier: LowerOffset
   ChineseName: "\u96C6\u4E2D\u6CD5\u672F"
   description: "\u4F7F\u4E0B\u4E00\u6B21\u53D1\u5C04\u6295\u5C04\u7269\u66F4\u52A0\u7CBE\u51C6"
-  icon: {fileID: 21300000, guid: 5f7fa9a7940a64e79b5a42d9f661d42c, type: 3}
+  icon: {fileID: 21300000, guid: 3a5a7e0dfaa69704ea9f081ecff0e799, type: 3}
   delay: 0
   reload: 0
   extraTrigger: 1

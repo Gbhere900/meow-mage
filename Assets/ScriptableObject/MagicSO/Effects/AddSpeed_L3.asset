@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9220a25a6b6a1a04c87fcdb047393556, type: 3}
   m_Name: AddSpeed_L3
   m_EditorClassIdentifier: 
+  bulletSO: {fileID: 0}
   identifier: AddSpeed_L3
   ChineseName: "\u9AD8\u7EA7\u52A0\u901F\u6CD5\u672F"
   description: "\u8BA9\u4E0B\u4E00\u6B21\u53D1\u5C04\u7684\u6295\u5C04\u7269\u7B54\u590D\u52A0\u901F"
-  icon: {fileID: 21300000, guid: ece518ef2ac30354ebcd8b51dc581b02, type: 3}
+  icon: {fileID: 21300000, guid: 507ac4ea3e56b1e4fbfb7ea43c6df3e9, type: 3}
   delay: 0
   reload: 0
   extraTrigger: 1

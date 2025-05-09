@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9220a25a6b6a1a04c87fcdb047393556, type: 3}
   m_Name: AddTime_L2
   m_EditorClassIdentifier: 
+  bulletSO: {fileID: 0}
   identifier: AddTime_L2
   ChineseName: "\u9AD8\u7EA7\u5EF6\u65F6\u6CD5\u672F"
   description: "\u4F7F\u4E0B\u4E00\u6B21\u6295\u5C04\u7269\u547D\u4E2D\u7684\u5B58\u5728\u65F6\u95F4\u5927\u5E45\u589E\u52A0"
-  icon: {fileID: 21300000, guid: 70141d51621e24facbca9196bbde84b4, type: 3}
+  icon: {fileID: 21300000, guid: 7ad38516625379942a706ccdeae8be04, type: 3}
   delay: 0
   reload: 0
   extraTrigger: 1
