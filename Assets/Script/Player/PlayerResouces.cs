@@ -114,6 +114,6 @@ public class PlayerResouces : MonoBehaviour
     }
     void UpdateGoldUI()
     {
-        goldText.text = currentGold.ToString();
+        goldText.text = currentGold.ToString() + "G";
     }
 }
