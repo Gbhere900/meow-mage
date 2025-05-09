@@ -687,11 +687,11 @@ MonoBehaviour:
   mana: 200
   maxMana: 200
   manaRecoverSpeed: 70
-  basicDelayCD: 0.4
-  delay: 0.4
+  basicDelayCD: 0.3
+  delay: 0.3
   delayTimer: 0
-  basicReloadCD: 1
-  reload: 1
+  basicReloadCD: 0.7
+  reload: 0.7
   reloadTimer: 0
   baseMagic: {fileID: 0}
   capacity1: 15
@@ -701,10 +701,6 @@ MonoBehaviour:
   magicIndex1: 0
   magicIndex2: 0
   magicLine1:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

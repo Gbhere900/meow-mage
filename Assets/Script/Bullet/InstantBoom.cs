@@ -14,13 +14,14 @@ public class InstantBoom : Bullet
     Collider[] colliders;
     static public Action<InstantBoom> OnRecycled;
 
-    private void Awake()
+    
+    protected override void Awake()
     {
         base.Awake();
         colliders = new Collider[maxCapacity];
         
     }
-    private void OnEnable()
+    protected override void OnEnable()
     {
         
         base.OnEnable();

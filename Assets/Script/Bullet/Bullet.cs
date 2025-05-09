@@ -1,4 +1,4 @@
-using Pathfinding;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,13 +52,13 @@ abstract public class Bullet : MonoBehaviour
 
 
     static public Action<Bullet> OnRecycled;
-    public Action <AIPath>OnCollision;
+    public Action <EnemyMove>OnCollision;
 
     [Header("“Ù–ß")]
     public AudioClip triggerAudio;
 
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         triggerAudio = Resources.Load<AudioClip>("Audio/SoundEffect/ObstacleHit");
         if(triggerAudio==null)
@@ -67,7 +67,7 @@ abstract public class Bullet : MonoBehaviour
         }
         rigidbody = GetComponent<Rigidbody>();  
     }
-    protected void OnEnable()
+    protected virtual void OnEnable()
     {
 
 
@@ -141,7 +141,7 @@ abstract public class Bullet : MonoBehaviour
         {
             
             other.GetComponent<EnemyHealth>().ReceiveDamage(IsCritical()?  Damage * CriticalRatio:Damage);
-            OnCollision?.Invoke(other.GetComponent<AIPath>());
+            OnCollision?.Invoke(other.GetComponent<EnemyMove>());
 
             if (isTriggerMagic && !isTriggered)
             {

@@ -1,4 +1,4 @@
-using Pathfinding;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,9 +27,9 @@ public class BounceBall : Bullet
     {
         if(collision.collider.GetComponent<EnemyHealth>() || collision.collider.gameObject.layer == 3)
         {
-            if (collision.collider.GetComponent<AIPath>() != null)
+            if (collision.collider.GetComponent<EnemyMove>() != null)
             {
-                OnCollision?.Invoke(collision.collider.GetComponent<AIPath>());
+                OnCollision?.Invoke(collision.collider.GetComponent<EnemyMove>());
             }
             collision.collider.GetComponent<EnemyHealth>()?.ReceiveDamage(damage);
             // 获取第一个碰撞点的法线

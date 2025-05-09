@@ -1,4 +1,4 @@
-using Pathfinding;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,9 +25,9 @@ public class BlackHole : Bullet
         {
 
             other.GetComponent<EnemyHealth>()?.ReceiveDamage(IsCritical() ? Damage * CriticalRatio : Damage);
-            if (other.GetComponent<AIPath>() != null)
+            if (other.GetComponent<EnemyMove>() != null)
             {
-                OnCollision?.Invoke(other.GetComponent<AIPath>());
+                OnCollision?.Invoke(other.GetComponent<EnemyMove>());
             }
             if(!isEnabled)
             {
