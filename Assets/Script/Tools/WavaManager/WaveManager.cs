@@ -145,7 +145,7 @@ public class WaveManager : MonoBehaviour
     }
     private void UpdateWavesText()
     {
-        wavesText.text = "Wave  " + (currentWave+1).ToString();
+        wavesText.text = "µÚ" + (currentWave+1).ToString()+"²¨";
     }
     [System.Serializable]
     public struct Wave

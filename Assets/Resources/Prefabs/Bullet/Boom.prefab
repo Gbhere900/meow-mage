@@ -4996,7 +4996,7 @@ MonoBehaviour:
   queueCount: 0
   bulletSO: {fileID: 11400000, guid: 1c01743001931ed4795efe1826904969, type: 2}
   speed: 5
-  damage: 10
+  damage: 7
   time: 1
   criticalChance: 0
   criticalRatio: 2

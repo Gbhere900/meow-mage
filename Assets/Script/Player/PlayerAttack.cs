@@ -75,6 +75,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject MagicWandn1;
     public GameObject MagicWandn2;
     public int queueIndex = 1;
+    public bool isAttacking = false;
     private void Awake()
     {
         AddMagicEntry("MagicBullet", "M_MagicBullet");
@@ -134,8 +135,13 @@ public class PlayerAttack : MonoBehaviour
         playerInputControl.Enable();
         playerInputControl.Player.Fire.started += OnFireTriggered;
         playerInputControl.Player.Switch.started += OnSwitchTriggered;
+        playerInputControl.Player.Fire.canceled += OnFireCanceled;
     }
 
+    private void OnFireCanceled(InputAction.CallbackContext context)
+    {
+        isAttacking = false;
+    }
 
     void Start()
     {
@@ -317,16 +323,23 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if(isAttacking)
+        {
+            Attack();
+        }
+    }
     private void OnFireTriggered(InputAction.CallbackContext context)
     {
         if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())//ÔÚUIÉÏ
         {
-            Attack();
+            isAttacking = true;
         }
         else
             GetClickedUIObject();
-        
     }
+
 
     private GameObject GetClickedUIObject()
     {

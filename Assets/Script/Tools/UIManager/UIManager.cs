@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
         {
             case GameState.menu:
                 menuUI.SetActive(true);
+                gameUI.SetActive(true); 
                 break;
             case GameState.game:
                 gameUI.SetActive(true);

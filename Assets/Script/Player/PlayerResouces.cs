@@ -123,7 +123,7 @@ public class PlayerResouces : MonoBehaviour
     private void IncreaceGold()
     {
         currentGold++;
-        OnGoldChanged.Invoke(currentGold);
+        OnGoldChanged?.Invoke(currentGold);
         UpdateGoldUI();
     }
     void UpdateGoldUI()
