@@ -78,6 +78,10 @@ public class PlayerAttack : MonoBehaviour
     public bool isAttacking = false;
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
         AddMagicEntry("MagicBullet", "M_MagicBullet");
         AddMagicEntry("MagicArrow", "M_MagicArrow");
         AddMagicEntry("Boom", "M_Boom");
@@ -118,10 +122,7 @@ public class PlayerAttack : MonoBehaviour
             // magicLine2.Add(baseMagic);                     //
         }
 
-        if (instance == null)
-        {
-            instance = this;
-        }
+
 
         playerInputControl = new PlayerInputControl();
 

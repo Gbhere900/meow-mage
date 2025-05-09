@@ -31,10 +31,20 @@ public class PackageManager : MonoBehaviour
     public TextMeshProUGUI description_mana;
     public TextMeshProUGUI description_delay;
     public TextMeshProUGUI description_reload;
+
+    [Header("∑®’»")]
+    public TextMeshProUGUI basicDelay;
+    public TextMeshProUGUI basicReload;
+    public TextMeshProUGUI maxMana;
+    public TextMeshProUGUI manaRecoverSpeed;
+
+    private bool isFirstTime = true;
     static public PackageManager Instance()
     {
         return instance;
     }
+    
+
     private void Awake()
     {
         if (instance == null)
@@ -54,10 +64,14 @@ public class PackageManager : MonoBehaviour
             GameObject beforeIcon = Instantiate(beforeIconPrefabs, gridLayoutGroup.transform);
             beforeIcon.name = "BeforeIcon" + i;
         }
-        RefreshMagicChain1();     
-        RefreshMagicChain2();     
+         
     }
 
+    public void Start()
+    {
+        RefreshMagicChain1();
+        RefreshMagicChain2();
+    }
     public void AddToPackage(MagicSO magicSO)
     {
         playerPackage.AddToList(magicSO);
@@ -96,6 +110,7 @@ public class PackageManager : MonoBehaviour
             GameObject beforeIcon = Instantiate(beforeIconPrefabs, horizontalLayoutGroup1.transform);
             beforeIcon.name = "BeforeIcon" + i;
         }
+
         for (int i = 0; i < PlayerAttack.Instance().magicLine1.Count; i++)
         {
             Debug.Log(PlayerAttack.Instance().magicLine1[i].magicSO.ChineseName);
@@ -202,5 +217,13 @@ public class PackageManager : MonoBehaviour
         description_reload.text = magicSO.reload.ToString()+"s";
     }
 
+    public void UpdateBasicAttributes()
+    {
+
+        basicDelay.text = PlayerAttack.Instance().BasicAttackCD.ToString() + "s";
+        basicReload.text = PlayerAttack.Instance().BasicReloadCD.ToString() + "s";
+        maxMana.text = PlayerAttack.Instance().MaxMana.ToString();
+        manaRecoverSpeed.text = PlayerAttack.Instance().ManaRecoverSpeed.ToString() + "/s";
+    }
 
 }

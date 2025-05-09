@@ -684,18 +684,18 @@ MonoBehaviour:
   reloadSlider: {fileID: 0}
   packageHorizontalLayoutGroup1: {fileID: 0}
   packageHorizontalLayoutGroup2: {fileID: 0}
-  mana: 0
-  maxMana: 300
-  manaRecoverSpeed: 1000
-  basicAttackCD: 0.2
+  mana: 200
+  maxMana: 200
+  manaRecoverSpeed: 30
+  basicDelayCD: 0.4
   delay: 0.4
   delayTimer: 0
   basicReloadCD: 1
   reload: 1
   reloadTimer: 0
   baseMagic: {fileID: 0}
-  capacity1: 5
-  capacity2: 5
+  capacity1: 15
+  capacity2: 15
   MaxCapacity1: 15
   MaxCapacity2: 15
   magicIndex1: 0
@@ -703,19 +703,19 @@ MonoBehaviour:
   magicLine1:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   magicLine2:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   canAttack: 1
   reloadOver: 1
   attackPosition: {fileID: 3663481788624834710}
-  maxQueueCount: 300
+  maxQueueCount: 400
   queueCount: -1
   MagicWandn1: {fileID: 6690512496481938033}
   MagicWandn2: {fileID: 6767348587960474407}
   queueIndex: 1
+  isAttacking: 0
 --- !u!1 &6914715931122491357
 GameObject:
   m_ObjectHideFlags: 0
