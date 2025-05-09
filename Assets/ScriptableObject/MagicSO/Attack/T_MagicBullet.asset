@@ -16,7 +16,7 @@ MonoBehaviour:
   identifier: T_MagicBullet
   ChineseName: "\u89E6\u53D1\u9B54\u6CD5\u5F39"
   description: "\u51FB\u4E2D\u65F6\u4F1A\u89E6\u53D1\u4E0B\u4E00\u4E2A\u6CD5\u672F\u7684\u9B54\u6CD5\u5F39"
-  icon: {fileID: 21300000, guid: db7e1496de0cb454c991db1376b1dc01, type: 3}
+  icon: {fileID: 21300000, guid: 6ab92d80f9bc308438e5005dda11b190, type: 3}
   delay: 0
   reload: 0
   extraTrigger: 0

@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f634f58ecb07b4aa30505f9048ddf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 11
+  maxHealth: 8
   health: 8
   EXPnum: 2
   Goldnum: 2
@@ -333,7 +333,7 @@ MonoBehaviour:
   radius: 60
   height: 100
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 2.5
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2

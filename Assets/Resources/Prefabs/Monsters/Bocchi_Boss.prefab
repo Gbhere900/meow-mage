@@ -42,32 +42,32 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.78479147
+      value: 11.204632
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.78580475
+      value: 0.77181244
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.43828
+      value: -12.500033
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
@@ -112,7 +112,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_Name
-      value: Bocchi
+      value: Bocchi_Boss
       objectReference: {fileID: 0}
     - target: {fileID: 6317578925029434746, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
@@ -137,11 +137,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2872559187143282995}
+      addedObject: {fileID: 8048097463323202040}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8048097463323202040}
+      addedObject: {fileID: 7171847073324067220}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       insertIndex: -1
@@ -154,10 +154,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4826299836266497880}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 74f5abc404161a6469add0c645e24018,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4057071118632720121}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       insertIndex: -1
@@ -177,22 +173,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4558845131657387702}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2872559187143282995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3712422601029067751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6fbbc524207258429f3d4e6d3a1a52a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  timeBeforeFirstShoot: 3
-  checkInterval: 2
-  distance: 30
 --- !u!54 &8048097463323202040
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -203,7 +183,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -220,6 +200,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &7171847073324067220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3712422601029067751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6fbbc524207258429f3d4e6d3a1a52a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  timeBeforeFirstShoot: 3
+  checkInterval: 0.4
+  distance: 40
 --- !u!136 &3905414697655603535
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -255,8 +251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace66cdfd35891a46824fef031400eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
-  force: 50
+  damage: 10
+  force: 100
   attackSpacing: 1
   attackTimer: 0
 --- !u!114 &4826299836266497880
@@ -271,34 +267,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f634f58ecb07b4aa30505f9048ddf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  health: 30
-  EXPnum: 5
-  Goldnum: 5
+  maxHealth: 800
+  health: 800
+  EXPnum: 30
+  Goldnum: 30
   TMPSpawnPoint: {fileID: 4997891252039774961}
   hitAudio: {fileID: 0}
   passAwayAudio: {fileID: 0}
---- !u!95 &4057071118632720121
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3712422601029067751}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ec013bbea1c86d943b48ed27c9c9c0ed, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4187988995441766208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,10 +315,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
-  radius: 1.1
+  radius: 0.3
   height: 1.09
   canMove: 1
-  maxSpeed: 2
+  maxSpeed: 3
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2

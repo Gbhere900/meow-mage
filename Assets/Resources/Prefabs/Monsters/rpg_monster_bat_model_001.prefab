@@ -1182,8 +1182,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   health: 3
-  EXPnum: 1
-  Goldnum: 1
+  EXPnum: 2
+  Goldnum: 2
   TMPSpawnPoint: {fileID: 8666506852514019219}
   hitAudio: {fileID: 0}
   passAwayAudio: {fileID: 0}
