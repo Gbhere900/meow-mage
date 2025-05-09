@@ -42,6 +42,7 @@ public class PlayerHealth : MonoBehaviour
     public void Add5maxHealth()
     {
         maxHealth += 5;
+        health += 5;
         UpdateHealthUI() ;
     }
 

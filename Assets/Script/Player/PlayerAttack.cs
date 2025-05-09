@@ -508,6 +508,21 @@ public class PlayerAttack : MonoBehaviour
     {
         SwitchMagicQueue();
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void AddMagicCapacity1()
+    {
+        capacity1 = Math.Min(MaxCapacity1, capacity1 + 3);
+        PackageManager.Instance().RefreshMagicChain1();
+    }
+
+    public void AddMagicCapacity2()
+    {
+        capacity2 = Math.Min(MaxCapacity2, capacity2 + 3);
+        PackageManager.Instance().RefreshMagicChain2();
+    }
     public float Mana { get => mana; set => mana = value; }
     public float MaxMana { get => maxMana; set => maxMana = value; }
     public float ManaRecoverSpeed { get => manaRecoverSpeed; set => manaRecoverSpeed = value; }

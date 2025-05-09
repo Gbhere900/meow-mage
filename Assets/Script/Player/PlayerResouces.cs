@@ -17,7 +17,8 @@ public class PlayerResouces : MonoBehaviour
     public  int deltaLevel = 1;
 
     [Header("½ð±Ò")]
-    [SerializeField] private TextMeshProUGUI goldText;
+    [SerializeField] private TextMeshProUGUI goldText1;
+    [SerializeField] private TextMeshProUGUI goldText2;
     [SerializeField] private float currentGold = 0;
 
 
@@ -114,6 +115,7 @@ public class PlayerResouces : MonoBehaviour
     }
     void UpdateGoldUI()
     {
-        goldText.text = currentGold.ToString() + "G";
+        goldText1.text = currentGold.ToString() + "G";
+        goldText2.text = currentGold.ToString() + "G";
     }
 }

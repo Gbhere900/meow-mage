@@ -88,7 +88,7 @@ public class PackageManager : MonoBehaviour
     {
         for (int i = 0; i < horizontalLayoutGroup1.transform.childCount; i++)
         {
-            Destroy(horizontalLayoutGroup1.transform.GetChild(i));
+            Destroy(horizontalLayoutGroup1.transform.GetChild(i).gameObject);
         }
 
         for (int i = 0; i < PlayerAttack.Instance().capacity1; i++)
@@ -98,7 +98,10 @@ public class PackageManager : MonoBehaviour
         }
         for (int i = 0; i < PlayerAttack.Instance().magicLine1.Count; i++)
         {
+            Debug.Log(PlayerAttack.Instance().magicLine1[i].magicSO.ChineseName);
             MagicIcon magicIcon = CreateNewSlotInHori1(PlayerAttack.Instance().magicLine1[i].magicSO, i);
+            if (magicIcon == null)
+                Debug.LogError("Í¼±êÎª¿Õ");
             magicIcon.transform.SetParent(horizontalLayoutGroup1.transform.GetChild(i));
             magicIcon.button.onClick.AddListener(() => ChangeVisualEffect(magicIcon));
             magicIcon.button.onClick.AddListener(() => ChangeDescription(magicIcon.magicSO));
@@ -109,7 +112,7 @@ public class PackageManager : MonoBehaviour
     {
         for (int i = 0; i < horizontalLayoutGroup2.transform.childCount; i++)
         {
-            Destroy(horizontalLayoutGroup2.transform.GetChild(i));
+            Destroy(horizontalLayoutGroup2.transform.GetChild(i).gameObject);
         }
 
         for (int i = 0; i < PlayerAttack.Instance().capacity2; i++)

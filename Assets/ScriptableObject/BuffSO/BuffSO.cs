@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +10,5 @@ public class BuffSO : ScriptableObject
     public string name = "XXX";
     public string description = "XXXXX";
     public Sprite icon;
-    public UnityEvent OnApplied;
-    public void ApplyBuff()
-    {
-        OnApplied?.Invoke();
-    }
 
 }

@@ -25,6 +25,7 @@ public class ShopItemButton : MonoBehaviour
         if (buff.GetIcon())
             shopItemImage.sprite = buff.GetIcon();
         shopItemButton.onClick.RemoveAllListeners();
+        shopItemButton.onClick.AddListener(()=> AudioManager.Instance().PlayBuyAudio());
         shopItemButton.onClick.AddListener(buff.ApplyBuff);
     }
 }

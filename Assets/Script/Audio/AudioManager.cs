@@ -5,6 +5,9 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     public float volume = 1;
+
+    public AudioClip ClickButtonClip;
+    public AudioClip BuyAudioClip;
     private List<AudioSource> audioSources = new List<AudioSource>();
 
     private void Awake()
@@ -20,6 +23,14 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayClickButtonAudio()
+    {
+        PlaySound(ClickButtonClip);
+    }
+    public void PlayBuyAudio()
+    {
+        PlaySound(BuyAudioClip);
+    }
     public void PlaySound(AudioClip clip)
     {
         if (clip != null)

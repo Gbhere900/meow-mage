@@ -713,7 +713,6 @@ MonoBehaviour:
   attackPosition: {fileID: 3663481788624834710}
   maxQueueCount: 300
   queueCount: -1
-  mainCamera: {fileID: 0}
   MagicWandn1: {fileID: 6690512496481938033}
   MagicWandn2: {fileID: 6767348587960474407}
   queueIndex: 1
@@ -873,7 +872,8 @@ MonoBehaviour:
   level: 1
   lastLevel: 1
   deltaLevel: 1
-  goldText: {fileID: 0}
+  goldText1: {fileID: 0}
+  goldText2: {fileID: 0}
   currentGold: 0
   sphereCollider: {fileID: 558012171852095545}
 --- !u!1 &8355018781156330156
@@ -1345,6 +1345,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MagicWandn2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eb9f0ec42a02cf64aa0451ef53aeaeba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
