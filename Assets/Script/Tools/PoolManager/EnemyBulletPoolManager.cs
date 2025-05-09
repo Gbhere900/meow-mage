@@ -46,4 +46,12 @@ public class EnemyBulletPoolManager : MonoBehaviour
     {
         slimeGelBulletPool.Release(slimeGelBullet);
     }
+
+    private void OnDestroy()
+    {
+        if (instance == this)
+        {
+            instance = null; // 确保场景销毁时清空引用
+        }
+    }
 }

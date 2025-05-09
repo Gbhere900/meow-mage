@@ -96,5 +96,11 @@ public class TrophyManager : MonoBehaviour
         }
         // return allBuffs.GetRange(0, Mathf.Min(count, allBuffs.Count));
     }
-
+    private void OnDestroy()
+    {
+        if (instance == this)
+        {
+            instance = null; // 确保场景销毁时清空引用
+        }
+    }
 }

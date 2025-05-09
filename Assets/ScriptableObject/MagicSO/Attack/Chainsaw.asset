@@ -15,10 +15,10 @@ MonoBehaviour:
   bulletSO: {fileID: 11400000, guid: 15e8f113417cc1c4eba428a3dd253676, type: 2}
   identifier: Chainsaw
   ChineseName: "\u94FE\u952F"
-  description: "\u8DDD\u79BB\u6781\u77ED\u7684\u653B\u51FB\u6CD5\u672F\uFF0C\u53EF\u4EE5\u5C06\u6CD5\u672F\u5EF6\u8FDF\u5F52\u96F6"
+  description: "\u8DDD\u79BB\u6781\u77ED\u7684\u653B\u51FB\u6CD5\u672F\uFF0C\u53EF\u4EE5\u5C06\u6CD5\u672F\u5EF6\u8FDF\u5F52\u96F6\uFF01"
   icon: {fileID: 21300000, guid: 7ffe439234559ad45b8bc61509af00a2, type: 3}
   delay: -999
-  reload: -0.17
+  reload: -0.33
   extraTrigger: 0
   mana: 1
   type: 0

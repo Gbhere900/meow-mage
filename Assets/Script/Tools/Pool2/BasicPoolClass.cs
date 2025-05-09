@@ -57,9 +57,15 @@ using UnityEngine.Pool;
     {
         GameObject.Destroy(prefabs.gameObject);
     }
-    
-   // protected abstract  String GetPrefabsPath();
-  
 
+    // protected abstract  String GetPrefabsPath();
+
+    private void OnDestroy()
+    {
+        if (_instance !=null)
+        {
+            _instance = null; // 确保场景销毁时清空引用
+        }
+    }
 }
 

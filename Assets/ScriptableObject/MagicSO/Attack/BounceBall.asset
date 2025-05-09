@@ -17,7 +17,7 @@ MonoBehaviour:
   ChineseName: "\u5F39\u8DF3\u9B54\u6CD5\u5F39"
   description: "\u6709\u5F39\u6027\u7684\u9B54\u6CD5\u5F39"
   icon: {fileID: 21300000, guid: 9f0c323abc3cdfe4795c80df168d863d, type: 3}
-  delay: 0
+  delay: -0.03
   reload: -0.05
   extraTrigger: 0
   mana: 15

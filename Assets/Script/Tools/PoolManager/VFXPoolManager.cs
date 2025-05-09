@@ -62,4 +62,12 @@ public class VFXPoolManager : MonoBehaviour
     {
         VFXPool_explosion.Release(tempVFX);
     }
+
+    private void OnDestroy()
+    {
+        if (instance == this)
+        {
+            instance = null; // 确保场景销毁时清空引用
+        }
+    }
 }

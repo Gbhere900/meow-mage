@@ -268,7 +268,7 @@ public class PlayerAttack : MonoBehaviour
         if (magicQueue1.Count > 0)   //
         {
             MagicBase magic = magicQueue1.Dequeue(); //
-
+            magic.isActive = true;
             magic.queueCount = queueCount;
 
             if (mana - magic.magicSO.mana < 0)

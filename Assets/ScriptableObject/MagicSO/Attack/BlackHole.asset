@@ -17,10 +17,10 @@ MonoBehaviour:
   ChineseName: "\u9ED1\u6D1E"
   description: "\u5728\u547D\u4E2D\u5904\u751F\u6210\u4E00\u4E2A\u9ED1\u6D1E"
   icon: {fileID: 21300000, guid: 8cb61e73482d8e34c8871cc305e8fddf, type: 3}
-  delay: 1.5
-  reload: 3
+  delay: 0.5
+  reload: 1
   extraTrigger: 0
-  mana: 100
+  mana: 60
   type: 0
   isTrigger: 0
   prefabToCreat: {fileID: 3430004728982748186, guid: 089905239da61754b8958a4aee316e0d,

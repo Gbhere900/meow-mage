@@ -686,7 +686,7 @@ MonoBehaviour:
   packageHorizontalLayoutGroup2: {fileID: 0}
   mana: 200
   maxMana: 200
-  manaRecoverSpeed: 30
+  manaRecoverSpeed: 70
   basicDelayCD: 0.4
   delay: 0.4
   delayTimer: 0
@@ -701,6 +701,10 @@ MonoBehaviour:
   magicIndex1: 0
   magicIndex2: 0
   magicLine1:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

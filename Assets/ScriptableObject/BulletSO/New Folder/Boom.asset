@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a416b98068020e44b3b152f358c8cfa, type: 3}
   m_Name: Boom
   m_EditorClassIdentifier: 
-  basicSpeed: 5
+  basicSpeed: 2
   maxSpeed: 40
-  basicDamage: 10
-  basicTime: 1
+  basicDamage: 6
+  basicTime: 3
   maxTime: 5
   basicCriticalChance: 20
   basicCriticalRatio: 2
