@@ -113,7 +113,7 @@ public class PackageManager : MonoBehaviour
 
         for (int i = 0; i < PlayerAttack.Instance().magicLine1.Count; i++)
         {
-            Debug.Log(PlayerAttack.Instance().magicLine1[i].magicSO.ChineseName);
+            //Debug.Log(PlayerAttack.Instance().magicLine1[i].magicSO.ChineseName);
             MagicIcon magicIcon = CreateNewSlotInHori1(PlayerAttack.Instance().magicLine1[i].magicSO, i);
             if (magicIcon == null)
                 Debug.LogError("Í¼±êÎª¿Õ");

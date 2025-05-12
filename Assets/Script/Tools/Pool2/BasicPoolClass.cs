@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-
 using UnityEngine;
 using UnityEngine.Pool;
   abstract public class BasicPoolClass<T> where T : Component
@@ -16,12 +11,7 @@ using UnityEngine.Pool;
         {  
             if(_instance == null)
             {
-              //  prefabs = Resources.Load<T>(prefabsPath);
-                //if(prefabsPath == null )
-                //{
-                //    Debug.Log("预制体路径未找到");
-                //    return null;
-                //}
+             
                 if(prefabs == null )
                 {
                     Debug.Log(typeof(T).Name+   "预制体为空");
@@ -58,7 +48,6 @@ using UnityEngine.Pool;
         GameObject.Destroy(prefabs.gameObject);
     }
 
-    // protected abstract  String GetPrefabsPath();
 
     private void OnDestroy()
     {

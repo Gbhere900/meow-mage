@@ -15,39 +15,25 @@ abstract public class Bullet : MonoBehaviour
 
     [Header("BulletÊýÖµ")]
     public BulletSO bulletSO;
-   // [SerializeField] private float basicSpeed = 5;
     [SerializeField] private float speed = 5;
-   // [SerializeField] private float maxSpeed = 15;
 
-   // [SerializeField] private float basicDamage = 3;
     [SerializeField] protected float damage = 3;
 
-   // [SerializeField] private float basicTime = 5;
     public float time = 5;
-   // public float maxTime = 15;
 
-   // [SerializeField] private float basicCriticalChance = 20;
     [SerializeField] private float criticalChance = 20;
-
-   // [SerializeField] private float basicCriticalRatio = 2;
     [SerializeField] private float criticalRatio = 2;
 
-   // [SerializeField] private Boolean basicCanCutThrough = false;
     [SerializeField] private Boolean canCutThrough = false;
 
     [SerializeField] protected Boolean isTriggerMagic = false;
-
     [SerializeField] protected Boolean isTriggered = false;
 
-    //[SerializeField] private MagicBase magicToTrigger = null;
-
     [SerializeField] private Vector3 aimDirection;
-  //  [SerializeField] private float basicAimOffset = 10;
     [SerializeField] private float aimOffset = 10;
+
     [SerializeField] private Vector3 shootDirection;
-    [SerializeField] private Boolean basicIsShootByMouseDiretion = true;
-    [SerializeField] private Boolean isShootByMouseDiretion =true;
-    //[SerializeField] Boolean isCharsingEnemy = false;
+
     protected Rigidbody rigidbody;
 
 
@@ -88,7 +74,6 @@ abstract public class Bullet : MonoBehaviour
         CriticalRatio = bulletSO.basicCriticalRatio;
         CanCutThrough = bulletSO.basicCanCutThrough;
         AimOffset = bulletSO.basicAimOffset;
-        IsShootByMouseDiretion = BasicIsShootByMouseDiretion;
         isTriggered = false;
         //magicToTrigger = null;
 
@@ -217,25 +202,16 @@ abstract public class Bullet : MonoBehaviour
     {
         this.aimOffset = Math.Max(0,aimOffset); 
     }
-   // public float BasicSpeed { get => basicSpeed; set => basicSpeed = value; }
     public float Speed { get => speed; set => speed = value;}
-   // public float BasicDamage { get => basicDamage; set => basicDamage = value; }
     public float Damage { get => damage; set => damage = value; }
-   // public float BasicTime { get => basicTime; set => basicTime = value; }
     public float Time { get => time; set => time = value; }
-    //public float BasicCriticalChance { get => basicCriticalChance; set => basicCriticalChance = value; }
     public float CriticalChance { get => criticalChance; set => criticalChance = value; }
-    //public float BasicCriticalRatio { get => basicCriticalRatio; set => basicCriticalRatio = value; }
     public float CriticalRatio { get => criticalRatio; set => criticalRatio = value; }
-   // public bool BasicCanCutThrough { get => basicCanCutThrough; set => basicCanCutThrough = value; }
     public bool CanCutThrough { get => canCutThrough; set => canCutThrough = value; }
     public Vector3 AimDirection { get => aimDirection; set => aimDirection = value; }
-  //  public float BasicAimOffset { get => basicAimOffset; set => basicAimOffset = value; }
     public float AimOffset { get => aimOffset; set => aimOffset = value; }
     public Vector3 ShootDirection { get => shootDirection; set => shootDirection = value; }
-    public bool BasicIsShootByMouseDiretion { get => basicIsShootByMouseDiretion; set => basicIsShootByMouseDiretion = value; }
-    public bool IsShootByMouseDiretion { get => isShootByMouseDiretion; set => isShootByMouseDiretion = value; }
     public bool IsTriggerMagic { get => isTriggerMagic; set => isTriggerMagic = value; }
     public bool IsTriggered { get => isTriggered; set => isTriggered = value; }
-   // public MagicBase MagicToTrigger { get => magicToTrigger; set => magicToTrigger = value; }
+
 }

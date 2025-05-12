@@ -57,17 +57,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.78479147
+      value: -1.267421
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.78580475
+      value: 0.78052807
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.43828
+      value: -6.09353
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
@@ -162,6 +162,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7719643576129529120}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 74f5abc404161a6469add0c645e24018,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2642342368881465018}
   m_SourcePrefab: {fileID: 100100000, guid: 74f5abc404161a6469add0c645e24018, type: 3}
 --- !u!1 &3712422601029067751 stripped
 GameObject:
@@ -184,7 +188,7 @@ MonoBehaviour:
   player: {fileID: 0}
   timeBeforeFirstShoot: 3
   checkInterval: 2
-  distance: 30
+  distance: 20
 --- !u!54 &8048097463323202040
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -303,8 +307,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639c6de865eb0744eafa61198c177247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalSpeed: 2
-  speed: 2
+  player: {fileID: 0}
+  navMeshAgent: {fileID: 0}
+--- !u!195 &2642342368881465018
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3712422601029067751}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1.1
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!4 &4093486201892796765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,

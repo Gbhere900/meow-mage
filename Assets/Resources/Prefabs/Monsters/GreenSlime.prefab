@@ -41,18 +41,33 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.97
+      value: -0.7087605
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.778456
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.61
+      value: -4.482259
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
@@ -145,6 +160,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2937551385180463308}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16ca756e4e68c1e4193918c897a5b02b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7815643265745492704}
   m_SourcePrefab: {fileID: 100100000, guid: 16ca756e4e68c1e4193918c897a5b02b, type: 3}
 --- !u!4 &97319161552754234 stripped
 Transform:
@@ -204,10 +223,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 53.03
-  m_Height: 146
+  m_Radius: 0.6
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 65.3, z: 0}
+  m_Center: {x: 0, y: 1.05, z: 0}
 --- !u!114 &3180380385926469259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,5 +312,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639c6de865eb0744eafa61198c177247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalSpeed: 2.5
-  speed: 2.5
+  player: {fileID: 0}
+  navMeshAgent: {fileID: 0}
+--- !u!195 &7815643265745492704
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725765564873608320}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.64
+  m_Speed: 3
+  m_Acceleration: 20
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 1.4
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
