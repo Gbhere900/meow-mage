@@ -11,7 +11,7 @@ public class Bocchi : MonoBehaviour
     public float checkInterval = 1f;
     public float distance = 15;
 
-    public float  shootOffset { get; private set; }
+    public float shootOffset;
 
     private void Awake()
     {

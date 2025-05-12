@@ -42,17 +42,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
@@ -210,8 +210,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   timeBeforeFirstShoot: 3
-  checkInterval: 0.4
+  checkInterval: 0.8
   distance: 25
+  shootOffset: 20
 --- !u!136 &3905414697655603535
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -293,7 +294,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3712422601029067751}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.1
+  m_Radius: 1.15
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50

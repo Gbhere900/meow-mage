@@ -48,7 +48,7 @@ MonoBehaviour:
   queueCount: -1
   magicSO: {fileID: 11400000, guid: d75093843b85e7047873805329825ce4, type: 2}
   isActive: 1
-  accelerate: 3
+  accelerate: 2
   timeBeforeActive: 0
   M_MagicArrow: {fileID: 0}
   centerBullet: {fileID: 0}
