@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace Pathfinding {
-    using Codice.Client.BaseCommands.CheckIn.Progress;
-    using Codice.Utils;
-    using Pathfinding.RVO;
+    //using Codice.Client.BaseCommands.CheckIn.Progress;
+    //using Codice.Utils;
+    //using Pathfinding.RVO;
 	using Pathfinding.Util;
 
 	/// <summary>

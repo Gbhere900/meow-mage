@@ -38,7 +38,7 @@ public class PackageManager : MonoBehaviour
     public TextMeshProUGUI maxMana;
     public TextMeshProUGUI manaRecoverSpeed;
 
-    private bool isFirstTime = true;
+
     static public PackageManager Instance()
     {
         return instance;
