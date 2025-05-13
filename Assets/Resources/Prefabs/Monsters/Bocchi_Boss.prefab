@@ -42,32 +42,32 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.204632
+      value: 1.7014847
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.77181244
+      value: 0.7719116
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.500033
+      value: -8.21
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 74f5abc404161a6469add0c645e24018,
         type: 3}
@@ -235,7 +235,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.15
+  m_Radius: 1
   m_Height: 2.87
   m_Direction: 1
   m_Center: {x: 0, y: 1.02, z: 0}
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
-  radius: 0.3
+  radius: 1
   height: 1.09
   canMove: 1
   maxSpeed: 3

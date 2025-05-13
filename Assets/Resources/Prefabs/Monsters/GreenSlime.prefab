@@ -42,17 +42,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.97
+      value: -0.20906448
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.778456
+      value: 0.7638092
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.61
+      value: -14.39774
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
@@ -212,7 +212,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 53.03
+  m_Radius: 50
   m_Height: 146
   m_Direction: 1
   m_Center: {x: 0, y: 65.3, z: 0}
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
-  radius: 60
+  radius: 50
   height: 100
   canMove: 1
   maxSpeed: 2.5
