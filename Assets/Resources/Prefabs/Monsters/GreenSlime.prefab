@@ -41,18 +41,33 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.20906448
+      value: -17.404236
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7638092
+      value: 0.88089466
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.39774
+      value: -7.1654153
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
@@ -140,10 +155,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3625806638113959528}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16ca756e4e68c1e4193918c897a5b02b,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5539855802730235063}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16ca756e4e68c1e4193918c897a5b02b,
         type: 3}
@@ -191,7 +202,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!136 &2163182451533171330
 CapsuleCollider:
@@ -212,10 +223,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 50
-  m_Height: 146
+  m_Radius: 0.56
+  m_Height: 2.05
   m_Direction: 1
-  m_Center: {x: 0, y: 65.3, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!114 &3180380385926469259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,27 +279,6 @@ MonoBehaviour:
   checkInterval: 1
   distance: 3
   force: 100
---- !u!95 &3625806638113959528
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 725765564873608320}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e79701f7287ed544d8d5003632087aac, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &5539855802730235063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,8 +320,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
-  radius: 50
-  height: 100
+  radius: 0.56
+  height: 1
   canMove: 1
   maxSpeed: 2.5
   gravity: {x: NaN, y: NaN, z: NaN}
@@ -353,9 +343,9 @@ MonoBehaviour:
   basicSpeed: 0
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 0.6
+  slowdownDistance: 0
   pickNextWaypointDist: 2
-  endReachedDistance: 0.2
+  endReachedDistance: 0
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0

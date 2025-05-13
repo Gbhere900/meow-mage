@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 5365277170619148016}
   - component: {fileID: 2320230612254946947}
   - component: {fileID: 2687820855136182628}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Dummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3812403498989331139
 Transform:
@@ -116,12 +116,12 @@ GameObject:
   - component: {fileID: 8840739302861154207}
   - component: {fileID: 236363517051546982}
   - component: {fileID: 2640037455984122284}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Dummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8840739302861154207
 Transform:
@@ -197,12 +197,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5183482776501112687}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TMPSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5183482776501112687
 Transform:

@@ -123,7 +123,7 @@ Material:
     - _OcclusionStrength: 1
     - _Offset: 0
     - _OtlWidth: 1
-    - _OutlineWidth: 0.943
+    - _OutlineWidth: 0.239
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
