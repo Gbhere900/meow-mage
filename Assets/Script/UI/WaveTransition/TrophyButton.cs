@@ -38,18 +38,6 @@ public class TrophyButton : MonoBehaviour
         {
             Debug.Log("魔法图标为空");
         }
-        //if (magicSO.Mana == null)
-        //{
-        //    Debug.Log("魔法名为空");
-        //}
-        //if (magicSO.AttackCD == null)
-        //{
-        //    Debug.Log("魔法名为空");
-        //}
-        //if (magicSO.ReloadCD == null)
-        //{
-        //    Debug.Log("魔法名为空");
-        //}
 
         name.text =magicSO.ChineseName;
         description.text =magicSO.description;
