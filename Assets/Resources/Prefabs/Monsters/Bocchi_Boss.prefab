@@ -267,8 +267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f634f58ecb07b4aa30505f9048ddf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 800
-  health: 800
+  maxHealth: 400
+  health: 400
   EXPnum: 30
   Goldnum: 30
   TMPSpawnPoint: {fileID: 4997891252039774961}

@@ -106,7 +106,10 @@ abstract public class Bullet : MonoBehaviour
                 magicToTrigger.TriggerMagic(transform.position, transform.forward);
             }
             else
-                playerAttack.magicQueues[queueCount].Dequeue();     //有点奇怪
+            {
+                playerAttack.magicQueues[queueCount].Dequeue();
+            }
+                    //有点奇怪
 
         }
     }

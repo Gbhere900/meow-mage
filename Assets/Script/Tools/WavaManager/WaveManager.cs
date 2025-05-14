@@ -116,11 +116,13 @@ public class WaveManager : MonoBehaviour
 
     private Vector3 GetGeneratePosition()
     {
+       
         Vector3 direction = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0, UnityEngine.Random.Range(-1f, 1f)).normalized;
         Vector3 offset = direction * UnityEngine.Random.Range(generateDistance_min,generateDistance_max);
         Vector3 generatePosition= player.transform.position + offset;
         generatePosition.x = Math.Clamp(generatePosition.x, -generateBorder.position.x,generateBorder.position.x);
-        generatePosition.z = Math.Clamp(generatePosition.z, -generateBorder.position.y, generateBorder.position.y);
+        generatePosition.z = Math.Clamp(generatePosition.z, -generateBorder.position.z, generateBorder.position.z);
+
         return generatePosition;
     }
 

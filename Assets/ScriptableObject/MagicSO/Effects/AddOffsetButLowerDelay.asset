@@ -15,10 +15,10 @@ MonoBehaviour:
   bulletSO: {fileID: 0}
   identifier: AddOffsetButLowerDelay
   ChineseName: "\u529B\u91CF\u7684\u4EE3\u4EF7"
-  description: "\u964D\u4F4E\u4E0B\u4E00\u53D1\u6295\u5C04\u7269\u7684\u5EF6\u8FDF\uFF0C\u4F46\u662F\u7784\u51C6\u504F\u79FB\u5927\u5E45\u589E\u52A0"
+  description: "\u964D\u4F4E\u4E0B\u4E00\u53D1\u6295\u5C04\u7269\u7684\u5EF6\u8FDF\u548C\u5145\u80FD\u65F6\u95F4\uFF0C\u4F46\u662F\u7784\u51C6\u504F\u79FB\u5927\u5E45\u589E\u52A0"
   icon: {fileID: 21300000, guid: af68dc70257d90942a12f4e2c1152d5c, type: 3}
-  delay: -0.3
-  reload: 0
+  delay: -0.2
+  reload: -0.3
   extraTrigger: 1
   mana: 0
   type: 1

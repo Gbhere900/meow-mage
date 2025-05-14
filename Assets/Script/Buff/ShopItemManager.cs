@@ -19,7 +19,7 @@ public class ShopItemManager : MonoBehaviour
     private void Awake()
     {
         buffs = buffLib;
-        GameManager.OnSwitchGameState += ChangeShopItemsOnSwitchGameState;
+        
 
         if (instance != null&&instance !=this)
         {
@@ -27,9 +27,22 @@ public class ShopItemManager : MonoBehaviour
         }
         else
             instance = this;
-        ChangerShopItems();
+       
+    }
+    private void OnEnable()
+    {
+       
+        GameManager.OnSwitchGameState += ChangeShopItemsOnSwitchGameState;
+    }
+    private void OnDisable()
+    {
+        GameManager.OnSwitchGameState -= ChangeShopItemsOnSwitchGameState;
     }
 
+    private void Start()
+    {
+        ChangerShopItems();
+    }
     private void ChangeShopItemsOnSwitchGameState(GameState state)
     {
         if(state ==GameState.game)

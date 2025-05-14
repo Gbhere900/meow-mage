@@ -29,24 +29,28 @@ public class TrophyManager : MonoBehaviour
             instance = this;
         else
             Destroy(this.gameObject);
-        GameManager.OnSwitchGameState += ChangeTroPhiesOnSwitchGameState;
+        
+      
         
     }
 
     private void OnEnable()
     {
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+        GameManager.OnSwitchGameState += ChangeTroPhiesOnSwitchGameState;
     }
 
     private void OnDisable()
     {
         UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+        GameManager.OnSwitchGameState -= ChangeTroPhiesOnSwitchGameState;
     }
     [NaughtyAttributes.Button]
     public void ChangeTrophies()
     {
        ShuffleMagicSOs();
-      // ShuffleMagics();
+        // ShuffleMagics();
+   
         for (int i = 0; i < horizontalLayoutGroup.transform.childCount; i++)
         {
             GameObject tempTrophyButton = horizontalLayoutGroup.transform.GetChild(i).gameObject;
