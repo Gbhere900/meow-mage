@@ -10,6 +10,7 @@ public class Bocchi : MonoBehaviour
     public float timeBeforeFirstShoot = 3f;
     public float checkInterval = 1f;
     public float distance = 15;
+    public GameObject shootPoint;
 
     public float  shootOffset { get; private set; }
 
