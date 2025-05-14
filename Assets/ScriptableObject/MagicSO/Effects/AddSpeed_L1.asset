@@ -20,7 +20,7 @@ MonoBehaviour:
   delay: 0
   reload: 0
   extraTrigger: 1
-  mana: 5
+  mana: 3
   type: 1
   isTrigger: 0
   prefabToCreat: {fileID: 0}
