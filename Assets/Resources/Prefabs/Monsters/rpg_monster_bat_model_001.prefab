@@ -1210,7 +1210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swayDirection: {x: 0, y: 0, z: 0}
-  swayForce: 100
+  swayForce: 200
   timeBeforeFirstSway: 1
   swayInterval: 2
 --- !u!114 &458235195555730703

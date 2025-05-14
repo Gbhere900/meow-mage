@@ -275,10 +275,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  timeBeforeFirstJump: 3
-  checkInterval: 1
-  distance: 3
-  force: 100
+  timeBeforeFirstJump: 2
+  checkInterval: 2.5
+  distance: 6
+  force: 120
 --- !u!114 &5539855802730235063
 MonoBehaviour:
   m_ObjectHideFlags: 0

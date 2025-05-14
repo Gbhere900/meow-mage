@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+
 [System.Serializable]
 public struct Pair
 {
