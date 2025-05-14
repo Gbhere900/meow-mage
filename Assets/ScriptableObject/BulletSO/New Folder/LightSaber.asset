@@ -15,7 +15,7 @@ MonoBehaviour:
   basicSpeed: 50
   maxSpeed: 100
   basicDamage: 3
-  basicTime: 0.04
+  basicTime: 0.03
   maxTime: 4
   basicCriticalChance: 20
   basicCriticalRatio: 2

@@ -180,6 +180,7 @@ abstract public class Bullet : MonoBehaviour
     }
     public IEnumerator WaitForDestroy()
     {
+        yield return new WaitForSeconds(0.01f);
         yield return new WaitForSeconds(Time);
         Recycle();
     }

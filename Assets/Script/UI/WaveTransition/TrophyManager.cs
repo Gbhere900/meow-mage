@@ -32,6 +32,16 @@ public class TrophyManager : MonoBehaviour
         GameManager.OnSwitchGameState += ChangeTroPhiesOnSwitchGameState;
         
     }
+
+    private void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
     [NaughtyAttributes.Button]
     public void ChangeTrophies()
     {
@@ -102,5 +112,10 @@ public class TrophyManager : MonoBehaviour
         {
             instance = null; // 确保场景销毁时清空引用
         }
+    }
+
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        instance = null;
     }
 }
