@@ -38,7 +38,7 @@ public class Bocchi : MonoBehaviour
 
     void Shoot()
     {
-        SlimeGelBullet slimeGelBullet =  EnemyBulletPoolManager.Instance().SpawnSlimeGelBullet(transform.position);
+        SlimeGelBullet slimeGelBullet =  EnemyBulletPoolManager.Instance().SpawnSlimeGelBullet(shootPoint.transform.position);
         
         //处理direction
         Vector3 direction = player.transform.position - transform.position;
@@ -50,7 +50,7 @@ public class Bocchi : MonoBehaviour
         offsetVector *= UnityEngine.Random.Range((float)Math.Tan(-shootOffset * Mathf.Deg2Rad), (float)Math.Tan(shootOffset * Mathf.Deg2Rad));
         direction = direction + offsetVector;
 
-        slimeGelBullet.transform.position = transform.position;
+        slimeGelBullet.transform.position = shootPoint.transform.position;
         slimeGelBullet.shootByDirection(direction);     //direction在函数里归一化了,这里不用归一化
 
         
