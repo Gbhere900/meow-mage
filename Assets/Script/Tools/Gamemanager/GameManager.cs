@@ -1,13 +1,18 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     static public GameManager instance;
     static public Action<GameState> OnSwitchGameState;
+    static public Action OnPaused;
+    static public Action OnContinued;
     public GameState gameState;
+    public bool isPaused = false;
+    PlayerInputControl playerInputControl;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -19,23 +24,60 @@ public class GameManager : MonoBehaviour
             instance = this;
 
         SwitchToMenu();
+        playerInputControl = new PlayerInputControl();
+        
     }
+    private void OnEnable()
+    {
+        playerInputControl.Enable();
+        playerInputControl.Player.ESC.started += OnESCClicked;
+    }
+
+    private void OnDisable()
+    {
+        playerInputControl.Disable();
+        playerInputControl.Player.ESC.started -= OnESCClicked;
+    }
+
+    private void OnESCClicked(InputAction.CallbackContext context)
+    {
+        //Debug.LogError("ESC");
+        if (UIManager.Instancce().gameUI.activeInHierarchy)
+        {
+            SwitchPauseState();
+        }
+    }
+
+    public void SwitchPauseState()
+    {
+        if (isPaused)
+        {
+            Continue();
+        }
+        else
+        {
+            Pause();
+        }
+    }
+
     static public GameManager Instance()
     {
         return instance;
     }
-    // Update is called once per frame
 
-    public void OnSwitchWaveCallBack()
-    {
-       // int deltaLevel = UnityEngine.Object.FindObjectOfType<PlayerResouces>().GetDeltaLevel();
-        //SwitchGameState(GameState.shop);
-        //for (int i = 0; i < deltaLevel; i++)
-        //{
-        //    SwitchGameState(GameState.trophy);
-        //}
+
+    public void Pause()
+    { 
+        isPaused = true;
+        Time.timeScale = 0.0f;
+        OnPaused.Invoke();
     }
-
+    public void Continue()
+    {
+        isPaused = false;
+        Time.timeScale = 1.0f;
+        OnContinued.Invoke();
+    }
     public void SwitchGameState(GameState gameState)
     {
         this.gameState = gameState;

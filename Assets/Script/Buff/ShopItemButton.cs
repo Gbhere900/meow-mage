@@ -21,6 +21,10 @@ public class ShopItemButton : MonoBehaviour
         PlayerResouces.Instance().OnGoldChanged += CheckIfCanBuy;
     }
 
+    private void OnEnable()
+    {
+        CheckIfCanBuy(PlayerResouces.Instance().GetCurrentGold());
+    }
     private void CheckIfCanBuy(int currentGold)
     {
         if(currentGold >= cost && isValid) 
