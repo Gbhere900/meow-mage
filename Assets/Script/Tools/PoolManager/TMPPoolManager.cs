@@ -20,12 +20,14 @@ public class TMPPoolManager : MonoBehaviour
     {
         EnemyHealth.OnReceivedDamage += SpawnDamageUI;
         DamageUI.OnRecycled += RecycleDamageUI;
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
         EnemyHealth.OnReceivedDamage -= SpawnDamageUI;
         DamageUI.OnRecycled -= RecycleDamageUI;
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     void SpawnDamageUI(float damage,Vector3 position)
     {
@@ -38,7 +40,10 @@ public class TMPPoolManager : MonoBehaviour
     {
         damageUIPool.Release(damageUI);
     }
-
-    // Update is called once per frame
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        DamageUIPool._instance = null;
+    }
+        // Update is called once per frame
 
 }

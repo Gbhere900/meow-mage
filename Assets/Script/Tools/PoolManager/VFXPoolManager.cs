@@ -32,6 +32,8 @@ public class VFXPoolManager : MonoBehaviour
         VFX_PassAway.OnRecycled += RecycleVFX_passAway;
 
         VFX_Explosion.OnRecycled += RecycleVFX_explosion;
+
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnDisable()
     {
@@ -39,6 +41,8 @@ public class VFXPoolManager : MonoBehaviour
         VFX_PassAway.OnRecycled -= RecycleVFX_passAway;
 
         VFX_Explosion.OnRecycled -=RecycleVFX_explosion;
+
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void  SpawnVFX_passAway(Vector3 position)
@@ -70,4 +74,10 @@ public class VFXPoolManager : MonoBehaviour
             instance = null; // 确保场景销毁时清空引用
         }
     }
-}
+
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        VFXPool_Explosion._instance = null;
+        VFXPool_PassAway._instance = null;
+    }
+ }

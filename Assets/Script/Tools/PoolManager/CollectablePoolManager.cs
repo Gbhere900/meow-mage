@@ -21,6 +21,7 @@ public class CollectablePoolManager : MonoBehaviour
 
         EXPBall.OnRecycled += RecycleEXPBall;
         GoldBall.OnRecycled += RecycleGoldBall;
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
 
 
     }
@@ -30,6 +31,7 @@ public class CollectablePoolManager : MonoBehaviour
 
         EXPBall.OnRecycled -= RecycleEXPBall;
         GoldBall.OnRecycled -= RecycleGoldBall;
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void GenerateCollectable(Vector3 position,int EXPNum,int goldNum)
@@ -48,7 +50,12 @@ public class CollectablePoolManager : MonoBehaviour
 
 
     void RecycleEXPBall(EXPBall tempEXPBall) => EXPBallPool_instance.Release(tempEXPBall);
-   
 
     void RecycleGoldBall(GoldBall tempGoldBall) => GoldBallPool_instance.Release(tempGoldBall);
+
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+       GoldBallPool._instance = null;
+        EXPBallPool._instance = null;
+    }
 }

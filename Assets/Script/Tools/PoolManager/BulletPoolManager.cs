@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 [System.Serializable]
 public struct Pair
 {
@@ -83,6 +84,7 @@ public class BulletPoolManager : MonoBehaviour
         BlackHole.OnRecycled += RecycleBlackHole;
         Chainsaw.OnRecycled += RecycleChainsaw;
         EnergyBall.OnRecycled += RecycleEnergyBall;
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnDisable()
     {
@@ -99,6 +101,7 @@ public class BulletPoolManager : MonoBehaviour
         BlackHole.OnRecycled -= RecycleBlackHole;
         Chainsaw.OnRecycled -= RecycleChainsaw;
         EnergyBall.OnRecycled-= RecycleEnergyBall;
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public  Bullet SpawnMagicBullet(Vector3 position, MagicBase magic,int queueCount, int bulletCount = 1)
@@ -356,5 +359,26 @@ public class BulletPoolManager : MonoBehaviour
         {
             instance = null; // 确保场景销毁时清空引用
         }
+    }
+
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        // 场景加载后，清空对象池并重新创建
+        MagicBulletPool._instance = null;
+        MagicArrowPool._instance = null ;
+        BoomPool._instance = null;
+        T_MagicBulletPool._instance = null;
+        T_MagicArrowPool._instance = null ;
+        InstantBoomPool._instance = null;
+        LightSaberPool._instance = null;
+        BounceBallPool._instance = null;
+        BlackHolePool._instance = null;
+        ChainsawPool._instance = null;
+        EnergyBallPool._instance = null;
+
+        //if (_instance != null)
+        //{
+        //    _instance.Clear(); // 清空池中的所有对象
+        //}
     }
 }

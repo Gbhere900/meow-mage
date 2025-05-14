@@ -29,11 +29,13 @@ public class EnemyBulletPoolManager : MonoBehaviour
     private void OnEnable()
     {
         SlimeGelBullet.OnRecycled += RecycleSlimeGelBullet;
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
         SlimeGelBullet.OnRecycled -= RecycleSlimeGelBullet;
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     public SlimeGelBullet SpawnSlimeGelBullet (Vector3 position)
     {
@@ -53,5 +55,9 @@ public class EnemyBulletPoolManager : MonoBehaviour
         {
             instance = null; // 确保场景销毁时清空引用
         }
+    }
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        SlimeGelBulletPool._instance = null;
     }
 }

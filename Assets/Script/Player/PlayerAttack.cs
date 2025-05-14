@@ -569,4 +569,12 @@ public class PlayerAttack : MonoBehaviour
     public float ReloadTimer { get => reloadTimer; set => reloadTimer = value; }
     public Queue<MagicBase> MagicQueue1 { get => magicQueue1; set => magicQueue1 = value; }
     public Queue<MagicBase> MagicQueue2 { get => magicQueue2; set => magicQueue2 = value; }
+
+    private void OnDestroy()
+    {
+        if (instance != null)
+        {
+            instance = null; // 清空池中的所有对象
+        }
+    }
 }

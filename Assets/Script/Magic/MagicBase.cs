@@ -9,6 +9,10 @@ public abstract class MagicBase : MonoBehaviour
     public MagicSO magicSO;
     public bool isActive = true;
 
+    private void OnEnable()
+    {
+        isActive = true;
+    }
     public virtual void TriggerMagic(Vector3 position)
     {
         

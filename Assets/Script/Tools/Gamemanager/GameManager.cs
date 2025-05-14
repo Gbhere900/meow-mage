@@ -29,12 +29,14 @@ public class GameManager : MonoBehaviour
     }
     private void OnEnable()
     {
+        //UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
         playerInputControl.Enable();
         playerInputControl.Player.ESC.started += OnESCClicked;
     }
 
     private void OnDisable()
     {
+        //UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
         playerInputControl.Disable();
         playerInputControl.Player.ESC.started -= OnESCClicked;
     }
@@ -123,6 +125,14 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+Application.Quit();
+#endif
+    }
     private void OnDestroy()
     {
         if (instance == this)
@@ -130,4 +140,6 @@ public class GameManager : MonoBehaviour
             instance = null; // 确保场景销毁时清空引用
         }
     }
+
+
 }
